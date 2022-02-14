@@ -1,103 +1,623 @@
-<?xml version="1.0" encoding="utf-8"?>
-<world>
+<?xml version="1.0" encoding="UTF-8" ?>
+<root>
   <name>Adventure Shrek</name>
-  <logo>str1234</logo>
-  <money>3.1415926535</money>
-  <score>3.1415926535</score>
-  <totalangels>3.1415926535</totalangels>
-  <activeangels>3.1415926535</activeangels>
-  <angelbonus>123</angelbonus>
-  <lastupdate>12345</lastupdate>
+  <logo>icones/shrekAdventure.jpg</logo>
+  <money>0</money>
+  <score>0</score>
+  <totalangels>0</totalangels>
+  <activeangels>0</activeangels>
+  <angelbonus>2</angelbonus>
+  <lastupdate>1644228608354</lastupdate>
   <products>
     <product>
       <id>1</id>
-      <name>oignon</name>
-      <logo>str1234</logo>
-      <cout>3.1415926535</cout>
-      <croissance>3.1415926535</croissance>
-      <revenu>3.1415926535</revenu>
-      <vitesse>123</vitesse>
-      <quantite>123</quantite>
-      <timeleft>12345</timeleft>
-      <managerUnlocked>true</managerUnlocked>
+      <name>Boule de poils</name>
+      <logo>icones/bouledepoils.png</logo>
+      <cout>4</cout>
+      <croissance>1.07</croissance>
+      <revenu>1</revenu>
+      <vitesse>500</vitesse>
+      <quantite>1</quantite>
+      <timeleft>0</timeleft>
+      <managerUnlocked>false</managerUnlocked>
       <palliers>
         <pallier>
-          <name>str1234</name>
-          <logo>str1234</logo>
-          <seuil>123</seuil>
-          <idcible>123</idcible>
-          <ratio>3.1415926535</ratio>
+          <name>Paper is beautiful !</name>
+          <logo>icones/bouledepoils.png</logo>
+          <seuil>20</seuil>
+          <idcible>1</idcible>
+          <ratio>2</ratio>
           <typeratio>vitesse</typeratio>
-          <unlocked>true</unlocked>
+          <unlocked>false</unlocked>
+        </pallier>
+        <pallier>
+          <name>Don&#x27;t forget your paper bag  !</name>
+          <logo>icones/bouledepoils.png</logo>
+          <seuil>75</seuil>
+          <idcible>1</idcible>
+          <ratio>2</ratio>
+          <typeratio>vitesse</typeratio>
+          <unlocked>false</unlocked>
+        </pallier>
+        <pallier>
+          <name>Go Paper ! </name>
+          <logo>icones/bouledepoils.png</logo>
+          <seuil>300</seuil>
+          <idcible>1</idcible>
+          <ratio>2</ratio>
+          <typeratio>vitesse</typeratio>
+          <unlocked>false</unlocked>
+        </pallier>
+        <pallier>
+          <name>Paper Crazy !</name>
+          <logo>icones/bouledepoils.png</logo>
+          <seuil>500</seuil>
+          <idcible>1</idcible>
+          <ratio>2</ratio>
+          <typeratio>gain</typeratio>
+          <unlocked>false</unlocked>
         </pallier>
       </palliers>
     </product>
     <product>
       <id>2</id>
-      <name>boue du marais</name>
-      <logo>str1234</logo>
-      <cout>3.1415926535</cout>
-      <croissance>3.1415926535</croissance>
-      <revenu>3.1415926535</revenu>
-      <vitesse>123</vitesse>
-      <quantite>123</quantite>
-      <timeleft>12345</timeleft>
-      <managerUnlocked>true</managerUnlocked>
+      <name>Bougie de cérumen</name>
+      <logo>icones/bougie.png</logo>
+      <cout>60</cout>
+      <croissance>1.15</croissance>
+      <revenu>60</revenu>
+      <vitesse>3000</vitesse>
+      <quantite>0</quantite>
+      <timeleft>0</timeleft>
+      <managerUnlocked>false</managerUnlocked>
       <palliers>
         <pallier>
-          <name>str1234</name>
-          <logo>str1234</logo>
-          <seuil>123</seuil>
-          <idcible>123</idcible>
-          <ratio>3.1415926535</ratio>
+          <name>Give me some good bins !</name>
+          <logo>icones/bougie.png</logo>
+          <seuil>20</seuil>
+          <idcible>2</idcible>
+          <ratio>2</ratio>
           <typeratio>vitesse</typeratio>
-          <unlocked>true</unlocked>
+          <unlocked>false</unlocked>
+        </pallier>
+        <pallier>
+          <name>My Trashcans are better than yours ! </name>
+          <logo>icones/bougie.png</logo>
+          <seuil>75</seuil>
+          <idcible>2</idcible>
+          <ratio>2</ratio>
+          <typeratio>vitesse</typeratio>
+          <unlocked>false</unlocked>
+        </pallier>
+        <pallier>
+          <name>Recycle or die ! </name>
+          <logo>icones/bougie.png</logo>
+          <seuil>300</seuil>
+          <idcible>2</idcible>
+          <ratio>2</ratio>
+          <typeratio>vitesse</typeratio>
+          <unlocked>false</unlocked>
+        </pallier>
+        <pallier>
+          <name>Bins are getting mad !</name>
+          <logo>icones/bougie.png</logo>
+          <seuil>500</seuil>
+          <idcible>2</idcible>
+          <ratio>2</ratio>
+          <typeratio>gain</typeratio>
+          <unlocked>false</unlocked>
+        </pallier>
+      </palliers>
+    </product>
+    <product>
+      <id>3</id>
+      <name>Oeuf au plat</name>
+      <logo>icones/oeuf.png</logo>
+      <cout>720</cout>
+      <croissance>1.14</croissance>
+      <revenu>540</revenu>
+      <vitesse>6000</vitesse>
+      <quantite>0</quantite>
+      <timeleft>0</timeleft>
+      <managerUnlocked>false</managerUnlocked>
+      <palliers>
+        <pallier>
+          <name>More Bicycles !</name>
+          <logo>icones/oeuf.png</logo>
+          <seuil>20</seuil>
+          <idcible>3</idcible>
+          <ratio>2</ratio>
+          <typeratio>vitesse</typeratio>
+          <unlocked>false</unlocked>
+        </pallier>
+        <pallier>
+          <name>More More Bicycles !</name>
+          <logo>icones/oeuf.png</logo>
+          <seuil>75</seuil>
+          <idcible>3</idcible>
+          <ratio>2</ratio>
+          <typeratio>vitesse</typeratio>
+          <unlocked>false</unlocked>
+        </pallier>
+        <pallier>
+          <name>Bicycles will rule the world ! </name>
+          <logo>icones/oeuf.png</logo>
+          <seuil>300</seuil>
+          <idcible>3</idcible>
+          <ratio>2</ratio>
+          <typeratio>vitesse</typeratio>
+          <unlocked>false</unlocked>
+        </pallier>
+        <pallier>
+          <name>Bicycles, what else ?</name>
+          <logo>icones/oeuf.png</logo>
+          <seuil>500</seuil>
+          <idcible>3</idcible>
+          <ratio>2</ratio>
+          <typeratio>gain</typeratio>
+          <unlocked>false</unlocked>
+        </pallier>
+      </palliers>
+    </product>
+    <product>
+      <id>4</id>
+      <name>Bonhomme de pain d'épice</name>
+      <logo>icones/tibiscuit.png</logo>
+      <cout>8640</cout>
+      <croissance>1.13</croissance>
+      <revenu>4320</revenu>
+      <vitesse>12000</vitesse>
+      <quantite>0</quantite>
+      <timeleft>0</timeleft>
+      <managerUnlocked>false</managerUnlocked>
+      <palliers>
+        <pallier>
+          <name>These cars are wizzzzzz !</name>
+          <logo>icones/tibiscuit.png</logo>
+          <seuil>20</seuil>
+          <idcible>4</idcible>
+          <ratio>2</ratio>
+          <typeratio>vitesse</typeratio>
+          <unlocked>false</unlocked>
+        </pallier>
+        <pallier>
+          <name>Dont&#x27;t be afraid by my cars !</name>
+          <logo>icones/tibiscuit.png</logo>
+          <seuil>75</seuil>
+          <idcible>4</idcible>
+          <ratio>2</ratio>
+          <typeratio>vitesse</typeratio>
+          <unlocked>false</unlocked>
+        </pallier>
+        <pallier>
+          <name>Electricity forever ! </name>
+          <logo>icones/tibiscuit.png</logo>
+          <seuil>300</seuil>
+          <idcible>4</idcible>
+          <ratio>2</ratio>
+          <typeratio>vitesse</typeratio>
+          <unlocked>false</unlocked>
+        </pallier>
+        <pallier>
+          <name>I like to drive !</name>
+          <logo>icones/tibiscuit.png</logo>
+          <seuil>500</seuil>
+          <idcible>4</idcible>
+          <ratio>2</ratio>
+          <typeratio>gain</typeratio>
+          <unlocked>false</unlocked>
+        </pallier>
+      </palliers>
+    </product>
+    <product>
+      <id>5</id>
+      <name>Carrosse-oignon</name>
+      <logo>icones/carrosse.png</logo>
+      <cout>103680</cout>
+      <croissance>1.12</croissance>
+      <revenu>51840</revenu>
+      <vitesse>24000</vitesse>
+      <quantite>0</quantite>
+      <timeleft>0</timeleft>
+      <managerUnlocked>false</managerUnlocked>
+      <palliers>
+        <pallier>
+          <name>I feel like the wind !</name>
+          <logo>icones/carrosse.png</logo>
+          <seuil>20</seuil>
+          <idcible>5</idcible>
+          <ratio>2</ratio>
+          <typeratio>vitesse</typeratio>
+          <unlocked>false</unlocked>
+        </pallier>
+        <pallier>
+          <name>Give me more wind !</name>
+          <logo>icones/carrosse.png</logo>
+          <seuil>75</seuil>
+          <idcible>4</idcible>
+          <ratio>2</ratio>
+          <typeratio>vitesse</typeratio>
+          <unlocked>false</unlocked>
+        </pallier>
+        <pallier>
+          <name>There is nothing like the wind ! </name>
+          <logo>icones/carrosse.png</logo>
+          <seuil>300</seuil>
+          <idcible>4</idcible>
+          <ratio>2</ratio>
+          <typeratio>vitesse</typeratio>
+          <unlocked>false</unlocked>
+        </pallier>
+        <pallier>
+          <name>Ride the wild wind !</name>
+          <logo>icones/carrosse.png</logo>
+          <seuil>500</seuil>
+          <idcible>4</idcible>
+          <ratio>2</ratio>
+          <typeratio>vitesse</typeratio>
+          <unlocked>false</unlocked>
+        </pallier>
+      </palliers>
+    </product>
+    <product>
+      <id>6</id>
+      <name>Tour</name>
+      <logo>icones/tour.png</logo>
+      <cout>1244160</cout>
+      <croissance>1.11</croissance>
+      <revenu>622080</revenu>
+      <vitesse>84000</vitesse>
+      <quantite>0</quantite>
+      <timeleft>0</timeleft>
+      <managerUnlocked>false</managerUnlocked>
+      <palliers>
+        <pallier>
+          <name>Let&#x27;s the sun shining ! </name>
+          <logo>icones/tour.png</logo>
+          <seuil>20</seuil>
+          <idcible>6</idcible>
+          <ratio>2</ratio>
+          <typeratio>vitesse</typeratio>
+          <unlocked>false</unlocked>
+        </pallier>
+        <pallier>
+          <name>I feel the power of the sun !</name>
+          <logo>icones/tour.png</logo>
+          <seuil>75</seuil>
+          <idcible>6</idcible>
+          <ratio>2</ratio>
+          <typeratio>vitesse</typeratio>
+          <unlocked>false</unlocked>
+        </pallier>
+        <pallier>
+          <name>It&#x27;s hot ! </name>
+          <logo>icones/tour.png</logo>
+          <seuil>300</seuil>
+          <idcible>6</idcible>
+          <ratio>2</ratio>
+          <typeratio>vitesse</typeratio>
+          <unlocked>false</unlocked>
+        </pallier>
+        <pallier>
+          <name>Oh my god, we can&#x27;t stop it !</name>
+          <logo>icones/tour.png</logo>
+          <seuil>500</seuil>
+          <idcible>6</idcible>
+          <ratio>2</ratio>
+          <typeratio>vitesse</typeratio>
+          <unlocked>false</unlocked>
+        </pallier>
+      </palliers>
+    </product>
+	<product>
+      <id>7</id>
+      <name>Potion Happily Ever After</name>
+      <logo>icones/potion.png</logo>
+      <cout>1244160</cout>
+      <croissance>1.11</croissance>
+      <revenu>622080</revenu>
+      <vitesse>84000</vitesse>
+      <quantite>0</quantite>
+      <timeleft>0</timeleft>
+      <managerUnlocked>false</managerUnlocked>
+      <palliers>
+        <pallier>
+          <name>Let&#x27;s the sun shining ! </name>
+          <logo>icones/potion.png</logo>
+          <seuil>20</seuil>
+          <idcible>6</idcible>
+          <ratio>2</ratio>
+          <typeratio>vitesse</typeratio>
+          <unlocked>false</unlocked>
+        </pallier>
+        <pallier>
+          <name>I feel the power of the sun !</name>
+          <logo>icones/potion.png</logo>
+          <seuil>75</seuil>
+          <idcible>6</idcible>
+          <ratio>2</ratio>
+          <typeratio>vitesse</typeratio>
+          <unlocked>false</unlocked>
+        </pallier>
+        <pallier>
+          <name>It&#x27;s hot ! </name>
+          <logo>icones/potion.png</logo>
+          <seuil>300</seuil>
+          <idcible>6</idcible>
+          <ratio>2</ratio>
+          <typeratio>vitesse</typeratio>
+          <unlocked>false</unlocked>
+        </pallier>
+        <pallier>
+          <name>Oh my god, we can&#x27;t stop it !</name>
+          <logo>icones/potion.png</logo>
+          <seuil>500</seuil>
+          <idcible>6</idcible>
+          <ratio>2</ratio>
+          <typeratio>vitesse</typeratio>
+          <unlocked>false</unlocked>
         </pallier>
       </palliers>
     </product>
   </products>
   <allunlocks>
     <pallier>
-      <name>str1234</name>
-      <logo>str1234</logo>
-      <seuil>123</seuil>
-      <idcible>123</idcible>
-      <ratio>3.1415926535</ratio>
-      <typeratio>vitesse</typeratio>
-      <unlocked>true</unlocked>
+      <name>All is better than one</name>
+      <logo>icones/all.jpg</logo>
+      <seuil>30</seuil>
+      <idcible>0</idcible>
+      <ratio>2</ratio>
+      <typeratio>gain</typeratio>
+      <unlocked>false</unlocked>
+    </pallier>
+    <pallier>
+      <name>To take and not to give</name>
+      <logo>icones/all.jpg</logo>
+      <seuil>150</seuil>
+      <idcible>0</idcible>
+      <ratio>3</ratio>
+      <typeratio>gain</typeratio>
+      <unlocked>false</unlocked>
+    </pallier>
+    <pallier>
+      <name>Take it all !</name>
+      <logo>icones/all.jpg</logo>
+      <seuil>375</seuil>
+      <idcible>0</idcible>
+      <ratio>3</ratio>
+      <typeratio>gain</typeratio>
+      <unlocked>false</unlocked>
+    </pallier>
+    <pallier>
+      <name>To infinite and beyond !</name>
+      <logo>icones/all.jpg</logo>
+      <seuil>500</seuil>
+      <idcible>0</idcible>
+      <ratio>3</ratio>
+      <typeratio>gain</typeratio>
+      <unlocked>false</unlocked>
     </pallier>
   </allunlocks>
   <upgrades>
     <pallier>
-      <name>str1234</name>
-      <logo>str1234</logo>
-      <seuil>123</seuil>
-      <idcible>123</idcible>
-      <ratio>3.1415926535</ratio>
-      <typeratio>vitesse</typeratio>
-      <unlocked>true</unlocked>
+      <name>Do you like paper bag ?</name>
+      <logo>icones/sacpapier.jpg</logo>
+      <seuil>1000</seuil>
+      <idcible>1</idcible>
+      <ratio>3</ratio>
+      <typeratio>gain</typeratio>
+      <unlocked>false</unlocked>
+    </pallier>
+    <pallier>
+      <name>This is my bin</name>
+      <logo>icones/recyclage.jpg</logo>
+      <seuil>15000</seuil>
+      <idcible>2</idcible>
+      <ratio>3</ratio>
+      <typeratio>gain</typeratio>
+      <unlocked>false</unlocked>
+    </pallier>
+    <pallier>
+      <name>A nice bicycle</name>
+      <logo>icones/velo.jpg</logo>
+      <seuil>15000</seuil>
+      <idcible>3</idcible>
+      <ratio>3</ratio>
+      <typeratio>gain</typeratio>
+      <unlocked>false</unlocked>
+    </pallier>
+    <pallier>
+      <name>I want this car !</name>
+      <logo>icones/voitureelec.jpg</logo>
+      <seuil>100000</seuil>
+      <idcible>4</idcible>
+      <ratio>3</ratio>
+      <typeratio>gain</typeratio>
+      <unlocked>false</unlocked>
+    </pallier>
+    <pallier>
+      <name>Don&#x27;t laugh ! Just buy ! </name>
+      <logo>icones/eolienne.jpg</logo>
+      <seuil>200000</seuil>
+      <idcible>5</idcible>
+      <ratio>3</ratio>
+      <typeratio>gain</typeratio>
+      <unlocked>false</unlocked>
+    </pallier>
+    <pallier>
+      <name>A big advance</name>
+      <logo>icones/solar.jpg</logo>
+      <seuil>3000000</seuil>
+      <idcible>6</idcible>
+      <ratio>3</ratio>
+      <typeratio>gain</typeratio>
+      <unlocked>false</unlocked>
+    </pallier>
+    <pallier>
+      <name>I want it all !</name>
+      <logo>icones/all.jpg</logo>
+      <seuil>3500000</seuil>
+      <idcible>0</idcible>
+      <ratio>3</ratio>
+      <typeratio>gain</typeratio>
+      <unlocked>false</unlocked>
+    </pallier>
+    <pallier>
+      <name>Why do you look a my bag ?</name>
+      <logo>icones/sacpapier.jpg</logo>
+      <seuil>4000000</seuil>
+      <idcible>1</idcible>
+      <ratio>3</ratio>
+      <typeratio>gain</typeratio>
+      <unlocked>false</unlocked>
+    </pallier>
+    <pallier>
+      <name>The same bin as my mum.</name>
+      <logo>icones/recyclage.jpg</logo>
+      <seuil>6000000</seuil>
+      <idcible>2</idcible>
+      <ratio>3</ratio>
+      <typeratio>gain</typeratio>
+      <unlocked>false</unlocked>
+    </pallier>
+    <pallier>
+      <name>My bicycle goes fast.</name>
+      <logo>icones/velo.jpg</logo>
+      <seuil>10000000</seuil>
+      <idcible>3</idcible>
+      <ratio>3</ratio>
+      <typeratio>gain</typeratio>
+      <unlocked>false</unlocked>
+    </pallier>
+    <pallier>
+      <name>No more oil</name>
+      <logo>icones/voitureelec.jpg</logo>
+      <seuil>20000000</seuil>
+      <idcible>4</idcible>
+      <ratio>3</ratio>
+      <typeratio>gain</typeratio>
+      <unlocked>false</unlocked>
+    </pallier>
+    <pallier>
+      <name>It&#x27;s blowing too fast!</name>
+      <logo>icones/eolienne.jpg</logo>
+      <seuil>50000000</seuil>
+      <idcible>5</idcible>
+      <ratio>3</ratio>
+      <typeratio>gain</typeratio>
+      <unlocked>false</unlocked>
+    </pallier>
+    <pallier>
+      <name>Clouds go away !</name>
+      <logo>icones/solar.jpg</logo>
+      <seuil>100000000</seuil>
+      <idcible>6</idcible>
+      <ratio>3</ratio>
+      <typeratio>gain</typeratio>
+      <unlocked>false</unlocked>
+    </pallier>
+    <pallier>
+      <name>Bingo !</name>
+      <logo>icones/all.jpg</logo>
+      <seuil>500000000</seuil>
+      <idcible>0</idcible>
+      <ratio>3</ratio>
+      <typeratio>gain</typeratio>
+      <unlocked>false</unlocked>
     </pallier>
   </upgrades>
   <angelupgrades>
     <pallier>
-      <name>str1234</name>
-      <logo>str1234</logo>
-      <seuil>123</seuil>
-      <idcible>123</idcible>
-      <ratio>3.1415926535</ratio>
-      <typeratio>vitesse</typeratio>
-      <unlocked>true</unlocked>
+      <name>Angel Sacrifice</name>
+      <logo>icones/angel.png</logo>
+      <seuil>10</seuil>
+      <idcible>0</idcible>
+      <ratio>3</ratio>
+      <typeratio>gain</typeratio>
+      <unlocked>false</unlocked>
+    </pallier>
+    <pallier>
+      <name>Angelic Mutiny</name>
+      <logo>icones/angel.png</logo>
+      <seuil>100000</seuil>
+      <idcible>-1</idcible>
+      <ratio>2</ratio>
+      <typeratio>ange</typeratio>
+      <unlocked>false</unlocked>
+    </pallier>
+    <pallier>
+      <name>Angelic Rebellion</name>
+      <logo>icones/angel.png</logo>
+      <seuil>100000000</seuil>
+      <idcible>-1</idcible>
+      <ratio>2</ratio>
+      <typeratio>ange</typeratio>
+      <unlocked>false</unlocked>
+    </pallier>
+    <pallier>
+      <name>Angelic Selection</name>
+      <logo>icones/angel.png</logo>
+      <seuil>1000000000</seuil>
+      <idcible>0</idcible>
+      <ratio>5</ratio>
+      <typeratio>gain</typeratio>
+      <unlocked>false</unlocked>
     </pallier>
   </angelupgrades>
   <managers>
     <pallier>
-      <name>str1234</name>
-      <logo>str1234</logo>
-      <seuil>123</seuil>
-      <idcible>123</idcible>
-      <ratio>3.1415926535</ratio>
-      <typeratio>vitesse</typeratio>
-      <unlocked>true</unlocked>
+      <name>Wangari Maathai</name>
+      <logo>icones/WangariMaathai.jpg</logo>
+      <seuil>10</seuil>
+      <idcible>1</idcible>
+      <ratio>0</ratio>
+      <typeratio>gain</typeratio>
+      <unlocked>false</unlocked>
+    </pallier>
+    <pallier>
+      <name>Ellen MacArthur</name>
+      <logo>icones/ellenmacarthur.jpg</logo>
+      <seuil>15000</seuil>
+      <idcible>2</idcible>
+      <ratio>0</ratio>
+      <typeratio>gain</typeratio>
+      <unlocked>false</unlocked>
+    </pallier>
+    <pallier>
+      <name>Pierre Rabhi</name>
+      <logo>icones/pierreRabhi.jpg</logo>
+      <seuil>100000</seuil>
+      <idcible>3</idcible>
+      <ratio>0</ratio>
+      <typeratio>gain</typeratio>
+      <unlocked>false</unlocked>
+    </pallier>
+    <pallier>
+      <name>Nicolas Hulot</name>
+      <logo>icones/hulot.jpg</logo>
+      <seuil>500000</seuil>
+      <idcible>4</idcible>
+      <ratio>0</ratio>
+      <typeratio>gain</typeratio>
+      <unlocked>false</unlocked>
+    </pallier>
+    <pallier>
+      <name>Jean-Yves Cousteau</name>
+      <logo>icones/cousteau.jpg</logo>
+      <seuil>1200000</seuil>
+      <idcible>5</idcible>
+      <ratio>0</ratio>
+      <typeratio>gain</typeratio>
+      <unlocked>false</unlocked>
+    </pallier>
+    <pallier>
+      <name>Shiva Vandana</name>
+      <logo>icones/shivavandana.jpg</logo>
+      <seuil>10000000</seuil>
+      <idcible>6</idcible>
+      <ratio>0</ratio>
+      <typeratio>gain</typeratio>
+      <unlocked>false</unlocked>
     </pallier>
   </managers>
-</world>
+</root>
