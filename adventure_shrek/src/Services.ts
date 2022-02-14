@@ -1,5 +1,5 @@
+import axios, { AxiosError, AxiosPromise } from "axios";
 import { World } from "./world";
-import axios, {AxiosPromise, AxiosError} from "axios";
 
 export class Services {
     server = "https://isiscapitalist.kk.kurasawa.fr/"
