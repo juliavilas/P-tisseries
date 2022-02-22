@@ -11,7 +11,7 @@ type ProductProps = {
 };
 
 export default function ProductComponent({ prod, services }: ProductProps) {
-    const [progress, setProgress] = useState(0);
+    //const [progress, setProgress] = useState(0);
     // const savedCallback = useRef(calcScore);
 
     // useEffect(() => savedCallback.current = calcScore)
@@ -22,10 +22,12 @@ export default function ProductComponent({ prod, services }: ProductProps) {
     //     }
     // }, [])
     return (
-        <div>
+        /*<div>
             <Box sx={{ width: '100%' }}>
                 <ProgressBar transitionDuration={"0.1s"} customLabel={" "}
                     completed={progress} />
             </Box>
-        </div>)
+        </div>*/
+        <div></div>
+        )
  }

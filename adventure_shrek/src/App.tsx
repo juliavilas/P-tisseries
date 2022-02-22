@@ -7,6 +7,7 @@ import ReactDOM from 'react-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars,faUser,faUnlock,faArrowUp,faEuro,faTimes } from '@fortawesome/free-solid-svg-icons'
 import Product from './Product';
+import {transform} from "./utils"
 
 function App() {
   const [services, setServices] = useState(new Services(""));
@@ -24,7 +25,7 @@ function App() {
         <ul className="listeHeader">
           <li>{services.user}</li>
           <li>Score : {world.score}</li>
-          <li>Money : {world.money} $</li>
+          <li>Money : <span dangerouslySetInnerHTML={{__html: transform(world.money)}}/> $</li>
         </ul>
       </nav>
       <div className="wrapper">
