@@ -2,10 +2,11 @@ import { Input } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import './App.css';
 import { Services } from "./Services";
-import { World, Product } from './world';
+import { World } from './world';
 import ReactDOM from 'react-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars,faUser,faUnlock,faArrowUp,faEuro,faTimes } from '@fortawesome/free-solid-svg-icons'
+import Product from './Product';
 
 function App() {
   const [services, setServices] = useState(new Services(""));

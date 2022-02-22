@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<root>
+<world>
   <name>Adventure Shrek</name>
   <logo>icones/shrekAdventure.png</logo>
   <money>0</money>
@@ -602,4 +602,4 @@
       <unlocked>false</unlocked>
     </pallier>
   </managers>
-</root>
+</world>
