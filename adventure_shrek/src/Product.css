@@ -1,0 +1,10 @@
+.lesdeux {
+position: relative;
+} 
+
+.lesecond {
+position: absolute;
+// on met cet élément à 10 pixels du bas de son conteneur
+// du coup il se superp ose à l’autre qui est dans le flux normal
+bottom: -10px;
+}

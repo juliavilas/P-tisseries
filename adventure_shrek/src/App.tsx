@@ -43,6 +43,9 @@ function App() {
           </ul>
         </nav>
       </div>
+      <div className="produits">
+        <Product prod={ world.products.product[0] } services={ services }/>
+      </div>
     </div>
   );
 }
