@@ -20,9 +20,9 @@ function App() {
     <div className="App">
       <nav className="header">
         <img src={services.server + world.logo}/>
-        <label className="logo">Adventure Shrek</label>
+        <label className="logo">{world.name}</label>
         <ul className="listeHeader">
-          <li>Username</li>
+          <li>{services.user}</li>
           <li>Score : {world.score}</li>
           <li>Money : {world.money} $</li>
         </ul>
