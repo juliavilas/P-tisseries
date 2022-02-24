@@ -223,58 +223,8 @@
         </pallier>
       </palliers>
     </product>
-    <product>
-      <id>6</id>
-      <name>Tour</name>
-      <logo>icones/tour.png</logo>
-      <cout>1244160</cout>
-      <croissance>1.11</croissance>
-      <revenu>622080</revenu>
-      <vitesse>84000</vitesse>
-      <quantite>0</quantite>
-      <timeleft>0</timeleft>
-      <managerUnlocked>false</managerUnlocked>
-      <palliers>
-        <pallier>
-          <name>On dirait que le manager a quelque chose à compenser...</name>
-          <logo>icones/tour.png</logo>
-          <seuil>20</seuil>
-          <idcible>6</idcible>
-          <ratio>2</ratio>
-          <typeratio>vitesse</typeratio>
-          <unlocked>false</unlocked>
-        </pallier>
-        <pallier>
-          <name>Décidément, il a clairement quelque chose à compenser.</name>
-          <logo>icones/tour.png</logo>
-          <seuil>75</seuil>
-          <idcible>6</idcible>
-          <ratio>2</ratio>
-          <typeratio>vitesse</typeratio>
-          <unlocked>false</unlocked>
-        </pallier>
-        <pallier>
-          <name>Toujours plus haut !</name>
-          <logo>icones/tour.png</logo>
-          <seuil>300</seuil>
-          <idcible>6</idcible>
-          <ratio>2</ratio>
-          <typeratio>vitesse</typeratio>
-          <unlocked>false</unlocked>
-        </pallier>
-        <pallier>
-          <name>On ne peut plus l'arrêter !</name>
-          <logo>icones/tour.png</logo>
-          <seuil>500</seuil>
-          <idcible>6</idcible>
-          <ratio>2</ratio>
-          <typeratio>vitesse</typeratio>
-          <unlocked>false</unlocked>
-        </pallier>
-      </palliers>
-    </product>
 	<product>
-      <id>7</id>
+      <id>6</id>
       <name>Potion Happily Ever After</name>
       <logo>icones/potion.png</logo>
       <cout>14929920</cout>

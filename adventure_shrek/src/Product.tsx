@@ -22,12 +22,15 @@ export default function ProductComponent({ prod, services }: ProductProps) {
     //     }
     // }, [])
     return (
-        /*<div>
-            <Box sx={{ width: '100%' }}>
-                <ProgressBar transitionDuration={"0.1s"} customLabel={" "}
-                    completed={progress} />
-            </Box>
-        </div>*/
-        <div></div>
-        )
- }
+            <div className="product">
+                <div className="round"><img src={services.server + prod.logo}/> </div>
+                  {/* <Box sx={{ width: '100%' }}>
+                        <ProgressBar transitionDuration={"0.1s"} customLabel={" "}
+                            completed={progress} />
+                    </Box> */}
+              <span>{prod.name}</span><br/>
+              <span>{prod.cout}</span><br/>
+              <span> {prod.croissance}</span>
+              </div>
+    )
+}
