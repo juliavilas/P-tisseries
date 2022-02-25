@@ -287,6 +287,8 @@ img {
   margin-top:60px;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-gap: 10px;
+    grid-gap: 20px;
     grid-auto-rows: minmax(100px, auto);
+    margin-left: 20px;
+    margin-right: 20px;
   }
