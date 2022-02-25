@@ -21,6 +21,12 @@ export default function ProductComponent({ prod, services }: ProductProps) {
     //         if (timer) clearInterval(timer)
     //     }
     // }, [])
+    if(prod==undefined){
+        console.log("Prod bloqué")
+        return(<div></div>)
+    }else{
+        console.log(prod.name)
+    }
     return (
         <div className="product">
             <span>{prod.name}</span><br />
