@@ -5,20 +5,25 @@
     border : 2px solid #000000;
     } */
 
+
 .grid{
     display:grid;
-    grid-template-columns: 6em 1fr 6em;
-    /* grid-template-rows: 10em 1fr 1fr;  */
-    /* grid-template-columns: repeat(3, 1fr); */
-    /* grid-auto-rows: 90px; */
+    grid-template-columns: 7em 1fr 6em;
     grid-template-rows : 1fr 1fr;
-    border : 2px solid #000000;
-    text-align:center;
+    border : 2px solid #076125;
     vertical-align: middle;
+} 
+
+img{
+    max-width: 100%;
+    height: 63px;
 }
 
+.composantGrid{
+    align-self: center;
+}
 
-.barreProgression{
+#barreProgression{
     grid-column: 2  / span 2; 
     grid-row: 1;
 }
@@ -31,6 +36,7 @@
     padding: 10px;
     color: #eeeeee;
     cursor: pointer;
+    width:100%;
 }
 
 #boutonAcheter:hover{

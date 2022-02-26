@@ -221,7 +221,7 @@
     font-weight: bold;
     font-family:"FuturaLightBT",Verdana,sans-serif;
   }
-
+  
 .header>ul{
     float: right;
     margin-right: 20px;
@@ -252,13 +252,6 @@
 #check{
   display: none;
 }
-
-@media (max-width: 800px){
-  label.logo{
-    font-size: 30px;
-    padding-left: 20px;
-  }
-}
   
 @media (max-width: 858px){
     .checkbtn{
@@ -288,7 +281,7 @@ img {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-gap: 20px;
-    grid-auto-rows: minmax(100px, auto);
+    grid-auto-rows: minmax(100px, 160px);
     margin-left: 20px;
     margin-right: 20px;
   }

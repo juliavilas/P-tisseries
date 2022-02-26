@@ -29,17 +29,17 @@ export default function ProductComponent({ prod, services }: ProductProps) {
     }
     return (
         <div className="product">
-            <span>{prod.name}</span><br />
+            <span>{prod.name}</span>
             <div className="grid">
-                <div><img src={services.server + prod.logo} /></div>
+                <div className="composantGrid"><img src={services.server + prod.logo} /></div>
 
-                <div className="barreProgression">Box{/* <Box sx={{ width: '100%' }}>
+                <div className="composantGrid" id="barreProgression">Box{/* <Box sx={{ width: '100%' }}>
                           <ProgressBar transitionDuration={"0.1s"} customLabel={" "}
                               completed={progress} />
                       </Box>  */}</div>
-                <div>Quantité : {prod.quantite}</div>
-                <div><input type="button" id="boutonAcheter" value="Acheter" /></div>
-                <div>temps fabrication</div>
+                <div className="composantGrid">{prod.quantite}</div>
+                <div className="composantGrid"><input type="button" id="boutonAcheter" value="Acheter x1   {prod.cout}" /></div>
+                <div className="composantGrid">{prod.timeleft} s</div>
                 {/* <span>Revenu : {prod.revenu}</span> */}
             </div>
         </div>
