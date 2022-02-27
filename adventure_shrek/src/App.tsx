@@ -2,16 +2,38 @@ import { Input } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import './App.css';
 import { Services } from "./Services";
-import { World } from './world';
+import { World} from './world';
 import ReactDOM from 'react-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars, faUser, faUnlock, faArrowUp, faEuro, faTimes } from '@fortawesome/free-solid-svg-icons'
 import Product from './Product';
 import { transform } from "./utils"
 
+
+//function onProductionDone(p : Product): void {
+  // calcul de la somme obtenue par la production du produit
+  //let gain = p.calcScore();
+  // ajout de la somme à l’argent possédé
+  //addToScore(gain)
+  
+//}
+
+
+
 function App() {
   const [services, setServices] = useState(new Services(""));
   const [world, setWorld] = useState(new World());
+  const [progress, setProgress] = useState(0)
+  // const savedCallback = useRef(calcScore)
+  // useEffect(() => savedCallback.current = calcScore)
+  // useEffect(() => {
+  //   let timer = setInterval(() => savedCallback.current(), 100)
+  //   return function cleanup() {
+  //     if (timer) clearInterval(timer)
+  //   }
+  // }, [])
+
+
   useEffect(() => {
     let services = new Services("Agathe")
     setServices(services)
@@ -38,13 +60,14 @@ function App() {
           <div className="title">Menu
           </div>
           <ul className="list-items">
-            <li><a href="#"><i className="fas fa-user"><FontAwesomeIcon icon={faUser} /></i>Managers</a></li>
+            <li><a href="managers.html"><i className="fas fa-user"><FontAwesomeIcon icon={faUser} /></i>Managers</a></li>
             <li><a href="#"><i className="fas fa-unlock"><FontAwesomeIcon icon={faUnlock} /></i> Unlocks</a></li>
             <li><a href="#"><i className="fas fa-arow-up"><FontAwesomeIcon icon={faArrowUp} /></i>Upgrades</a></li>
             <li><a href="#"><i className="fas fa-euro"><FontAwesomeIcon icon={faEuro} /></i>Investisseurs</a></li>
           </ul>
         </nav>
       </div>
+      <button>Acheter 1</button>
       <div className="products">
         <div><Product prod={world.products.product[0]} services={services} /> </div>
         <div><Product prod={world.products.product[1]} services={services} /></div>

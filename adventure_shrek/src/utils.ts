@@ -1,3 +1,5 @@
+import { Product } from "./world";
+
 export function transform(valeur: number): string {
     let res: string = "";
     if (valeur < 1000)
@@ -10,3 +12,5 @@ export function transform(valeur: number): string {
     }
     return res;
 }
+
+

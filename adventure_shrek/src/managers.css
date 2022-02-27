@@ -1,0 +1,29 @@
+
+.modal {
+    position: fixed; /* reste en place */
+    z-index: 2; /* au dessus du reste */
+    width: 800px; /* largeur */
+    height: 800px; /* hauteur */
+    overflow: auto; /* barre de scroll si besoin */
+    background-color: white; /* opaque */
+    border: solid;
+    top:10; /* a 10% du haut */
+    left:20%; /* a 20% de la gauche */
+}
+
+.title{
+    text-align:center;
+}
+
+.managergrid{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+    grid-auto-rows: minmax(100px, auto);
+}
+
+.logo{
+    grid-column: 1 / 1;
+    grid-row: 1;
+}
+
