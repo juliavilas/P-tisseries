@@ -10,20 +10,20 @@ import Product from './Product';
 import { transform } from "./utils"
 
 
-//function onProductionDone(p : Product): void {
-  // calcul de la somme obtenue par la production du produit
-  //let gain = p.calcScore();
-  // ajout de la somme à l’argent possédé
-  //addToScore(gain)
+/*function onProductionDone(p : Product): void {
+ // calcul de la somme obtenue par la production du produit
+  let gain = p.calcScore();
+ // ajout de la somme à l’argent possédé
+  this.addToScore(gain)
   
-//}
+}*/
 
 
 
 function App() {
   const [services, setServices] = useState(new Services(""));
   const [world, setWorld] = useState(new World());
-  const [progress, setProgress] = useState(0)
+  //const [progress, setProgress] = useState(0)
   // const savedCallback = useRef(calcScore)
   // useEffect(() => savedCallback.current = calcScore)
   // useEffect(() => {
@@ -32,7 +32,6 @@ function App() {
   //     if (timer) clearInterval(timer)
   //   }
   // }, [])
-
 
   useEffect(() => {
     let services = new Services("Agathe")
@@ -69,12 +68,22 @@ function App() {
       </div>
       <button>Acheter 1</button>
       <div className="products">
-        <div><Product prod={world.products.product[0]} services={services} /> </div>
+        {
+          //  world.products.product.forEach(p=>
+          //    <div> <Product prod={p} services={services} /></div>
+          //  )
+          world.products.product.map((p)=>
+            <div key={p.name}>
+              <Product prod={p} services={services} />
+              </div>
+          )
+        }
+        {/* <div><Product prod={world.products.product[0]} services={services} /> </div>
         <div><Product prod={world.products.product[1]} services={services} /></div>
         <div><Product prod={world.products.product[2]} services={services} /></div>
         <div><Product prod={world.products.product[3]} services={services} /></div>
         <div><Product prod={world.products.product[4]} services={services} /></div>
-        <div><Product prod={world.products.product[5]} services={services} /></div>
+        <div><Product prod={world.products.product[5]} services={services} /></div> */}
       </div>
     </div>
   );
