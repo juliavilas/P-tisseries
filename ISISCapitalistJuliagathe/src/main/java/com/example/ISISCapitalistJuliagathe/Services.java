@@ -22,7 +22,7 @@ public class Services {
             JAXBContext cont = JAXBContext.newInstance(World.class);
             Unmarshaller u = cont.createUnmarshaller();
             w= (World)u.unmarshal(input);
-            System.out.println(w.getName());
+            //System.out.println(w.getName());
         }
         catch (Exception e) {
             e.printStackTrace();

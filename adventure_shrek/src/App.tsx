@@ -9,17 +9,6 @@ import { faBars, faUser, faUnlock, faArrowUp, faEuro, faTimes } from '@fortaweso
 import Product from './Product';
 import { transform } from "./utils"
 
-
-/*function onProductionDone(p : Product): void {
- // calcul de la somme obtenue par la production du produit
-  let gain = p.calcScore();
- // ajout de la somme à l’argent possédé
-  this.addToScore(gain)
-  
-}*/
-
-
-
 function App() {
   const [services, setServices] = useState(new Services(""));
   const [world, setWorld] = useState(new World());
@@ -32,6 +21,17 @@ function App() {
   //     if (timer) clearInterval(timer)
   //   }
   // }, [])
+  /*function onProductionDone(p : Product): void {
+    // calcul de la somme obtenue par la production du produit
+    let gain = p.calcScore();
+    // ajout de la somme à l’argent possédé
+    addToScore(gain)
+
+  }*/
+
+  function addToScore(gain: number) : void{
+    world.score+=gain;
+  }
 
   useEffect(() => {
     let services = new Services("Agathe")

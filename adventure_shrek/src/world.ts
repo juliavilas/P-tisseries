@@ -33,6 +33,7 @@ export class Product {
     vitesse: number = 0
     quantite: number = 0
     timeleft: number = 0
+    lastupdate: number = 0
     managerUnlocked: boolean = false
     palliers : { "pallier" : Pallier[]};
 
