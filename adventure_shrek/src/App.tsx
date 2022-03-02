@@ -18,12 +18,24 @@ import { transform } from "./utils"
   
 //}
 
-//test
+
 
 function App() {
   const [services, setServices] = useState(new Services(""));
   const [world, setWorld] = useState(new World());
-  const [progress, setProgress] = useState(0)
+  const [progress, setProgress] = useState(0);
+
+
+  // https://fr.reactjs.org/docs/handling-events.html
+  let state = {value: ''};
+
+  let buttonHandler = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+    let button: HTMLButtonElement = event.currentTarget;
+    state.value='Test';
+  };
+
+
   // const savedCallback = useRef(calcScore)
   // useEffect(() => savedCallback.current = calcScore)
   // useEffect(() => {
@@ -60,14 +72,14 @@ function App() {
           <div className="title">Menu
           </div>
           <ul className="list-items">
-            <li><a href="managers.html"><i className="fas fa-user"><FontAwesomeIcon icon={faUser} /></i>Managers</a></li>
+            <li><a href="Managers.tsx"><i className="fas fa-user"><FontAwesomeIcon icon={faUser} /></i>Managers</a></li>
             <li><a href="#"><i className="fas fa-unlock"><FontAwesomeIcon icon={faUnlock} /></i> Unlocks</a></li>
             <li><a href="#"><i className="fas fa-arow-up"><FontAwesomeIcon icon={faArrowUp} /></i>Upgrades</a></li>
             <li><a href="#"><i className="fas fa-euro"><FontAwesomeIcon icon={faEuro} /></i>Investisseurs</a></li>
           </ul>
         </nav>
       </div>
-      <button>Acheter 1</button>
+      <button id="boutonAcheter" type="button" onClick={buttonHandler}>Acheter 1</button>
       <div className="products">
         <div><Product prod={world.products.product[0]} services={services} /> </div>
         <div><Product prod={world.products.product[1]} services={services} /></div>
@@ -81,3 +93,5 @@ function App() {
 }
 
 export default App;
+
+
