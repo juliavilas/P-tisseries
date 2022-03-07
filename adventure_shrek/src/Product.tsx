@@ -91,7 +91,7 @@ export default function ProductComponent({prod,/*onProductionDone,*/ services}: 
                     {<ProgressBar transitionDuration={"0.1s"} customLabel={" "} completed={progress}/>}
                     {/*</Box>*/}
                 </div>
-                <div className="composantGrid"><input type="button" id="boutonAcheter" value={achat} onClick={startFabrication}/></div>
+                <div className="composantGrid"><input type="button" id="boutonAcheter" value={achat}/></div>
                 <div className="composantGrid">{prod.timeleft} s</div>
                 {/* <span>Revenu : {prod.revenu}</span> */}
             </div>
