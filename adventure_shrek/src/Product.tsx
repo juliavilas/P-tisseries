@@ -9,10 +9,12 @@ type ProductProps = {
     prod: Product
     //onProductionDone: (product: Product) => void,
     services: Services
+    qtmulti : number
 };
 
 
-export default function ProductComponent({ prod, services }: ProductProps) {
+export default function ProductComponent({ prod, services, qtmulti }: ProductProps) {
+    // let qtmulti = useState(1);
     //const [progress, setProgress] = useState(0);
     // const savedCallback = useRef(calcScore);
 
@@ -50,6 +52,7 @@ export default function ProductComponent({ prod, services }: ProductProps) {
     } else {
         // console.log(prod.name)
     }
+    let achat="Acheter x "+ qtmulti +" pour "+ prod.cout +" $"
     return (
         <div className="product">
             <span>{prod.name}</span>
@@ -61,7 +64,7 @@ export default function ProductComponent({ prod, services }: ProductProps) {
                               completed={progress} />
                       </Box>  */}</div>
 
-                <div className="composantGrid"><input type="button" id="boutonAcheter" value="Acheter x1   {prod.cout}" /></div>
+                <div className="composantGrid"><input type="button" id="boutonAcheter" value={achat} /></div>
                 <div className="composantGrid">{prod.timeleft} s</div>
                 {/* <span>Revenu : {prod.revenu}</span> */}
             </div>

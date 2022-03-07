@@ -9,7 +9,7 @@ import { faBars, faUser, faUnlock, faArrowUp, faEuro, faTimes } from '@fortaweso
 import Product from './Product';
 import { transform } from "./utils"
 import Managers from './Managers'
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
 
 //function onProductionDone(p : Product): void {
@@ -20,7 +20,9 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 //}
 
-
+export interface IsQtmulti {
+  qtmulti: number;
+}
 
 function App() {
   const [services, setServices] = useState(new Services(""));
@@ -28,61 +30,35 @@ function App() {
 
   const [progress, setProgress] = useState(0);
 
-
-
-  // https://fr.reactjs.org/docs/handling-events.html
-
-  const initialState = 'Acheter 1';
-  let [value, setValue] = useState(initialState);
+  
+  let [qtmulti, setQtmulti] = useState(1);
+  let [value, setValue] = useState('Acheter 1');
   let [count, setCount] = useState(0);
 
   function ButtonHandler() {
     switch (count) {
       case 0:
         setValue('Acheter 10');
-        setCount(count+1);
+        setQtmulti(10);
+        setCount(count + 1);
         break;
       case 1:
         setValue('Acheter 100');
-        setCount(count+1);
+        setQtmulti(100);
+        setCount(count + 1);
         break;
       case 2:
         setValue('Acheter max');
-        setCount(count+1);
+        setQtmulti(10);
+        setCount(count + 1);
         break;
       case 3:
-        setValue(initialState);
+        setValue('Acheter 1');
+        setQtmulti(1);
         setCount(0);
         break;
     }
   }
-
-
-  // switch (i) {
-  //   case 1:
-  //     setValue('Acheter 10');
-  //     i++;
-  //     break;
-  //   case 2:
-  //     setValue('Acheter 100');
-  //     i++;
-  //     break;
-  //   case 3:
-  //     setValue('Acheter max');
-  //     break;
-  //   case 0:
-  //     setValue(initialState);
-  //     i++;
-  //     break;
-  // }
-  // console.log(i)
-  // if (i < 3) {
-  //   i++
-  // }
-  // else {
-  //   i = 0;
-  // }
-
 
   // const savedCallback = useRef(calcScore)
   // useEffect(() => savedCallback.current = calcScore)
@@ -120,24 +96,26 @@ function App() {
           <div className="title">Menu
           </div>
           <Router>
+          <Routes>
+              <Route path="/" element={Managers} />
+            </Routes>
             <ul className="list-items">
               <li><Link to="/Managers"><i className="fas fa-user"><FontAwesomeIcon icon={faUser} /></i>Managers</Link></li>
               <li><a href="#"><i className="fas fa-unlock"><FontAwesomeIcon icon={faUnlock} /></i> Unlocks</a></li>
               <li><a href="#"><i className="fas fa-arow-up"><FontAwesomeIcon icon={faArrowUp} /></i>Upgrades</a></li>
               <li><a href="#"><i className="fas fa-euro"><FontAwesomeIcon icon={faEuro} /></i>Investisseurs</a></li>
             </ul>
-            {/* <Route path="/" element={<Managers />} /> */}
           </Router>
         </nav>
       </div>
       <button id="boutonChgtValeur" onClick={ButtonHandler}>{value}</button>
       <div className="products">
-        <div><Product prod={world.products.product[0]} services={services} /> </div>
-        <div><Product prod={world.products.product[1]} services={services} /></div>
-        <div><Product prod={world.products.product[2]} services={services} /></div>
-        <div><Product prod={world.products.product[3]} services={services} /></div>
-        <div><Product prod={world.products.product[4]} services={services} /></div>
-        <div><Product prod={world.products.product[5]} services={services} /></div>
+        <div><Product prod={world.products.product[0]} qtmulti={qtmulti} services={services} /> </div>
+        <div><Product prod={world.products.product[1]} qtmulti={qtmulti} services={services} /></div>
+        <div><Product prod={world.products.product[2]} qtmulti={qtmulti} services={services} /></div>
+        <div><Product prod={world.products.product[3]} qtmulti={qtmulti} services={services} /></div>
+        <div><Product prod={world.products.product[4]} qtmulti={qtmulti} services={services} /></div>
+        <div><Product prod={world.products.product[5]} qtmulti={qtmulti} services={services} /></div>
       </div>
     </div>
   );
