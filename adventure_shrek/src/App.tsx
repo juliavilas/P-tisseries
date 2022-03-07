@@ -25,39 +25,64 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 function App() {
   const [services, setServices] = useState(new Services(""));
   const [world, setWorld] = useState(new World());
-  const initialState = 'Acheter 1';
+
   const [progress, setProgress] = useState(0);
 
 
 
   // https://fr.reactjs.org/docs/handling-events.html
-  let state = { value: '' };
+
+  const initialState = 'Acheter 1';
   let [value, setValue] = useState(initialState);
-  let i = 1;
+  let [count, setCount] = useState(0);
 
   function ButtonHandler() {
-    switch (i) {
-      case 1:
+    switch (count) {
+      case 0:
         setValue('Acheter 10');
+        setCount(count+1);
+        break;
+      case 1:
+        setValue('Acheter 100');
+        setCount(count+1);
         break;
       case 2:
         setValue('Acheter max');
+        setCount(count+1);
         break;
       case 3:
-        setValue('Acheter next');
-        break;
-      case 0:
         setValue(initialState);
+        setCount(0);
         break;
-    }
-    console.log(i)
-    if (i < 3) {
-      i++
-    }
-    else {
-      i = 0;
     }
   }
+
+
+  // switch (i) {
+  //   case 1:
+  //     setValue('Acheter 10');
+  //     i++;
+  //     break;
+  //   case 2:
+  //     setValue('Acheter 100');
+  //     i++;
+  //     break;
+  //   case 3:
+  //     setValue('Acheter max');
+  //     break;
+  //   case 0:
+  //     setValue(initialState);
+  //     i++;
+  //     break;
+  // }
+  // console.log(i)
+  // if (i < 3) {
+  //   i++
+  // }
+  // else {
+  //   i = 0;
+  // }
+
 
   // const savedCallback = useRef(calcScore)
   // useEffect(() => savedCallback.current = calcScore)
