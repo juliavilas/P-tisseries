@@ -48,7 +48,7 @@ export default function ProductComponent({ prod, services }: ProductProps) {
         console.log("Prod bloqué")
         return (<div></div>)
     } else {
-        console.log(prod.name)
+        // console.log(prod.name)
     }
     return (
         <div className="product">

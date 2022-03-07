@@ -2,20 +2,22 @@ import { Input } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import './App.css';
 import { Services } from "./Services";
-import { World} from './world';
+import { World } from './world';
 import ReactDOM from 'react-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars, faUser, faUnlock, faArrowUp, faEuro, faTimes } from '@fortawesome/free-solid-svg-icons'
 import Product from './Product';
 import { transform } from "./utils"
+import Managers from './Managers'
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 
 //function onProductionDone(p : Product): void {
-  // calcul de la somme obtenue par la production du produit
-  //let gain = p.calcScore();
-  // ajout de la somme à l’argent possédé
-  //addToScore(gain)
-  
+// calcul de la somme obtenue par la production du produit
+//let gain = p.calcScore();
+// ajout de la somme à l’argent possédé
+//addToScore(gain)
+
 //}
 
 
@@ -23,18 +25,39 @@ import { transform } from "./utils"
 function App() {
   const [services, setServices] = useState(new Services(""));
   const [world, setWorld] = useState(new World());
+  const initialState = 'Acheter 1';
   const [progress, setProgress] = useState(0);
 
 
+
   // https://fr.reactjs.org/docs/handling-events.html
-  let state = {value: ''};
+  let state = { value: '' };
+  let [value, setValue] = useState(initialState);
+  let i = 1;
 
-  let buttonHandler = (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault();
-    let button: HTMLButtonElement = event.currentTarget;
-    state.value='Test';
-  };
-
+  function ButtonHandler() {
+    switch (i) {
+      case 1:
+        setValue('Acheter 10');
+        break;
+      case 2:
+        setValue('Acheter max');
+        break;
+      case 3:
+        setValue('Acheter next');
+        break;
+      case 0:
+        setValue(initialState);
+        break;
+    }
+    console.log(i)
+    if (i < 3) {
+      i++
+    }
+    else {
+      i = 0;
+    }
+  }
 
   // const savedCallback = useRef(calcScore)
   // useEffect(() => savedCallback.current = calcScore)
@@ -71,15 +94,18 @@ function App() {
         <nav id="sidebar">
           <div className="title">Menu
           </div>
-          <ul className="list-items">
-            <li><a href="Managers.tsx"><i className="fas fa-user"><FontAwesomeIcon icon={faUser} /></i>Managers</a></li>
-            <li><a href="#"><i className="fas fa-unlock"><FontAwesomeIcon icon={faUnlock} /></i> Unlocks</a></li>
-            <li><a href="#"><i className="fas fa-arow-up"><FontAwesomeIcon icon={faArrowUp} /></i>Upgrades</a></li>
-            <li><a href="#"><i className="fas fa-euro"><FontAwesomeIcon icon={faEuro} /></i>Investisseurs</a></li>
-          </ul>
+          <Router>
+            <ul className="list-items">
+              <li><Link to="/Managers"><i className="fas fa-user"><FontAwesomeIcon icon={faUser} /></i>Managers</Link></li>
+              <li><a href="#"><i className="fas fa-unlock"><FontAwesomeIcon icon={faUnlock} /></i> Unlocks</a></li>
+              <li><a href="#"><i className="fas fa-arow-up"><FontAwesomeIcon icon={faArrowUp} /></i>Upgrades</a></li>
+              <li><a href="#"><i className="fas fa-euro"><FontAwesomeIcon icon={faEuro} /></i>Investisseurs</a></li>
+            </ul>
+            {/* <Route path="/" element={<Managers />} /> */}
+          </Router>
         </nav>
       </div>
-      <button id="boutonAcheter" type="button" onClick={buttonHandler}>Acheter 1</button>
+      <button id="boutonChgtValeur" onClick={ButtonHandler}>{value}</button>
       <div className="products">
         <div><Product prod={world.products.product[0]} services={services} /> </div>
         <div><Product prod={world.products.product[1]} services={services} /></div>
