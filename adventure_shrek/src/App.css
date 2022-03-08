@@ -271,7 +271,7 @@ img {
 
 
 .modal {
-    position: absolute; /* reste en place */
+    position: fixed; /* reste en place */
     z-index: 4; /* au dessus du reste */
     width: 800px; 
     height: 800px;
