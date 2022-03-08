@@ -52,8 +52,19 @@ export default function ProductComponent({ prod, services, qtmulti }: ProductPro
     } else {
         // console.log(prod.name)
     }
-    let achat="Acheter x "+ qtmulti +" pour "+ prod.cout +" $"
+
+    let prix = prod.cout*(1-Math.pow(prod.croissance,qtmulti+1)/(1-Math.pow(prod.croissance,qtmulti)));
+    let achat="Acheter x "+ qtmulti +" pour "+ prix +" $"
+    // console.log(prix)
+
+    // résoudre équation : u0 (1-c^n)/(1-c) < world.money --> log... trouver n
+    function calcMaxCanBuy(){
+        
+    }
+
+
     return (
+        
         <div className="product">
             <span>{prod.name}</span>
             <div className="grid">

@@ -534,19 +534,10 @@
       <unlocked>false</unlocked>
     </pallier>
     <pallier>
-      <name>Farquaad</name>
-      <logo>icones/farquaad.png</logo>
-      <seuil>10000000</seuil>
-      <idcible>6</idcible>
-      <ratio>0</ratio>
-      <typeratio>gain</typeratio>
-      <unlocked>false</unlocked>
-    </pallier>
-    <pallier>
       <name>La fée marraine</name>
       <logo>icones/marraine.png</logo>
-      <seuil>50000000</seuil>
-      <idcible>7</idcible>
+      <seuil>10000000</seuil>
+      <idcible>6</idcible>
       <ratio>0</ratio>
       <typeratio>gain</typeratio>
       <unlocked>false</unlocked>

@@ -1,4 +1,4 @@
-import { Input } from '@mui/material';
+import { Button, Input } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import './App.css';
 import { Services } from "./Services";
@@ -8,8 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars, faUser, faUnlock, faArrowUp, faEuro, faTimes } from '@fortawesome/free-solid-svg-icons'
 import Product from './Product';
 import { transform } from "./utils"
-import Managers from './Managers'
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import Manager from './Manager'
 
 
 //function onProductionDone(p : Product): void {
@@ -30,7 +29,8 @@ function App() {
 
   const [progress, setProgress] = useState(0);
 
-  
+  let [showManagers,setShowManagers] = useState(true);
+
   let [qtmulti, setQtmulti] = useState(1);
   let [value, setValue] = useState('Acheter 1');
   let [count, setCount] = useState(0);
@@ -49,7 +49,7 @@ function App() {
         break;
       case 2:
         setValue('Acheter max');
-        setQtmulti(10);
+        setQtmulti(10000000);
         setCount(count + 1);
         break;
       case 3:
@@ -60,6 +60,8 @@ function App() {
     }
   }
 
+ 
+
   // const savedCallback = useRef(calcScore)
   // useEffect(() => savedCallback.current = calcScore)
   // useEffect(() => {
@@ -68,6 +70,11 @@ function App() {
   //     if (timer) clearInterval(timer)
   //   }
   // }, [])
+
+  // function hireManager(m : world.managers.pallier){
+  //   passer la production en automatique ?
+    
+  // }
 
 
   useEffect(() => {
@@ -95,17 +102,12 @@ function App() {
         <nav id="sidebar">
           <div className="title">Menu
           </div>
-          <Router>
-          <Routes>
-              <Route path="/" element={Managers} />
-            </Routes>
-            <ul className="list-items">
-              <li><Link to="/Managers"><i className="fas fa-user"><FontAwesomeIcon icon={faUser} /></i>Managers</Link></li>
-              <li><a href="#"><i className="fas fa-unlock"><FontAwesomeIcon icon={faUnlock} /></i> Unlocks</a></li>
-              <li><a href="#"><i className="fas fa-arow-up"><FontAwesomeIcon icon={faArrowUp} /></i>Upgrades</a></li>
-              <li><a href="#"><i className="fas fa-euro"><FontAwesomeIcon icon={faEuro} /></i>Investisseurs</a></li>
-            </ul>
-          </Router>
+          <ul className="list-items">
+            <li><a href="#"><i className="fas fa-user"><FontAwesomeIcon icon={faUser} /></i>Managers</a></li>
+            <li><a href="#"><i className="fas fa-unlock"><FontAwesomeIcon icon={faUnlock} /></i> Unlocks</a></li>
+            <li><a href="#"><i className="fas fa-arow-up"><FontAwesomeIcon icon={faArrowUp} /></i>Upgrades</a></li>
+            <li><a href="#"><i className="fas fa-euro"><FontAwesomeIcon icon={faEuro} /></i>Investisseurs</a></li>
+          </ul>
         </nav>
       </div>
       <button id="boutonChgtValeur" onClick={ButtonHandler}>{value}</button>
@@ -117,7 +119,38 @@ function App() {
         <div><Product prod={world.products.product[4]} qtmulti={qtmulti} services={services} /></div>
         <div><Product prod={world.products.product[5]} qtmulti={qtmulti} services={services} /></div>
       </div>
-    </div>
+      <div> {showManagers &&
+        <div className="modal">
+          <div>
+            <h1 className="title">Managers make you feel better !</h1>
+          </div>
+          <div>
+            <div>
+              {world.managers.pallier.filter(manager => !manager.unlocked).map(
+                manager => (
+                  <div key={manager.idcible} className="managergrid">
+                    <div className="composantGrid" id="managerLogo">
+                      <img alt="manager logo" className="round" src={
+                        services.server + manager.logo} />
+                    </div>
+                    <div className="composantGrid" id="infosManagers">
+                      <div> {manager.name} </div>
+                      {/* <div> {world.products.product[manager.idcible-1].name}</div> */}
+                      <div className="composantGrid" id="managerSeuil"> {manager.seuil} </div>
+                    </div>
+                    {/* <div id="boutonEngager" onClick={() => hireManager(manager)}> */}
+                    <div id="boutonEngager">
+                      <button disabled={world.money < manager.seuil}>Engager !</button>
+                    </div>
+                  </div>
+                ))}
+            </div>
+            <button onClick={() => setShowManagers(false)}>Close</button>
+          </div>
+        </div>
+      } </div>
+    </div >
+
   );
 }
 
