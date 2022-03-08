@@ -36,10 +36,10 @@ export class Product {
     lastupdate: number = 0
     managerUnlocked: boolean = false
     palliers : { "pallier" : Pallier[]};
+    progressbarvalue: number = 0
 
     constructor() {
         this.palliers = { "pallier": [] }
-
     }
 }
 

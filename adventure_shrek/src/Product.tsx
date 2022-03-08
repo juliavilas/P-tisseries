@@ -7,30 +7,18 @@ import Box from '@mui/material/Box';
 
 type ProductProps = {
     prod: Product
-    /*onProductionDone: (product: Product) => void,*/
+    onProductionDone: (product: Product) => void,
     services: Services
 };
 
-/*function calcScore() {
-    if (this.product.timeleft != 0) {
-        this.product.timeleft = Date.now() - this.lastupdate - this.product.timeleft;
-        if (this.product.timeleft <= 0)
-            if (this.product.timeleft < 0) {
-                onProductionDone(product);
-                this.product.timeleft = 0;
-            } else
-                this.product.progressbarvalue = ((this.product.vitesse -
-    }
-}*/
-
-export default function ProductComponent({prod,/*onProductionDone,*/ services}: ProductProps) {
+export default function ProductComponent({prod, onProductionDone, services}: ProductProps) {
     const [progress, setProgress] = useState(0);
     let progressbarvalue : number
     function startFabrication() {
         prod.timeleft=prod.vitesse;
         prod.lastupdate=Date.now();
         console.log("click");
-        progressbarvalue=0;
+        prod.progressbarvalue=0;
     }
 
     const savedCallback = useRef(calcScore);
@@ -43,39 +31,34 @@ export default function ProductComponent({prod,/*onProductionDone,*/ services}: 
         }
     }, [])
 
-    /*function startFabrication(prod: Product){
-        prod.timeleft=prod.vitesse;
-        prod.lastupdate = Date.now();
- }*/
-
     function calcScore(){
         let tpsEcoule:number;
         if (prod.timeleft != 0) {
-            tpsEcoule=Math.floor((Date.now()-prod.lastupdate)/1000)
+            tpsEcoule=Date.now()-prod.lastupdate
             prod.timeleft -= tpsEcoule;
+            prod.lastupdate=Date.now();
             console.log(prod.timeleft)
             if (prod.timeleft <= 0){
                 if (prod.timeleft < 0) {
-                    //onProductionDone(prod);
                     prod.timeleft = 0;
-                    progressbarvalue=0;
+                    prod.progressbarvalue=0;
                 } 
+                onProductionDone(prod);
             }else{
-                    progressbarvalue=((prod.vitesse - prod.timeleft) / prod.vitesse) * 100
+                    prod.progressbarvalue=Math.round(((prod.vitesse - prod.timeleft) / prod.vitesse) * 100)
             }
-            setProgress(progressbarvalue);
-            console.log("progress "+progressbarvalue)
+            setProgress(prod.progressbarvalue);
+            console.log("progress "+prod.progressbarvalue)
         }else{
             setProgress(0)
         }
-       // prod.quantite++
+        //return prod.revenu;
+        //prod.quantite
      }
 
     if (prod == undefined) {
         console.log("Prod bloqué")
         return (<span></span>)
-    } else {
-        console.log(prod.name)
     }
     let achat="Acheter x1   "+prod.cout+"$"
     return (

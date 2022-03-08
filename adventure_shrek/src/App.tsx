@@ -9,28 +9,50 @@ import { faBars, faUser, faUnlock, faArrowUp, faEuro, faTimes } from '@fortaweso
 import Product from './Product';
 import { transform } from "./utils"
 
+
+
 function App() {
   const [services, setServices] = useState(new Services(""));
   const [world, setWorld] = useState(new World());
-  //const [progress, setProgress] = useState(0)
-  // const savedCallback = useRef(calcScore)
-  // useEffect(() => savedCallback.current = calcScore)
-  // useEffect(() => {
-  //   let timer = setInterval(() => savedCallback.current(), 100)
-  //   return function cleanup() {
-  //     if (timer) clearInterval(timer)
-  //   }
-  // }, [])
-  /*function onProductionDone(p : Product): void {
+  const [username, setUsername] = useState("");
+  let user = localStorage.getItem("username");
+
+  useEffect(() => {
+    if (username !== "") {
+      let services = new Services(username)
+      setServices(services)
+      services.getWorld().then(response => {
+           // let liste = compute_unlocks_list(response.data)
+            setWorld(response.data)
+            //setUnlockList(liste)
+          }
+      )
+    }
+  }, [username])
+  useEffect(() => {
+    let username = localStorage.getItem("username");
+    // si pas de username, on génère un username aléatoire
+    if (!username || username === "") {
+      username = "FanDeShrek" + Math.floor(Math.random() * 10000);
+    }
+    localStorage.setItem("username", username);
+    setUsername(username)
+  }, [])
+
+  // @ts-ignore
+  function onProductionDone(p : Product): void {
     // calcul de la somme obtenue par la production du produit
-    let gain = p.calcScore();
+    let gain = p.revenu;
+    console.log("gain"+gain)
     // ajout de la somme à l’argent possédé
     addToScore(gain)
-
-  }*/
+  }
 
   function addToScore(gain: number) : void{
     world.score+=gain;
+    world.money++;
+    world.money=1;
+    console.log("score du monde "+world.score)
   }
 
   useEffect(() => {
@@ -38,6 +60,13 @@ function App() {
     setServices(services)
     services.getWorld().then(response => { setWorld(response.data) })
   }, []);
+
+  const onUserNameChanged = (e:any) => {
+    console.log("ok"+e.target.value+typeof e)
+    setUsername(e.target.value);
+    localStorage.setItem("username", e.target.value);
+  }
+
   return (
     <div className="App">
       <nav className="header">
@@ -67,14 +96,12 @@ function App() {
         </nav>
       </div>
       <button>Acheter 1</button>
+      <input type="text" value={username} onChange={onUserNameChanged}/>
       <div className="products">
         {
-          //  world.products.product.forEach(p=>
-          //    <div> <Product prod={p} services={services} /></div>
-          //  )
           world.products.product.map((p)=>
             <div key={p.name}>
-              <Product prod={p} services={services} />
+              <Product prod={p} onProductionDone={onProductionDone} services={services} />
               </div>
           )
         }
