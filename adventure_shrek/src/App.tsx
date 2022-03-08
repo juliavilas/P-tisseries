@@ -92,10 +92,11 @@ function App() {
     }
   }
 
-  // function hireManager(m : world.managers.pallier){
-  //   passer la production en automatique ?
+  //  function hireManager(m : ){
+  //   startFabrication()
+    
 
-  // }
+  //  }
 
   let [showManagers, setShow] = useState(true);
   const handleClose = () => setShow(false);
@@ -169,7 +170,7 @@ function App() {
                     </div>
                     <div className="composantGrid" id="infosManagers">
                       <div> {manager.name} </div>
-                      {/* <div> {world.products.product[manager.idcible-1].name}</div> */}
+                      <div> {world.products.product[manager.idcible-1].name}</div>
                       <div className="composantGrid" id="managerSeuil"> {manager.seuil} </div>
                     </div>
                     {/* <div id="boutonEngager" onClick={() => hireManager(manager)}> */}

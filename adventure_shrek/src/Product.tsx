@@ -58,15 +58,14 @@ export default function ProductComponent({ prod, onProductionDone, services, qtm
         return (<span></span>)
     }
 
-    let prix = prod.cout*(1-Math.pow(prod.croissance,qtmulti+1)/(1-Math.pow(prod.croissance,qtmulti)));
+    let prix = Math.round(prod.cout*((Math.pow(prod.croissance,qtmulti)-1)/(prod.croissance-1)));
     let achat="Acheter x "+ qtmulti +" pour "+ prix +" $"
-    // console.log(prix)
 
     // résoudre équation : u0 (1-c^n)/(1-c) < world.money --> log... trouver n
     function calcMaxCanBuy(){
-        
+        let n = Math.log(1+World.money*(prod.croissance-1)/prod.cout)/(Math.log(prod.croissance))
+        console.log(n);
     }
-
 
     return (
         
