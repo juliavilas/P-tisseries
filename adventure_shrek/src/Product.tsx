@@ -18,7 +18,6 @@ export default function ProductComponent({ prod, onProductionDone, services, qtm
     function startFabrication() {
         prod.timeleft=prod.vitesse;
         prod.lastupdate=Date.now();
-        console.log("click");
         prod.progressbarvalue=0;
     }
 
@@ -36,7 +35,6 @@ export default function ProductComponent({ prod, onProductionDone, services, qtm
             tpsEcoule=Date.now()-prod.lastupdate
             prod.timeleft -= tpsEcoule;
             prod.lastupdate=Date.now();
-            console.log(prod.timeleft)
             if (prod.timeleft <= 0){
                 if (prod.timeleft < 0) {
                     prod.timeleft = 0;
@@ -47,7 +45,6 @@ export default function ProductComponent({ prod, onProductionDone, services, qtm
                     prod.progressbarvalue=Math.round(((prod.vitesse - prod.timeleft) / prod.vitesse) * 100)
             }
             setProgress(prod.progressbarvalue);
-            console.log("progress "+prod.progressbarvalue)
         }else{
             setProgress(0)
         }
@@ -65,6 +62,7 @@ export default function ProductComponent({ prod, onProductionDone, services, qtm
     function calcMaxCanBuy(){
         let n = Math.log(1+World.money*(prod.croissance-1)/prod.cout)/(Math.log(prod.croissance))
         console.log(n);
+        return n;
     }
 
     return (

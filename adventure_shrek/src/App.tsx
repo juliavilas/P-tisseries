@@ -1,4 +1,3 @@
-import { Button, Input } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import './App.css';
 import { Services } from "./Services";
@@ -8,14 +7,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars, faUser, faUnlock, faArrowUp, faEuro, faTimes } from '@fortawesome/free-solid-svg-icons'
 import Product from './Product';
 import { transform } from "./utils"
-import { Modal } from "react-bootstrap";
+import { Button, Modal } from 'react-bootstrap';
 
 
 export interface IsQtmulti {
   qtmulti: number;
 }
 
-function App() {
+function App(){
   const [services, setServices] = useState(new Services(""));
   const [world, setWorld] = useState(new World());
   const [username, setUsername] = useState("");
@@ -61,134 +60,150 @@ function App() {
 
   const [progress, setProgress] = useState(0);
 
-  
+
 
   let [qtmulti, setQtmulti] = useState(1);
   let [value, setValue] = useState('Acheter 1');
   let [count, setCount] = useState(0);
 
-  function ButtonHandler() {
-    switch (count) {
-      case 0:
-        setValue('Acheter 10');
-        setQtmulti(10);
-        setCount(count + 1);
-        break;
-      case 1:
-        setValue('Acheter 100');
-        setQtmulti(100);
-        setCount(count + 1);
-        break;
-      case 2:
-        setValue('Acheter max');
-        setQtmulti(10000000);
-        setCount(count + 1);
-        break;
-      case 3:
-        setValue('Acheter 1');
-        setQtmulti(1);
-        setCount(0);
-        break;
+  function boucle() {
+    for (let produit in world.products.product){
+      console.log(world.products.product[produit].calcMaxCanBuy)
     }
-  }
 
-  //  function hireManager(m : ){
-  //   startFabrication()
-    
-
-  //  }
-
-  let [showManagers, setShow] = useState(true);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-
-  useEffect(() => {
-    let services = new Services("Agathe")
-    setServices(services)
-    services.getWorld().then(response => { setWorld(response.data) })
-  }, []);
-
-  const onUserNameChanged = (e: any) => {
-    console.log("ok" + e.target.value + typeof e)
-    setUsername(e.target.value);
-    localStorage.setItem("username", e.target.value);
-  }
-
-  return (
-    <div className="App">
-      <nav className="header">
-        <img src={services.server + world.logo} />
-        <label className="logo">{world.name}</label>
-        <ul className="listeHeader">
-          <li>{services.user}</li>
-          <li>Score : {world.score}</li>
-          <li>Money : <span dangerouslySetInnerHTML={{ __html: transform(world.money) }} /> $</li>
-        </ul>
-      </nav>
-      <div className="wrapper">
-        <input type="checkbox" id="btn" hidden />
-        <label htmlFor="btn" className="menu-btn">
-          <i className="fas fa-bars"><FontAwesomeIcon icon={faBars} /></i>
-          <i className="fas fa-times"><FontAwesomeIcon icon={faTimes} /></i>
-        </label>
-        <nav id="sidebar">
-          <div className="title">Menu
-          </div>
-          <ul className="list-items">
-            <li><a href="#"><i className="fas fa-user"><FontAwesomeIcon icon={faUser} /></i>Managers</a></li>
-            <li><a href="#"><i className="fas fa-unlock"><FontAwesomeIcon icon={faUnlock} /></i> Unlocks</a></li>
-            <li><a href="#"><i className="fas fa-arow-up"><FontAwesomeIcon icon={faArrowUp} /></i>Upgrades</a></li>
-            <li><a href="#"><i className="fas fa-euro"><FontAwesomeIcon icon={faEuro} /></i>Investisseurs</a></li>
-          </ul>
-        </nav>
-      </div>
-      <button id="boutonChgtValeur" onClick={ButtonHandler}>{value}</button>
-      <input type="text" value={username} onChange={onUserNameChanged} />
-      <div className="products">
-        {
-          world.products.product.map((p) =>
-            <div key={p.name}>
-              <Product prod={p} onProductionDone={onProductionDone} qtmulti={qtmulti} services={services} />
-            </div>
-          )
-        }
-      </div>
-      <div> {showManagers &&
-        <div className="modal">
-          {/* <Modal> */}
-          <div>
-            <h1 className="title">Managers make you feel better !</h1>
-          </div>
-          <div>
-            <div>
-              {world.managers.pallier.filter(manager => !manager.unlocked).map(
-                manager => (
-                  <div key={manager.idcible} className="managergrid">
-                    <div className="composantGrid" id="managerLogo">
-                      <img alt="manager logo" className="round" src={
-                        services.server + manager.logo} />
-                    </div>
-                    <div className="composantGrid" id="infosManagers">
-                      <div> {manager.name} </div>
-                      <div> {world.products.product[manager.idcible-1].name}</div>
-                      <div className="composantGrid" id="managerSeuil"> {manager.seuil} </div>
-                    </div>
-                    {/* <div id="boutonEngager" onClick={() => hireManager(manager)}> */}
-                    <div id="boutonEngager">
-                      <button disabled={world.money < manager.seuil}>Engager !</button>
-                    </div>
-                  </div>
-                ))}
-            </div>
-            <button onClick={() => setShow(false)}>Close</button>
-          </div>
-          {/* </Modal> */}
-        </div>
+    world.products.product.map((p) => {
+      if (p != null) {
+        //p.calcMaxCanBuy()
         
-      } </div>
-      
-    </div>
-  );
+      }
+      console.log(p.calcMaxCanBuy())
+      // console.log(p.calcMaxCanBuy())
+    })}
+
+function ButtonHandler() {
+  switch (count) {
+    case 0:
+      setValue('Acheter 10');
+      setQtmulti(10);
+      setCount(count + 1);
+      break;
+    case 1:
+      setValue('Acheter 100');
+      setQtmulti(100);
+      setCount(count + 1);
+      break;
+    case 2:
+      setValue('Acheter max');
+      setQtmulti(1000000);
+      boucle();
+      setCount(count + 1);
+      break;
+    case 3:
+      setValue('Acheter 1');
+      setQtmulti(1);
+      setCount(0);
+      break;
+  }
 }
 
+//  function hireManager(m : World["managers"]){
+
+//   for ()
+//   world.products.product.map((p) => {
+//       p.startFabrication()
+
+
+//    }
+
+const [show, setShow] = useState(false);
+const handleClose = () => setShow(false);
+const handleShow = () => setShow(true);
+
+useEffect(() => {
+  let services = new Services("Agathe")
+  setServices(services)
+  services.getWorld().then(response => { setWorld(response.data) })
+}, []);
+
+const onUserNameChanged = (e: any) => {
+  console.log("ok" + e.target.value + typeof e)
+  setUsername(e.target.value);
+  localStorage.setItem("username", e.target.value);
+}
+
+return (
+  <div className="App">
+    <nav className="header">
+      <img src={services.server + world.logo} />
+      <label className="logo">{world.name}</label>
+      <ul className="listeHeader">
+        <li>{services.user}</li>
+        <li>Score : {world.score}</li>
+        <li>Money : <span dangerouslySetInnerHTML={{ __html: transform(world.money) }} /> $</li>
+      </ul>
+    </nav>
+    <div className="wrapper">
+      <input type="checkbox" id="btn" hidden />
+      <label htmlFor="btn" className="menu-btn">
+        <i className="fas fa-bars"><FontAwesomeIcon icon={faBars} /></i>
+        <i className="fas fa-times"><FontAwesomeIcon icon={faTimes} /></i>
+      </label>
+      <nav id="sidebar">
+        <div className="title">Menu
+        </div>
+        <ul className="list-items">
+          <li><a href="#"><i className="fas fa-user"><FontAwesomeIcon icon={faUser} /></i>Managers</a></li>
+          <li><a href="#"><i className="fas fa-unlock"><FontAwesomeIcon icon={faUnlock} /></i> Unlocks</a></li>
+          <li><a href="#"><i className="fas fa-arow-up"><FontAwesomeIcon icon={faArrowUp} /></i>Upgrades</a></li>
+          <li><a href="#"><i className="fas fa-euro"><FontAwesomeIcon icon={faEuro} /></i>Investisseurs</a></li>
+        </ul>
+      </nav>
+    </div>
+    <button id="boutonChgtValeur" onClick={ButtonHandler}>{value}</button>
+    {/* <button className="button" onClick={toggle}>Ouvrir Managers</button> */}
+    <Button onClick={handleShow}>Ouvrir Modale</Button>
+    <input type="text" value={username} onChange={onUserNameChanged} />
+    <div className="products">
+      {
+        world.products.product.map((p) =>
+          <div key={p.name}>
+            <Product prod={p} onProductionDone={onProductionDone} qtmulti={qtmulti} services={services} />
+          </div>
+        )
+      }
+    </div>
+    <div>
+        <Modal show={show} className="modal">
+        <div>
+          <h1 className="title">Managers make you feel better !</h1>
+        </div>
+        <div>
+          <div>
+            {world.managers.pallier.filter(manager => !manager.unlocked).map(
+              manager => (
+                <div key={manager.idcible} className="managergrid">
+                  <div className="composantGrid" id="managerLogo">
+                    <img alt="manager logo" className="round" src={
+                      services.server + manager.logo} />
+                  </div>
+                  <div className="composantGrid" id="infosManagers">
+                    <div> {manager.name} </div>
+                    <div> {world.products.product[manager.idcible - 1].name}</div>
+                    <div className="composantGrid" id="managerSeuil"> {manager.seuil} </div>
+                  </div>
+                  <div id="boutonEngager">
+                    <button disabled={world.money < manager.seuil}>Engager !</button>
+                  </div>
+                </div>
+              ))}
+          </div>
+          <button onClick={() => setShow(false)}>Close</button>
+        </div>
+        </Modal>
+        </div>
+        
+   </div> 
+   
+);
+}
 export default App;
