@@ -13,7 +13,8 @@ type ProductProps = {
 
 export default function ProductComponent({ prod, onProductionDone, services, qtmulti }: ProductProps) {
     const [progress, setProgress] = useState(0);
-    let progressbarvalue : number
+    const savedCallback = useRef(calcScore);
+    
     function startFabrication() {
         prod.timeleft=prod.vitesse;
         prod.lastupdate=Date.now();
