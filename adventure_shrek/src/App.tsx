@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars, faUser, faUnlock, faArrowUp, faEuro, faTimes } from '@fortawesome/free-solid-svg-icons'
 import Product from './Product';
 import { transform } from "./utils"
-import Manager from './Manager'
+import { Modal } from "react-bootstrap";
 
 
 export interface IsQtmulti {
@@ -61,7 +61,7 @@ function App() {
 
   const [progress, setProgress] = useState(0);
 
-  let [showManagers, setShowManagers] = useState(true);
+  
 
   let [qtmulti, setQtmulti] = useState(1);
   let [value, setValue] = useState('Acheter 1');
@@ -96,6 +96,10 @@ function App() {
   //   passer la production en automatique ?
 
   // }
+
+  let [showManagers, setShow] = useState(true);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   useEffect(() => {
     let services = new Services("Agathe")
@@ -147,39 +151,43 @@ function App() {
             </div>
           )
         }
-        <div> {showManagers &&
-          <div className="modal">
-            <div>
-              <h1 className="title">Managers make you feel better !</h1>
-            </div>
-            <div>
-              <div>
-                {world.managers.pallier.filter(manager => !manager.unlocked).map(
-                  manager => (
-                    <div key={manager.idcible} className="managergrid">
-                      <div className="composantGrid" id="managerLogo">
-                        <img alt="manager logo" className="round" src={
-                          services.server + manager.logo} />
-                      </div>
-                      <div className="composantGrid" id="infosManagers">
-                        <div> {manager.name} </div>
-                        {/* <div> {world.products.product[manager.idcible-1].name}</div> */}
-                        <div className="composantGrid" id="managerSeuil"> {manager.seuil} </div>
-                      </div>
-                      {/* <div id="boutonEngager" onClick={() => hireManager(manager)}> */}
-                      <div id="boutonEngager">
-                        <button disabled={world.money < manager.seuil}>Engager !</button>
-                      </div>
-                    </div>
-                  ))}
-              </div>
-              <button onClick={() => setShowManagers(false)}>Close</button>
-            </div>
+      </div>
+      <div> {showManagers &&
+        <div className="modal">
+          {/* <Modal> */}
+          <div>
+            <h1 className="title">Managers make you feel better !</h1>
           </div>
-        } </div>
-      </div >
-</div>
-      );
+          <div>
+            <div>
+              {world.managers.pallier.filter(manager => !manager.unlocked).map(
+                manager => (
+                  <div key={manager.idcible} className="managergrid">
+                    <div className="composantGrid" id="managerLogo">
+                      <img alt="manager logo" className="round" src={
+                        services.server + manager.logo} />
+                    </div>
+                    <div className="composantGrid" id="infosManagers">
+                      <div> {manager.name} </div>
+                      {/* <div> {world.products.product[manager.idcible-1].name}</div> */}
+                      <div className="composantGrid" id="managerSeuil"> {manager.seuil} </div>
+                    </div>
+                    {/* <div id="boutonEngager" onClick={() => hireManager(manager)}> */}
+                    <div id="boutonEngager">
+                      <button disabled={world.money < manager.seuil}>Engager !</button>
+                    </div>
+                  </div>
+                ))}
+            </div>
+            <button onClick={() => setShow(false)}>Close</button>
+          </div>
+          {/* </Modal> */}
+        </div>
+        
+      } </div>
+      
+    </div>
+  );
 }
 
 export default App;
