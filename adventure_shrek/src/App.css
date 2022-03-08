@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  position:relative;
 }
 
 .App-logo {
@@ -24,9 +25,7 @@
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
-}
+
 
 @keyframes App-logo-spin {
   from {
@@ -84,6 +83,7 @@
 .wrapper .menu-btn i.fa-times{
   opacity: 0;
 }
+
 #btn:checked ~ .menu-btn i.fa-times{
   opacity: 1;
   transform: rotate(-180deg);
@@ -91,10 +91,10 @@
 #btn:checked ~ .menu-btn i.fa-bars{
   opacity: 0;
   transform: rotate(180deg);
-  z-index: 9999;
+  z-index: 3;
 }
 #sidebar{
-  z-index: 999;
+  z-index: 2;
   position: fixed;
   background: #404040;
   width: 270px;
@@ -179,25 +179,6 @@
 
 .list-items .icons a:first-child{
   margin-left: 20px;
-}
-
-.content{
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%,-50%);
-  color: #202020;
-  z-index: -1;
-  width: 100%;
-  text-align: center;
-}
-.content .header{
-  font-size: 45px;
-  font-weight: 700;
-}
-.content p{
-  font-size: 40px;
-  font-weight: 700;
 }
 
 
@@ -287,3 +268,39 @@ img {
     margin-left: 20px;
     margin-right: 20px;
   }
+
+
+.modal {
+    position: fixed; /* reste en place */
+    z-index: 4; /* au dessus du reste */
+    width: 800px; 
+    height: 800px;
+    overflow: auto; /* barre de scroll si besoin */
+    background-color: white; /* opaque */
+    border: solid;
+    top:10; 
+    left:20%; 
+  }
+
+
+.managergrid{
+  display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 10px;
+    grid-auto-rows: 1fr;
+}
+
+#managerLogo{
+    grid-column:1;
+    grid-row: 1 / span 2;
+}
+
+#infosManagers{
+  grid-column:2;
+  grid-row:1 / span 2;
+}
+
+#boutonEngager{
+  grid-column:3;
+  grid-row:1 / span 2;
+}

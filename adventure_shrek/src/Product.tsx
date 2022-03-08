@@ -9,10 +9,12 @@ type ProductProps = {
     prod: Product
     //onProductionDone: (product: Product) => void,
     services: Services
+    qtmulti : number
 };
 
 
-export default function ProductComponent({ prod, services }: ProductProps) {
+export default function ProductComponent({ prod, services, qtmulti }: ProductProps) {
+    // let qtmulti = useState(1);
     //const [progress, setProgress] = useState(0);
     // const savedCallback = useRef(calcScore);
 
@@ -48,9 +50,21 @@ export default function ProductComponent({ prod, services }: ProductProps) {
         console.log("Prod bloqué")
         return (<div></div>)
     } else {
-        console.log(prod.name)
+        // console.log(prod.name)
     }
+
+    let prix = prod.cout*(1-Math.pow(prod.croissance,qtmulti+1)/(1-Math.pow(prod.croissance,qtmulti)));
+    let achat="Acheter x "+ qtmulti +" pour "+ prix +" $"
+    // console.log(prix)
+
+    // résoudre équation : u0 (1-c^n)/(1-c) < world.money --> log... trouver n
+    function calcMaxCanBuy(){
+        
+    }
+
+
     return (
+        
         <div className="product">
             <span>{prod.name}</span>
             <div className="grid">
@@ -61,7 +75,7 @@ export default function ProductComponent({ prod, services }: ProductProps) {
                               completed={progress} />
                       </Box>  */}</div>
 
-                <div className="composantGrid"><input type="button" id="boutonAcheter" value="Acheter x1   {prod.cout}" /></div>
+                <div className="composantGrid"><input type="button" id="boutonAcheter" value={achat} /></div>
                 <div className="composantGrid">{prod.timeleft} s</div>
                 {/* <span>Revenu : {prod.revenu}</span> */}
             </div>
