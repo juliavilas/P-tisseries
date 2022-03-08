@@ -9,9 +9,10 @@ type ProductProps = {
     prod: Product
     onProductionDone: (product: Product) => void,
     services: Services
+    qtmulti : number
 };
 
-export default function ProductComponent({prod, onProductionDone, services}: ProductProps) {
+export default function ProductComponent({ prod, onProductionDone, services, qtmulti }: ProductProps) {
     const [progress, setProgress] = useState(0);
     let progressbarvalue : number
     function startFabrication() {
@@ -20,8 +21,6 @@ export default function ProductComponent({prod, onProductionDone, services}: Pro
         console.log("click");
         prod.progressbarvalue=0;
     }
-
-    const savedCallback = useRef(calcScore);
 
     useEffect(() => savedCallback.current = calcScore)
     useEffect(() => {
@@ -52,16 +51,25 @@ export default function ProductComponent({prod, onProductionDone, services}: Pro
         }else{
             setProgress(0)
         }
-        //return prod.revenu;
-        //prod.quantite
      }
 
     if (prod == undefined) {
         console.log("Prod bloqué")
         return (<span></span>)
     }
-    let achat="Acheter x1   "+prod.cout+"$"
+
+    let prix = prod.cout*(1-Math.pow(prod.croissance,qtmulti+1)/(1-Math.pow(prod.croissance,qtmulti)));
+    let achat="Acheter x "+ qtmulti +" pour "+ prix +" $"
+    // console.log(prix)
+
+    // résoudre équation : u0 (1-c^n)/(1-c) < world.money --> log... trouver n
+    function calcMaxCanBuy(){
+        
+    }
+
+
     return (
+        
         <div className="product">
             <span>{prod.name}</span>
             <div className="grid">

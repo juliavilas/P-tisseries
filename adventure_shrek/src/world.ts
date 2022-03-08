@@ -13,6 +13,7 @@ export class World {
     upgrades: { "pallier": Pallier[]};
     angelupgrades: { "pallier": Pallier[]};
     managers: { "pallier": Pallier[]};
+    static money: any
 
     constructor() {
         this.products = { "product":[ ] } ;
