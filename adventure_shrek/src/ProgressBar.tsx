@@ -205,7 +205,7 @@ ProgressBar.propTypes = {
 };
 
 ProgressBar.defaultProps = {
-    bgColor: "#6a1b9a",
+    bgColor: "#C4D300",
     height: "20px",
     width: "100%",
     borderRadius: "50px",

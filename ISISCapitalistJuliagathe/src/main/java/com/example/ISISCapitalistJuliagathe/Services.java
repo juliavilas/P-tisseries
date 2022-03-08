@@ -14,15 +14,17 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 public class Services {
-    World readWorldFromXml(){
+    World readWorldFromXml(String pseudo){
         World w= null;
         InputStream input =
-                getClass().getClassLoader().getResourceAsStream("world.xml");
+                getClass().getClassLoader().getResourceAsStream(pseudo+"-world.xml");
+        if (input==null)
+             input =getClass().getClassLoader().getResourceAsStream("world.xml");
         try {
             JAXBContext cont = JAXBContext.newInstance(World.class);
             Unmarshaller u = cont.createUnmarshaller();
             w= (World)u.unmarshal(input);
-            System.out.println(w.getName());
+            //System.out.println(w.getName());
         }
         catch (Exception e) {
             e.printStackTrace();
@@ -30,9 +32,9 @@ public class Services {
         return w;
     }
 
-    void saveWorldToXml(World world){
+    void saveWorldToXml(World world, String pseudo){
         try {
-            OutputStream output = new FileOutputStream(new File("world2.xml"));
+            OutputStream output = new FileOutputStream(new File(pseudo+"-world.xml"));
             JAXBContext cont = JAXBContext.newInstance(World.class);
             Marshaller m = cont.createMarshaller();
             m.marshal(world, output);
@@ -41,8 +43,8 @@ public class Services {
         }
     }
 
-    World getWorld(){
-        return readWorldFromXml();
+    World getWorld(String pseudo){
+        return readWorldFromXml(pseudo);
     }
 
 }
