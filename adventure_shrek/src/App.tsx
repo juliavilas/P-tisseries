@@ -26,10 +26,10 @@ function App() {
       let services = new Services(username)
       setServices(services)
       services.getWorld().then(response => {
-           // let liste = compute_unlocks_list(response.data)
-            setWorld(response.data)
-            //setUnlockList(liste)
-          }
+        // let liste = compute_unlocks_list(response.data)
+        setWorld(response.data)
+        //setUnlockList(liste)
+      }
       )
     }
   }, [username])
@@ -44,24 +44,24 @@ function App() {
   }, [])
 
   // @ts-ignore
-  function onProductionDone(p : Product): void {
+  function onProductionDone(p: Product): void {
     // calcul de la somme obtenue par la production du produit
     let gain = p.revenu;
-    console.log("gain"+gain)
+    console.log("gain" + gain)
     // ajout de la somme à l’argent possédé
     addToScore(gain)
   }
 
-  function addToScore(gain: number) : void{
-    world.score+=gain;
+  function addToScore(gain: number): void {
+    world.score += gain;
     world.money++;
-    world.money=1;
-    console.log("score du monde "+world.score)
+    world.money = 1;
+    console.log("score du monde " + world.score)
   }
 
   const [progress, setProgress] = useState(0);
 
-  let [showManagers,setShowManagers] = useState(true);
+  let [showManagers, setShowManagers] = useState(true);
 
   let [qtmulti, setQtmulti] = useState(1);
   let [value, setValue] = useState('Acheter 1');
@@ -92,20 +92,9 @@ function App() {
     }
   }
 
- 
-
-  // const savedCallback = useRef(calcScore)
-  // useEffect(() => savedCallback.current = calcScore)
-  // useEffect(() => {
-  //   let timer = setInterval(() => savedCallback.current(), 100)
-  //   return function cleanup() {
-  //     if (timer) clearInterval(timer)
-  //   }
-  // }, [])
-
   // function hireManager(m : world.managers.pallier){
   //   passer la production en automatique ?
-    
+
   // }
 
   useEffect(() => {
@@ -114,8 +103,8 @@ function App() {
     services.getWorld().then(response => { setWorld(response.data) })
   }, []);
 
-  const onUserNameChanged = (e:any) => {
-    console.log("ok"+e.target.value+typeof e)
+  const onUserNameChanged = (e: any) => {
+    console.log("ok" + e.target.value + typeof e)
     setUsername(e.target.value);
     localStorage.setItem("username", e.target.value);
   }
@@ -149,50 +138,48 @@ function App() {
         </nav>
       </div>
       <button id="boutonChgtValeur" onClick={ButtonHandler}>{value}</button>
-      <input type="text" value={username} onChange={onUserNameChanged}/>
-        <div className="products">
+      <input type="text" value={username} onChange={onUserNameChanged} />
+      <div className="products">
         {
-          world.products.product.map((p)=>
+          world.products.product.map((p) =>
             <div key={p.name}>
               <Product prod={p} onProductionDone={onProductionDone} qtmulti={qtmulti} services={services} />
-              </div>
+            </div>
           )
         }
-      <div> {showManagers &&
-        <div className="modal">
-          <div>
-            <h1 className="title">Managers make you feel better !</h1>
-          </div>
-          <div>
+        <div> {showManagers &&
+          <div className="modal">
             <div>
-              {world.managers.pallier.filter(manager => !manager.unlocked).map(
-                manager => (
-                  <div key={manager.idcible} className="managergrid">
-                    <div className="composantGrid" id="managerLogo">
-                      <img alt="manager logo" className="round" src={
-                        services.server + manager.logo} />
-                    </div>
-                    <div className="composantGrid" id="infosManagers">
-                      <div> {manager.name} </div>
-                      {/* <div> {world.products.product[manager.idcible-1].name}</div> */}
-                      <div className="composantGrid" id="managerSeuil"> {manager.seuil} </div>
-                    </div>
-                    {/* <div id="boutonEngager" onClick={() => hireManager(manager)}> */}
-                    <div id="boutonEngager">
-                      <button disabled={world.money < manager.seuil}>Engager !</button>
-                    </div>
-                  </div>
-                ))}
+              <h1 className="title">Managers make you feel better !</h1>
             </div>
-            <button onClick={() => setShowManagers(false)}>Close</button>
+            <div>
+              <div>
+                {world.managers.pallier.filter(manager => !manager.unlocked).map(
+                  manager => (
+                    <div key={manager.idcible} className="managergrid">
+                      <div className="composantGrid" id="managerLogo">
+                        <img alt="manager logo" className="round" src={
+                          services.server + manager.logo} />
+                      </div>
+                      <div className="composantGrid" id="infosManagers">
+                        <div> {manager.name} </div>
+                        {/* <div> {world.products.product[manager.idcible-1].name}</div> */}
+                        <div className="composantGrid" id="managerSeuil"> {manager.seuil} </div>
+                      </div>
+                      {/* <div id="boutonEngager" onClick={() => hireManager(manager)}> */}
+                      <div id="boutonEngager">
+                        <button disabled={world.money < manager.seuil}>Engager !</button>
+                      </div>
+                    </div>
+                  ))}
+              </div>
+              <button onClick={() => setShowManagers(false)}>Close</button>
+            </div>
           </div>
-        </div>
-      } </div>
-    </div >
-
-  );
+        } </div>
+      </div >
+</div>
+      );
 }
 
 export default App;
-
-

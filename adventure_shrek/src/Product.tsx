@@ -3,7 +3,6 @@ import {World, Product} from './world';
 import {Services} from "./Services";
 import React, {useEffect, useState, useRef} from 'react';
 import ProgressBar from './ProgressBar';
-import Box from '@mui/material/Box';
 
 type ProductProps = {
     prod: Product
