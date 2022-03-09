@@ -177,10 +177,10 @@ function App() {
       <div>
         <Modal show={show} className="modal">
           <div>
-            <h1 className="title">Managers make you feel better !</h1>
+            <h1 className="title">Emploie des managers !</h1>
           </div>
           <div>
-            <div>
+            <div className="managers">
               {world.managers.pallier.filter(manager => !manager.unlocked).map(
                 manager => (
                   <div key={manager.idcible} className="managergrid">
@@ -193,13 +193,13 @@ function App() {
                       <div> {world.products.product[manager.idcible - 1].name}</div>
                       <div className="composantGrid" id="managerSeuil"> {manager.seuil} </div>
                     </div>
-                    <div id="boutonEngager">
-                      <button disabled={world.money < manager.seuil}>Engager !</button>
+                    <div className="divBoutonEngager">
+                      <button className="boutonEngager" disabled={world.money < manager.seuil}>Engager !</button>
                     </div>
                   </div>
                 ))}
             </div>
-            <button onClick={() => handleClose()}>Close</button>
+            <button className="boutonFermer" onClick={() => handleClose()}>Close</button>
           </div>
         </Modal>
       </div>

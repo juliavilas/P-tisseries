@@ -1,6 +1,7 @@
 .App {
   text-align: center;
-  position:relative;
+  position:fixed;
+  width:100%;
 }
 
 .App-logo {
@@ -108,8 +109,14 @@ body::before{
 #btn:checked ~ .menu-btn i.fa-bars{
   opacity: 0;
   transform: rotate(180deg);
-  z-index: 3;
+  z-index:9999;
 }
+
+#btn:checked ~ .menu-btn i.fa-bars{
+  z-index:9999;
+}
+
+
 #sidebar{
   z-index: 2;
   position: fixed;
@@ -163,8 +170,8 @@ body::before{
 #sidebar .list-items li:hover> button{
   border-top: 1px solid transparent;
   border-bottom: 1px solid transparent;
-  box-shadow: 0 0 10px 3px #272b00;
-  background: #585e08;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  background: #272b00;
   transition: .5s;
   cursor:pointer;
 }
@@ -179,7 +186,7 @@ body::before{
   color: #f2f2f2;
   background: #3c4100;
   border-radius: 5px;
-  border: 1px solid #052b11;
+  border: 1px solid #272b00;
   transition: all 0.3s ease;
 }
 
@@ -264,7 +271,7 @@ img {
   }
 
 .products {
-  margin-top:60px;
+  margin-top:30px;
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-gap: 20px;
@@ -276,9 +283,10 @@ img {
 
 .modal {
     position: absolute; /* reste en place */
-    z-index: 4; /* au dessus du reste */
+    z-index: 3;
     width: 800px; 
-    height: 800px;
+    margin-top: 80px;
+    padding-bottom:30px;
     overflow: auto; /* barre de scroll si besoin */
     background-color: antiquewhite; /* opaque */
     border: solid;
@@ -287,6 +295,9 @@ img {
     text-align: center;
   }
 
+.managers{
+  margin-top:15px;
+}
 
 .managergrid{
   display: grid;
@@ -305,9 +316,11 @@ img {
   grid-row:1 / span 2;
 }
 
-#boutonEngager{
+
+.divBoutonEngager{
   grid-column:3;
   grid-row:1 / span 2;
+  align-self: center;
 }
 
 #inputUsername{
@@ -327,4 +340,29 @@ img {
 #boutonChgtValeur:hover{
   background-color: #272b00;
   border: 4px inset #4F5400;
+}
+
+.boutonEngager{
+  display: inline-block;
+  background-color: #4F5400;
+  border-radius: 15px;
+  padding:5px;
+  border: 4px double  #272b00;
+  color: #eeeeee;
+  cursor: pointer;
+  width:100%;
+  
+}
+
+.boutonFermer{
+  display: inline-block;
+  background-color: #4F5400;
+  border-radius: 15px;
+  padding:5px;
+  border: 4px double  #272b00;
+  color: #eeeeee;
+  cursor: pointer;
+  padding-left: 20px;
+  padding-right:20px;
+  margin-top:15px;
 }
