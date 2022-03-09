@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars, faUser, faUnlock, faArrowUp, faEuro, faTimes } from '@fortawesome/free-solid-svg-icons'
 import Product from './Product';
 import { transform } from "./utils"
-import { Modal } from "react-bootstrap";
+//import { Modal } from "react-bootstrap";
 
 
 export interface IsQtmulti {
@@ -50,18 +50,19 @@ function App() {
     console.log("gain" + gain)
     // ajout de la somme à l’argent possédé
     addToScore(gain)
+    //p.quantite++;
+    services.putProduct(p)
   }
 
   function addToScore(gain: number): void {
     world.score += gain;
-    world.money++;
-    world.money = 1;
+    world.money+=gain;
+    console.log("argent du monde " + world.money)
     console.log("score du monde " + world.score)
+    setWorld(world)
   }
 
   const [progress, setProgress] = useState(0);
-
-  
 
   let [qtmulti, setQtmulti] = useState(1);
   let [value, setValue] = useState('Acheter 1');
@@ -101,14 +102,8 @@ function App() {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  useEffect(() => {
-    let services = new Services("Agathe")
-    setServices(services)
-    services.getWorld().then(response => { setWorld(response.data) })
-  }, []);
-
   const onUserNameChanged = (e: any) => {
-    console.log("ok" + e.target.value + typeof e)
+    console.log("ok" + e.target.value)
     setUsername(e.target.value);
     localStorage.setItem("username", e.target.value);
   }

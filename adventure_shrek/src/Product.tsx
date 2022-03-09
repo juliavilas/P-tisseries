@@ -18,7 +18,7 @@ export default function ProductComponent({ prod, onProductionDone, services, qtm
     function startFabrication() {
         prod.timeleft=prod.vitesse;
         prod.lastupdate=Date.now();
-        console.log("click");
+        //console.log("click");
         prod.progressbarvalue=0;
     }
 
@@ -36,7 +36,7 @@ export default function ProductComponent({ prod, onProductionDone, services, qtm
             tpsEcoule=Date.now()-prod.lastupdate
             prod.timeleft -= tpsEcoule;
             prod.lastupdate=Date.now();
-            console.log(prod.timeleft)
+            //console.log(prod.timeleft)
             if (prod.timeleft <= 0){
                 if (prod.timeleft < 0) {
                     prod.timeleft = 0;
@@ -47,7 +47,7 @@ export default function ProductComponent({ prod, onProductionDone, services, qtm
                     prod.progressbarvalue=Math.round(((prod.vitesse - prod.timeleft) / prod.vitesse) * 100)
             }
             setProgress(prod.progressbarvalue);
-            console.log("progress "+prod.progressbarvalue)
+            //console.log("progress "+prod.progressbarvalue)
         }else{
             setProgress(0)
         }
