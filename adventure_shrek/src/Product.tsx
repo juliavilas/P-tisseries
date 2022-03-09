@@ -68,7 +68,7 @@ export default function ProductComponent({ prod, onProductionDone, services, qtm
     return (
         
         <div className="product">
-            <span>{prod.name}</span>
+            <span className="titreProduit">{prod.name}</span>
             <div className="grid">
                 <div id="image"><a href="#" onClick={startFabrication}><img src={services.server + prod.logo} id="imageProduit"/></a>
                     <div className="composantGrid" id="quantite">{prod.quantite}</div>

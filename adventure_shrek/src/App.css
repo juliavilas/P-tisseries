@@ -25,7 +25,19 @@
   color: white;
 }
 
+body::before{
+  content:"";
+  background-image: url("../public/jersey-fabric-green-striped-shrek-x-10cm.jpg");
+  background-repeat: no-repeat;
+  background-size:cover;
+  position:absolute;
+  opacity: 0.75;
+  top:0px;
+  bottom:0px;
+  left:0px;
+  right:0px;
 
+}
 
 @keyframes App-logo-spin {
   from {
@@ -96,7 +108,7 @@
 #sidebar{
   z-index: 2;
   position: fixed;
-  background: #404040;
+  background: #4F5400;
   width: 270px;
   overflow: hidden;
   left: -270px;
@@ -132,7 +144,7 @@
   border-top: 1px solid transparent;
   border-bottom: 1px solid transparent;
   box-shadow: 0 0px 10px 3px #222;
-  background: #12973a;
+  background: #4F5400;
   transition: .5s;
 }
 #sidebar .list-items li:first-child{

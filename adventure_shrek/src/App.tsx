@@ -203,7 +203,6 @@ function App() {
           </div>
         </Modal>
       </div>
-
     </div>
 
   );

@@ -11,15 +11,15 @@
     
 .lesecond {
     position: absolute;
-    bottom: -10px;
 }
 
 .grid{
     display:grid;
     grid-template-columns: 7em 1fr 6em;
     grid-template-rows : 1fr 1fr;
-    border : 2px solid #076125;
+    border : 2px solid #4F5400;
     vertical-align: middle;
+    background-color:antiquewhite;
 } 
 
 #imageProduit{
@@ -53,7 +53,7 @@
 
 #boutonAcheter{
     display: inline-block;
-    background-color: #076125;
+    background-color: #4F5400;
     border-radius: 15px;
     border: 4px double  #052b11;
     padding: 10px;
@@ -64,5 +64,9 @@
 
 #boutonAcheter:hover{
     background-color: #052b11;
-    border: 4px inset #076125;
+    border: 4px inset #4F5400;
+}
+
+.titreProduit{
+    font-weight:bold;
 }
