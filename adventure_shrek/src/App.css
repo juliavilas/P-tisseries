@@ -87,6 +87,11 @@ body::before{
 #btn:checked ~ .menu-btn{
   left: 247px;
 }
+
+#btn ~ .menu-btn{
+  background-color: #272b00;
+}
+
 .wrapper .menu-btn i{
   position: absolute;
   font-size: 23px;
@@ -120,49 +125,15 @@ body::before{
 #sidebar .title{
   line-height: 65px;
   text-align: center;
-  background: #333;
+  background: #3c4100;
   font-size: 25px;
   font-weight: 600;
   color: #f2f2f2;
   border-bottom: 1px solid #222;
 }
-#sidebar .list-items{
-  position: relative;
-  background: #404040;
-  width: 100%;
-  height: 100%;
-  list-style: none;
-}
-#sidebar .list-items li{
-  /* padding-left: 40px; */
-  line-height: 50px;
-  border-top: 1px solid rgba(255,255,255,0.1);
-  border-bottom: 1px solid #333;
-  transition: all 0.3s ease;
-}
-#sidebar .list-items li:hover{
-  border-top: 1px solid transparent;
-  border-bottom: 1px solid transparent;
-  box-shadow: 0 0px 10px 3px #222;
-  background: #4F5400;
-  transition: .5s;
-}
-#sidebar .list-items li:first-child{
-  border-top: none;
-}
-#sidebar .list-items li a{
-  color: #f2f2f2;
-  text-decoration: none;
-  font-size: 18px;
-  font-weight: 500;
-  height: 100%;
-  width: 100%;
-  display: block;
-}
-#sidebar .list-items li a i{
-  margin-right: 20px;
-}
-#sidebar .list-items .icons{
+
+
+/* #sidebar .list-items .icons{
   width: 100%;
   height: 40px;
   text-align: center;
@@ -172,26 +143,47 @@ body::before{
   display: flex;
   align-items: center;
   justify-content: center;
-}
-#sidebar .list-items .icons button{
+} */
+
+#sidebar .list-items{
+  position: relative;
+  background: #1b1d03;
+  width: 100%;
   height: 100%;
-  width: 40px;
-  display: block;
-  margin: 0 5px;
-  font-size: 18px;
-  color: #f2f2f2;
-  background: #4F5400;
-  border-radius: 5px;
-  border: 1px solid #383838;
-  transition: all 0.3s ease;
-}
-#sidebar .list-items .icons a:hover{
-  background: #404040;
+  list-style: none;
 }
 
-.list-items .icons a:first-child{
-  margin-left: 20px;
+#sidebar .list-items li{
+  line-height: 50px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  border-bottom: 1px solid #333;
+  transition: all 0.3s ease;
+} 
+
+#sidebar .list-items li:hover> button{
+  border-top: 1px solid transparent;
+  border-bottom: 1px solid transparent;
+  box-shadow: 0 0 10px 3px #272b00;
+  background: #585e08;
+  transition: .5s;
+  cursor:pointer;
 }
+
+#sidebar .list-items button{
+  height: 100%;
+  width: 100%;
+  display: block;
+  padding-top:5px;
+  padding-bottom:5px;
+  font-size: 18px;
+  color: #f2f2f2;
+  background: #3c4100;
+  border-radius: 5px;
+  border: 1px solid #052b11;
+  transition: all 0.3s ease;
+}
+
+ 
 
 
 
@@ -221,6 +213,7 @@ body::before{
     float: right;
     margin-right: 20px;
     line-height:66px;
+    position :relative;
 }
 
 .header>ul li{
@@ -267,7 +260,6 @@ img {
   width: 50px;
   height: 50px;
   border-radius: 10%;
-  color:black;
   vertical-align: middle;
   }
 
@@ -288,7 +280,7 @@ img {
     width: 800px; 
     height: 800px;
     overflow: auto; /* barre de scroll si besoin */
-    background-color: white; /* opaque */
+    background-color: antiquewhite; /* opaque */
     border: solid;
     top:10; 
     left:20%; 
@@ -319,9 +311,20 @@ img {
 }
 
 #inputUsername{
-
+  background-color: antiquewhite;
 }
 
 #boutonChgtValeur{
+  display: inline-block;
+  background-color: #4F5400;
+  border-radius: 15px;
+  border: 4px double  #272b00;
+  padding: 10px;
+  color: #eeeeee;
+  cursor: pointer;
+}
 
+#boutonChgtValeur:hover{
+  background-color: #272b00;
+  border: 4px inset #4F5400;
 }
