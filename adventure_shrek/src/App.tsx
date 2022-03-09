@@ -1,4 +1,3 @@
-import { Button, Input } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import './App.css';
 import { Services } from "./Services";
@@ -8,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars, faUser, faUnlock, faArrowUp, faEuro, faTimes } from '@fortawesome/free-solid-svg-icons'
 import Product from './Product';
 import { transform } from "./utils"
-//import { Modal } from "react-bootstrap";
+import { Button, Modal } from 'react-bootstrap';
 
 
 export interface IsQtmulti {
@@ -68,6 +67,20 @@ function App() {
   let [value, setValue] = useState('Acheter 1');
   let [count, setCount] = useState(0);
 
+  function boucle() {
+    for (let produit in world.products.product) {
+      console.log(world.products.product[produit].calcMaxCanBuy)
+    }
+
+    world.products.product.map((p) => {
+      if (p != null) {
+        //p.calcMaxCanBuy()
+
+      }
+      console.log(p.calcMaxCanBuy())
+    })
+  }
+
   function ButtonHandler() {
     switch (count) {
       case 0:
@@ -82,7 +95,8 @@ function App() {
         break;
       case 2:
         setValue('Acheter max');
-        setQtmulti(10000000);
+        setQtmulti(1000000);
+        boucle();
         setCount(count + 1);
         break;
       case 3:
@@ -93,12 +107,9 @@ function App() {
     }
   }
 
-  // function hireManager(m : world.managers.pallier){
-  //   passer la production en automatique ?
+  //  function hireManager(m : World["managers"]){
 
-  // }
-
-  let [showManagers, setShow] = useState(true);
+  const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
@@ -107,6 +118,7 @@ function App() {
     setUsername(e.target.value);
     localStorage.setItem("username", e.target.value);
   }
+
 
   return (
     <div className="App">
@@ -129,15 +141,17 @@ function App() {
           <div className="title">Menu
           </div>
           <ul className="list-items">
-            <li><a href="#"><i className="fas fa-user"><FontAwesomeIcon icon={faUser} /></i>Managers</a></li>
-            <li><a href="#"><i className="fas fa-unlock"><FontAwesomeIcon icon={faUnlock} /></i> Unlocks</a></li>
-            <li><a href="#"><i className="fas fa-arow-up"><FontAwesomeIcon icon={faArrowUp} /></i>Upgrades</a></li>
-            <li><a href="#"><i className="fas fa-euro"><FontAwesomeIcon icon={faEuro} /></i>Investisseurs</a></li>
+            <li><button onClick={() => handleShow()}><i className="fas fa-user"><FontAwesomeIcon icon={faUser} /></i>Managers</button></li>
+            <li><button><i className="fas fa-unlock"><FontAwesomeIcon icon={faUnlock} /></i> Unlocks</button></li>
+            <li><button><i className="fas fa-arow-up"><FontAwesomeIcon icon={faArrowUp} /></i>Upgrades</button></li>
+            <li><button><i className="fas fa-euro"><FontAwesomeIcon icon={faEuro} /></i>Investisseurs</button></li>
           </ul>
         </nav>
       </div>
       <button id="boutonChgtValeur" onClick={ButtonHandler}>{value}</button>
-      <input type="text" value={username} onChange={onUserNameChanged} />
+      <label> Choisis ton pseudo :
+        <input type="text" value={username} onChange={onUserNameChanged} id="inputUsername" /></label>
+
       <div className="products">
         {
           world.products.product.map((p) =>
@@ -147,14 +161,13 @@ function App() {
           )
         }
       </div>
-      <div> {showManagers &&
-        <div className="modal">
-          {/* <Modal> */}
+      <div>
+        <Modal show={show} className="modal">
           <div>
-            <h1 className="title">Managers make you feel better !</h1>
+            <h1 className="title">Emploie des managers !</h1>
           </div>
           <div>
-            <div>
+            <div className="managers">
               {world.managers.pallier.filter(manager => !manager.unlocked).map(
                 manager => (
                   <div key={manager.idcible} className="managergrid">
@@ -164,25 +177,21 @@ function App() {
                     </div>
                     <div className="composantGrid" id="infosManagers">
                       <div> {manager.name} </div>
-                      {/* <div> {world.products.product[manager.idcible-1].name}</div> */}
+                      <div> {world.products.product[manager.idcible - 1].name}</div>
                       <div className="composantGrid" id="managerSeuil"> {manager.seuil} </div>
                     </div>
-                    {/* <div id="boutonEngager" onClick={() => hireManager(manager)}> */}
-                    <div id="boutonEngager">
-                      <button disabled={world.money < manager.seuil}>Engager !</button>
+                    <div className="divBoutonEngager">
+                      <button className="boutonEngager" disabled={world.money < manager.seuil}>Engager !</button>
                     </div>
                   </div>
                 ))}
             </div>
-            <button onClick={() => setShow(false)}>Close</button>
+            <button className="boutonFermer" onClick={() => handleClose()}>Close</button>
           </div>
-          {/* </Modal> */}
-        </div>
-        
-      } </div>
-      
+        </Modal>
+      </div>
     </div>
+
   );
 }
-
 export default App;

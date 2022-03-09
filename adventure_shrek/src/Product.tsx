@@ -18,7 +18,6 @@ export default function ProductComponent({ prod, onProductionDone, services, qtm
     function startFabrication() {
         prod.timeleft=prod.vitesse;
         prod.lastupdate=Date.now();
-        //console.log("click");
         prod.progressbarvalue=0;
     }
 
@@ -36,7 +35,6 @@ export default function ProductComponent({ prod, onProductionDone, services, qtm
             tpsEcoule=Date.now()-prod.lastupdate
             prod.timeleft -= tpsEcoule;
             prod.lastupdate=Date.now();
-            //console.log(prod.timeleft)
             if (prod.timeleft <= 0){
                 if (prod.timeleft < 0) {
                     prod.timeleft = 0;
@@ -47,7 +45,6 @@ export default function ProductComponent({ prod, onProductionDone, services, qtm
                     prod.progressbarvalue=Math.round(((prod.vitesse - prod.timeleft) / prod.vitesse) * 100)
             }
             setProgress(prod.progressbarvalue);
-            //console.log("progress "+prod.progressbarvalue)
         }else{
             setProgress(0)
         }
@@ -58,20 +55,20 @@ export default function ProductComponent({ prod, onProductionDone, services, qtm
         return (<span></span>)
     }
 
-    let prix = prod.cout*(1-Math.pow(prod.croissance,qtmulti+1)/(1-Math.pow(prod.croissance,qtmulti)));
+    let prix = Math.round(prod.cout*((Math.pow(prod.croissance,qtmulti)-1)/(prod.croissance-1)));
     let achat="Acheter x "+ qtmulti +" pour "+ prix +" $"
-    // console.log(prix)
 
     // résoudre équation : u0 (1-c^n)/(1-c) < world.money --> log... trouver n
     function calcMaxCanBuy(){
-        
+        let n = Math.log(1+World.money*(prod.croissance-1)/prod.cout)/(Math.log(prod.croissance))
+        console.log(n);
+        return n;
     }
-
 
     return (
         
         <div className="product">
-            <span>{prod.name}</span>
+            <span className="titreProduit">{prod.name}</span>
             <div className="grid">
                 <div id="image"><a href="#" onClick={startFabrication}><img src={services.server + prod.logo} id="imageProduit"/></a>
                     <div className="composantGrid" id="quantite">{prod.quantite}</div>
