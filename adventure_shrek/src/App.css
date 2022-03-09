@@ -161,14 +161,14 @@
   align-items: center;
   justify-content: center;
 }
-#sidebar .list-items .icons a{
+#sidebar .list-items .icons button{
   height: 100%;
   width: 40px;
   display: block;
   margin: 0 5px;
   font-size: 18px;
   color: #f2f2f2;
-  background: #4a4a4a;
+  background: #4F5400;
   border-radius: 5px;
   border: 1px solid #383838;
   transition: all 0.3s ease;
@@ -188,7 +188,7 @@
 
 
 .header{
-    background: #076125;
+    background: #4F5400;
     height: 80px;
     width: 100%;
     text-align:left;
@@ -280,6 +280,7 @@ img {
     border: solid;
     top:10; 
     left:20%; 
+    text-align: center;
   }
 
 
@@ -303,4 +304,12 @@ img {
 #boutonEngager{
   grid-column:3;
   grid-row:1 / span 2;
+}
+
+#inputUsername{
+
+}
+
+#boutonChgtValeur{
+
 }
