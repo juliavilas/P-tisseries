@@ -62,9 +62,7 @@ function App() {
 
 
 
-  let [qtmulti, setQtmulti] = useState(1);
-  let [value, setValue] = useState('Acheter 1');
-  let [count, setCount] = useState(0);
+
 
   function boucle() {
     for (let produit in world.products.product) {
@@ -81,6 +79,10 @@ function App() {
     })
   }
 
+  let [qtmulti, setQtmulti] = useState(1);
+  let [value, setValue] = useState('Acheter 1');
+  let [count, setCount] = useState(0);
+
   function ButtonHandler() {
     switch (count) {
       case 0:
@@ -96,7 +98,6 @@ function App() {
       case 2:
         setValue('Acheter max');
         setQtmulti(1000000);
-        boucle();
         setCount(count + 1);
         break;
       case 3:
@@ -161,9 +162,11 @@ function App() {
           </ul>
         </nav>
       </div>
+      <div>
       <button id="boutonChgtValeur" onClick={ButtonHandler}>{value}</button>
       <label> Choisis ton pseudo :
         <input type="text" value={username} onChange={onUserNameChanged} id="inputUsername" /></label>
+        </div>
 
       <div className="products">
         {
@@ -185,7 +188,7 @@ function App() {
                 manager => (
                   <div key={manager.idcible} className="managergrid">
                     <div className="composantGrid" id="managerLogo">
-                      <img alt="manager logo" className="round" src={
+                      <img alt="manager logo" className="imgManagerLogo" src={
                         services.server + manager.logo} />
                     </div>
                     <div className="composantGrid" id="infosManagers">
