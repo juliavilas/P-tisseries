@@ -19,6 +19,18 @@ function App() {
   const [world, setWorld] = useState(new World());
   const [username, setUsername] = useState("");
   let user = localStorage.getItem("username");
+  const [progress, setProgress] = useState(0);
+  let [qtmulti, setQtmulti] = useState(1);
+  let [value, setValue] = useState('Acheter 1');
+  let [count, setCount] = useState(0);
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+  const onUserNameChanged = (e: any) => {
+    console.log("ok" + e.target.value)
+    setUsername(e.target.value);
+    localStorage.setItem("username", e.target.value);
+  }
 
   useEffect(() => {
     if (username !== "") {
@@ -49,21 +61,18 @@ function App() {
     console.log("gain" + gain)
     // ajout de la somme à l’argent possédé
     addToScore(gain)
+    //p.quantite++;
+    services.putProduct(p)
   }
 
   function addToScore(gain: number): void {
     world.score += gain;
-    world.money++;
-    world.money = 1;
+    world.money+=gain;
+    console.log("argent du monde " + world.money)
     console.log("score du monde " + world.score)
+    setWorld(world)
   }
-
-  const [progress, setProgress] = useState(0);
-
-
-
-
-
+  
   function boucle() {
     for (let produit in world.products.product) {
       console.log(world.products.product[produit].calcMaxCanBuy)
@@ -75,13 +84,8 @@ function App() {
 
       }
       console.log(p.calcMaxCanBuy())
-      // console.log(p.calcMaxCanBuy())
     })
   }
-
-  let [qtmulti, setQtmulti] = useState(1);
-  let [value, setValue] = useState('Acheter 1');
-  let [count, setCount] = useState(0);
 
   function ButtonHandler() {
     switch (count) {
@@ -108,7 +112,7 @@ function App() {
     }
   }
 
-  //  function hireManager(m : World["managers"]){
+    //  function hireManager(m : World["managers"]){
 
   //   for ()
   //   world.products.product.map((p) => {
@@ -117,22 +121,20 @@ function App() {
 
   //    }
 
-  const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  function boucle() {
+    for (let produit in world.products.product) {
+      console.log(world.products.product[produit].calcMaxCanBuy)
+    }
 
-  useEffect(() => {
-    let services = new Services("Agathe")
-    setServices(services)
-    services.getWorld().then(response => { setWorld(response.data) })
-  }, []);
+    world.products.product.map((p) => {
+      if (p != null) {
+        //p.calcMaxCanBuy()
 
-  const onUserNameChanged = (e: any) => {
-    console.log("ok" + e.target.value + typeof e)
-    setUsername(e.target.value);
-    localStorage.setItem("username", e.target.value);
+      }
+      console.log(p.calcMaxCanBuy())
+      // console.log(p.calcMaxCanBuy())
+    })
   }
-
 
   return (
     <div className="App">

@@ -1,5 +1,5 @@
 import axios, { AxiosError, AxiosPromise } from "axios";
-import { World } from "./world";
+import { Pallier, Product, World } from "./world";
 
 export class Services {
     // server = "https://isiscapitalist.kk.kurasawa.fr/"
@@ -26,6 +26,24 @@ export class Services {
         return axios({
             method: 'get',
             url: this.api + '/world',
+            headers: Services.setHeaders(this.user)
+        }).catch(Services.handleError)
+    }
+
+    putProduct(product : Product): AxiosPromise<World> {
+        return axios({
+            method: 'put',
+            url: this.api + '/product',
+            data: product,
+            headers: Services.setHeaders(this.user)
+        }).catch(Services.handleError)
+    }
+
+    putManager(manager : Pallier): AxiosPromise<Response> {
+        return axios({
+            method: 'put',
+            url: this.api + '/manager',
+            data: manager,
             headers: Services.setHeaders(this.user)
         }).catch(Services.handleError)
     }
