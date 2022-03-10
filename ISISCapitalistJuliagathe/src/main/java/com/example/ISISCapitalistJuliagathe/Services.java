@@ -91,6 +91,9 @@ public class Services {
         } else {
             //changer score qd fini
             product.setTimeleft(product.getVitesse());
+            world.setLastupdate(System.currentTimeMillis());
+            world.setScore(world.getScore()+product.getRevenu()*product.getQuantite());
+            world.setMoney(world.getMoney()+product.getRevenu()*product.getQuantite());
         }
         // sauvegarder les changements du monde
         saveWorldToXml(world, username);
@@ -153,6 +156,15 @@ public class Services {
                 return m;
             }
         }
-        return null;    }
+        return null; 
+    }
+    
+    private World majScore(World world){
+        world.setLastupdate(System.currentTimeMillis());
+        for (ProductType p : world.getProducts().getProduct()) {
+
+        }
+        return world;
+    }
 
 }
