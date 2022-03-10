@@ -205,12 +205,12 @@ ProgressBar.propTypes = {
 };
 
 ProgressBar.defaultProps = {
-    bgColor: "#C4D300",
+    bgColor: "#474d00",
     height: "20px",
     width: "100%",
     borderRadius: "50px",
     labelAlignment: "right",
-    baseBgColor: "#e0e0de",
+    baseBgColor: "#AEBA00",
     labelColor: "#fff",
     labelSize: "15px",
     isLabelVisible: true,

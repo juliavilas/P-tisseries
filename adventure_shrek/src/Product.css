@@ -11,6 +11,7 @@
 #imageProduit{
     width:112px;
     height: 120px;
+    margin-left:10px;
 }
 
 #image{
@@ -29,6 +30,7 @@
     align-content: center;
     margin : 0 auto;
     width:100%;
+    margin-left:10px;
 }
 
 
@@ -39,6 +41,8 @@
 #barreProgression{
     grid-column: 2  / span 2; 
     grid-row: 1;
+    margin-left:20px;
+    margin-right:20px;
 }
 
 
@@ -50,7 +54,8 @@
     padding: 10px;
     color: #eeeeee;
     cursor: pointer;
-    width:100%;
+    margin-left:45px;
+    width:90%;
 }
 
 #boutonAcheter:hover{

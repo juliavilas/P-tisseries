@@ -136,7 +136,7 @@ function App() {
   return (
     <div className="App">
       <nav className="header">
-        <img src={services.server + world.logo} />
+        <img src={services.server + world.logo} className="imgLogo"/>
         <label className="logo">{world.name}</label>
         <ul className="listeHeader">
           <li>{services.user}</li>

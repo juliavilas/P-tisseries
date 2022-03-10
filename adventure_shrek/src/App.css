@@ -199,7 +199,7 @@ body::before{
 
 
 .header{
-    background: #4F5400;
+    background: #272b00;
     height: 80px;
     width: 100%;
     text-align:left;
@@ -263,12 +263,15 @@ body::before{
     }
 }
 
-img {
-  width: 50px;
-  height: 50px;
-  border-radius: 10%;
+.logo{
   vertical-align: middle;
-  }
+}
+
+.imgLogo{
+  width:100px;
+  height:80px;
+  vertical-align: middle; 
+}
 
 .products {
   margin-top:30px;
@@ -297,11 +300,13 @@ img {
 
 .managers{
   margin-top:15px;
+  margin-right:10px;
+  margin-left:20px;
 }
 
 .managergrid{
   display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 100px 1fr 1fr;
     grid-gap: 10px;
     grid-auto-rows: 1fr;
 }
@@ -350,7 +355,7 @@ img {
   border: 4px double  #272b00;
   color: #eeeeee;
   cursor: pointer;
-  width:100%;
+  width:70%;
   
 }
 
