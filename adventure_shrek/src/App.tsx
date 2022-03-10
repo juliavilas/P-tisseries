@@ -9,18 +9,15 @@ import Product from './Product';
 import { transform } from "./utils"
 import { Button, Modal } from 'react-bootstrap';
 
-
-export interface IsQtmulti {
-  qtmulti: number;
-}
-
 function App() {
   const [services, setServices] = useState(new Services(""));
   const [world, setWorld] = useState(new World());
+  const [money, setMoney] = useState(world.money);
+  const [score, setScore] = useState(world.score);
   const [username, setUsername] = useState("");
   let user = localStorage.getItem("username");
-  const [progress, setProgress] = useState(0);
-  let [qtmulti, setQtmulti] = useState(1);
+  //const [progress, setProgress] = useState(0);
+  let [qtmulti, setQtmulti] = useState(3);
   let [value, setValue] = useState('Acheter 1');
   let [count, setCount] = useState(0);
   const [show, setShow] = useState(false);
@@ -57,62 +54,73 @@ function App() {
   // @ts-ignore
   function onProductionDone(p: Product): void {
     // calcul de la somme obtenue par la production du produit
-    let gain = p.revenu;
-    console.log("gain" + gain)
+    let gain = p.revenu * p.quantite;
+    //console.log("gain" + gain)
     // ajout de la somme à l’argent possédé
     addToScore(gain)
     //p.quantite++;
     services.putProduct(p)
   }
 
+  // @ts-ignore
+  function onAchatDone(p: Product, money: number): void {
+    world.money = money;
+    services.putProduct(p)
+    //setMoney(world.money)
+    //setWorld(world);
+  }
+
   function addToScore(gain: number): void {
     world.score += gain;
-    world.money+=gain;
+    world.money += gain;
     console.log("argent du monde " + world.money)
     console.log("score du monde " + world.score)
-    setWorld(world)
+    //setMoney(world.money)
+    //setScore(world.score)
+    setWorld(world);
   }
-  
-  function boucle() {
-    for (let produit in world.products.product) {
-      console.log(world.products.product[produit].calcMaxCanBuy)
-    }
 
-    world.products.product.map((p) => {
-      if (p != null) {
-        //p.calcMaxCanBuy()
-
-      }
-      console.log(p.calcMaxCanBuy())
-    })
-  }
+  /* function boucle() {}
+     for (let produit :Product in world.products.product) {
+       console.log(world.products.product[produit].calcMaxCanBuy)
+     }
+ 
+     world.products.product.map((p) => {
+       if (p != null) {
+         //p.calcMaxCanBuy()
+ 
+       }
+       console.log(p.calcMaxCanBuy())
+     })
+   }*/
 
   function ButtonHandler() {
     switch (count) {
       case 0:
         setValue('Acheter 10');
-        setQtmulti(10);
+        setQtmulti(0);
         setCount(count + 1);
         break;
       case 1:
         setValue('Acheter 100');
-        setQtmulti(100);
+        setQtmulti(1);
         setCount(count + 1);
         break;
       case 2:
         setValue('Acheter max');
-        setQtmulti(1000000);
+        setQtmulti(2);
         setCount(count + 1);
         break;
       case 3:
         setValue('Acheter 1');
-        setQtmulti(1);
+        setQtmulti(3);
         setCount(0);
+        console.log("toi" + world.money)
         break;
     }
   }
-
-    //  function hireManager(m : World["managers"]){
+  console.log("out " + world.money)
+  //  function hireManager(m : World["managers"]){
 
   //   for ()
   //   world.products.product.map((p) => {
@@ -121,7 +129,7 @@ function App() {
 
   //    }
 
-  function boucle() {
+  /*function boucle() {
     for (let produit in world.products.product) {
       console.log(world.products.product[produit].calcMaxCanBuy)
     }
@@ -129,17 +137,16 @@ function App() {
     world.products.product.map((p) => {
       if (p != null) {
         //p.calcMaxCanBuy()
-
       }
       console.log(p.calcMaxCanBuy())
       // console.log(p.calcMaxCanBuy())
     })
-  }
+  }*/
 
   return (
     <div className="App">
       <nav className="header">
-        <img src={services.server + world.logo} className="imgLogo"/>
+        <img src={services.server + world.logo} className="imgLogo" />
         <label className="logo">{world.name}</label>
         <ul className="listeHeader">
           <li>{services.user}</li>
@@ -165,16 +172,16 @@ function App() {
         </nav>
       </div>
       <div>
-      <button id="boutonChgtValeur" onClick={ButtonHandler}>{value}</button>
-      <label> Choisis ton pseudo :
-        <input type="text" value={username} onChange={onUserNameChanged} id="inputUsername" /></label>
-        </div>
+        <button id="boutonChgtValeur" onClick={ButtonHandler}>{value}</button>
+        <label> Choisis ton pseudo :
+          <input type="text" value={username} onChange={onUserNameChanged} id="inputUsername" /></label>
+      </div>
 
       <div className="products">
         {
           world.products.product.map((p) =>
             <div key={p.name}>
-              <Product prod={p} onProductionDone={onProductionDone} qtmulti={qtmulti} services={services} />
+              <Product prod={p} onProductionDone={onProductionDone} qtmulti={qtmulti} services={services} money={world.money} onAchatDone={onAchatDone} />
             </div>
           )
         }

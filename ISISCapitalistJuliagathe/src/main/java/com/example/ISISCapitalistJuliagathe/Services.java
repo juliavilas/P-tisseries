@@ -84,10 +84,11 @@ public class Services {
             // ACHANGER
             //System.out.println("updateProduct : produit non null");
             double moneySpent;
-            moneySpent = Math.round(newproduct.getCout()*((Math.pow(newproduct.getCroissance(),newproduct.getQuantite())/(newproduct.getCroissance()-1))));
+            moneySpent = Math.round(newproduct.getCout()*((Math.pow(newproduct.getCroissance(),qtchange)/(newproduct.getCroissance()-1))));
             world.setMoney(world.getMoney() - moneySpent);
             //world.setScore(product.getCout());
             product.setQuantite(product.getQuantite()+qtchange);
+            System.out.println("argent "+world.getMoney()+" qte "+product.getQuantite());
         } else {
             //changer score qd fini
             product.setTimeleft(product.getVitesse());
