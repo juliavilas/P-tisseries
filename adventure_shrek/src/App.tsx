@@ -8,6 +8,8 @@ import { faBars, faUser, faUnlock, faArrowUp, faEuro, faTimes } from '@fortaweso
 import Product from './Product';
 import { transform } from "./utils"
 import { Button, Modal } from 'react-bootstrap';
+import { Badge } from '@mui/material';
+import { MDBBadge, MDBBtn } from 'mdb-react-ui-kit';
 
 
 export interface IsQtmulti {
@@ -67,12 +69,12 @@ function App() {
 
   function addToScore(gain: number): void {
     world.score += gain;
-    world.money+=gain;
+    world.money += gain;
     console.log("argent du monde " + world.money)
     console.log("score du monde " + world.score)
     setWorld(world)
   }
-  
+
   function boucle() {
     for (let produit in world.products.product) {
       console.log(world.products.product[produit].calcMaxCanBuy)
@@ -112,34 +114,31 @@ function App() {
     }
   }
 
-    //  function hireManager(m : World["managers"]){
-
-  //   for ()
-  //   world.products.product.map((p) => {
-  //       p.startFabrication()
-
-
-  //    }
-
-  function boucle() {
-    for (let produit in world.products.product) {
-      console.log(world.products.product[produit].calcMaxCanBuy)
-    }
-
-    world.products.product.map((p) => {
-      if (p != null) {
-        //p.calcMaxCanBuy()
-
-      }
-      console.log(p.calcMaxCanBuy())
-      // console.log(p.calcMaxCanBuy())
-    })
+  function hireManager(p: number) {
+    world.money = world.money - world.managers.pallier[p].seuil;
+    world.managers.pallier[p - 1].unlocked = true;
+    world.products.product[p].managerUnlocked = true;
+    // world.products.product[p].calcScore();
   }
+
+
+  // function boucle() {
+  //   for (let produit in world.products.product) {
+  //     console.log(world.products.product[produit].calcMaxCanBuy)
+  //   }
+
+  //   world.products.product.map((p) => {
+  //     if (p != null) {
+
+  //     }
+  //     console.log(p.calcMaxCanBuy())
+  //   })
+  // }
 
   return (
     <div className="App">
       <nav className="header">
-        <img src={services.server + world.logo} className="imgLogo"/>
+        <img src={services.server + world.logo} className="imgLogo" />
         <label className="logo">{world.name}</label>
         <ul className="listeHeader">
           <li>{services.user}</li>
@@ -157,7 +156,11 @@ function App() {
           <div className="title">Menu
           </div>
           <ul className="list-items">
-            <li><button onClick={() => handleShow()}><i className="fas fa-user"><FontAwesomeIcon icon={faUser} /></i>Managers</button></li>
+            <li>
+              <Button onClick={() => handleShow()} variant="primary"><i className="fas fa-user"><FontAwesomeIcon icon={faUser} /></i>Managers
+                {/* <Badge badgeContent={3}></Badge> */}
+              </Button>
+            </li>
             <li><button><i className="fas fa-unlock"><FontAwesomeIcon icon={faUnlock} /></i> Unlocks</button></li>
             <li><button><i className="fas fa-arow-up"><FontAwesomeIcon icon={faArrowUp} /></i>Upgrades</button></li>
             <li><button><i className="fas fa-euro"><FontAwesomeIcon icon={faEuro} /></i>Investisseurs</button></li>
@@ -165,16 +168,20 @@ function App() {
         </nav>
       </div>
       <div>
-      <button id="boutonChgtValeur" onClick={ButtonHandler}>{value}</button>
-      <label> Choisis ton pseudo :
-        <input type="text" value={username} onChange={onUserNameChanged} id="inputUsername" /></label>
-        </div>
+        {/* <Button variant="primary">
+          Profile <Badge bg="secondary">9</Badge>
+          <span className="visually-hidden">unread messages</span>
+        </Button> */}
+        <button id="boutonChgtValeur" onClick={ButtonHandler}>{value}</button>
+        <label> Choisis ton pseudo :
+          <input type="text" value={username} onChange={onUserNameChanged} id="inputUsername" /></label>
+      </div>
 
       <div className="products">
         {
           world.products.product.map((p) =>
             <div key={p.name}>
-              <Product prod={p} onProductionDone={onProductionDone} qtmulti={qtmulti} services={services} />
+              <Product prod={p} onProductionDone={onProductionDone} qtmulti={qtmulti} money={world.money} services={services} />
             </div>
           )
         }
@@ -198,7 +205,7 @@ function App() {
                       <div> {world.products.product[manager.idcible - 1].name}</div>
                       <div className="composantGrid" id="managerSeuil"> {manager.seuil} </div>
                     </div>
-                    <div className="divBoutonEngager">
+                    <div className="divBoutonEngager" onClick={() => hireManager(world.products.product[manager.idcible - 1].id)}>
                       <button className="boutonEngager" disabled={world.money < manager.seuil}>Engager !</button>
                     </div>
                   </div>

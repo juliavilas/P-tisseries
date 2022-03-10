@@ -9,6 +9,7 @@ type ProductProps = {
     onProductionDone: (product: Product) => void,
     services: Services
     qtmulti : number
+    money : number
 };
 
 export default function ProductComponent({ prod, onProductionDone, services, qtmulti }: ProductProps) {
@@ -75,13 +76,10 @@ export default function ProductComponent({ prod, onProductionDone, services, qtm
                 </div>
 
                 <div className="composantGrid" id="barreProgression">
-                    {/*<Box sx={{width: '100%'}}>*/}
                     {<ProgressBar transitionDuration={"0.1s"} customLabel={" "} completed={progress}/>}
-                    {/*</Box>*/}
                 </div>
                 <div className="composantGrid"><input type="button" id="boutonAcheter" value={achat}/></div>
                 <div className="composantGrid">{prod.timeleft} s</div>
-                {/* <span>Revenu : {prod.revenu}</span> */}
             </div>
         </div>
     )

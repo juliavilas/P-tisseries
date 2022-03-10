@@ -25,6 +25,13 @@ export class World {
 }
 
 export class Product {
+
+    startFabrication() {
+        this.timeleft=this.vitesse;
+        this.lastupdate=Date.now();
+        this.progressbarvalue=0;
+    }
+
     id : number = 0
     name : string = ""
     logo : string = ""
@@ -60,3 +67,5 @@ export class Pallier {
     typeratio: string = ""
     unlocked: boolean = false
 }
+
+
