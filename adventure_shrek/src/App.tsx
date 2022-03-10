@@ -19,6 +19,18 @@ function App() {
   const [world, setWorld] = useState(new World());
   const [username, setUsername] = useState("");
   let user = localStorage.getItem("username");
+  const [progress, setProgress] = useState(0);
+  let [qtmulti, setQtmulti] = useState(1);
+  let [value, setValue] = useState('Acheter 1');
+  let [count, setCount] = useState(0);
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+  const onUserNameChanged = (e: any) => {
+    console.log("ok" + e.target.value)
+    setUsername(e.target.value);
+    localStorage.setItem("username", e.target.value);
+  }
 
   useEffect(() => {
     if (username !== "") {
@@ -60,13 +72,7 @@ function App() {
     console.log("score du monde " + world.score)
     setWorld(world)
   }
-
-  const [progress, setProgress] = useState(0);
-
-  let [qtmulti, setQtmulti] = useState(1);
-  let [value, setValue] = useState('Acheter 1');
-  let [count, setCount] = useState(0);
-
+  
   function boucle() {
     for (let produit in world.products.product) {
       console.log(world.products.product[produit].calcMaxCanBuy)
@@ -96,7 +102,6 @@ function App() {
       case 2:
         setValue('Acheter max');
         setQtmulti(1000000);
-        boucle();
         setCount(count + 1);
         break;
       case 3:
@@ -107,23 +112,34 @@ function App() {
     }
   }
 
-  //  function hireManager(m : World["managers"]){
+    //  function hireManager(m : World["managers"]){
 
-  const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  //   for ()
+  //   world.products.product.map((p) => {
+  //       p.startFabrication()
 
-  const onUserNameChanged = (e: any) => {
-    console.log("ok" + e.target.value)
-    setUsername(e.target.value);
-    localStorage.setItem("username", e.target.value);
+
+  //    }
+
+  function boucle() {
+    for (let produit in world.products.product) {
+      console.log(world.products.product[produit].calcMaxCanBuy)
+    }
+
+    world.products.product.map((p) => {
+      if (p != null) {
+        //p.calcMaxCanBuy()
+
+      }
+      console.log(p.calcMaxCanBuy())
+      // console.log(p.calcMaxCanBuy())
+    })
   }
-
 
   return (
     <div className="App">
       <nav className="header">
-        <img src={services.server + world.logo} />
+        <img src={services.server + world.logo} className="imgLogo"/>
         <label className="logo">{world.name}</label>
         <ul className="listeHeader">
           <li>{services.user}</li>
@@ -148,9 +164,11 @@ function App() {
           </ul>
         </nav>
       </div>
+      <div>
       <button id="boutonChgtValeur" onClick={ButtonHandler}>{value}</button>
       <label> Choisis ton pseudo :
         <input type="text" value={username} onChange={onUserNameChanged} id="inputUsername" /></label>
+        </div>
 
       <div className="products">
         {
@@ -172,7 +190,7 @@ function App() {
                 manager => (
                   <div key={manager.idcible} className="managergrid">
                     <div className="composantGrid" id="managerLogo">
-                      <img alt="manager logo" className="round" src={
+                      <img alt="manager logo" className="imgManagerLogo" src={
                         services.server + manager.logo} />
                     </div>
                     <div className="composantGrid" id="infosManagers">

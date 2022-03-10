@@ -2,7 +2,7 @@ import axios, { AxiosError, AxiosPromise } from "axios";
 import { Pallier, Product, World } from "./world";
 
 export class Services {
-    //server = "https://isiscapitalist.kk.kurasawa.fr/"
+    // server = "https://isiscapitalist.kk.kurasawa.fr/"
     server = "http://localhost:8081/"
     api = this.server + "adventureisis/generic";
     user = "";
