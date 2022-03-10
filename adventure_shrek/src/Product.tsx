@@ -125,18 +125,19 @@ export default function ProductComponent({ prod, onProductionDone, services, qtm
         onAchatDone(prod, money);
     }
 
+     let prodOuNul:boolean =estEnProd||prod.quantite==0;
     return (
 
         <div className="product">
             <span className="titreProduit">{prod.name}</span>
             <div className="grid">
-                <div id="image"><a href={prod.quantite==0?undefined:"#"} onClick={startFabrication} style={estEnProd?{pointerEvents: "none"} : undefined}><img src={services.server + prod.logo} id="imageProduit" /></a>
+                <div id="image"><a href="#" onClick={startFabrication} style={prodOuNul?{pointerEvents: "none"} : undefined}><img src={services.server + prod.logo} id="imageProduit" /></a>
                     <div className="composantGrid" id="quantite">{prod.quantite}</div>
                 </div>
 
                 <div className="composantGrid" id="barreProgression">
                     {/*<Box sx={{width: '100%'}}>*/}
-                    {<ProgressBar transitionDuration={"0.1s"} customLabel={prod.revenu*prod.quantite+"\u00a0$"} completed={progress} />}
+                    {<ProgressBar transitionDuration={"0.1s"} customLabel={prod.quantite==0?prod.revenu+"\u00a0$":prod.revenu*prod.quantite+"\u00a0$"} completed={progress} />}
                     {/*</Box>*/}
                 </div>
                 <div className="composantGrid"><input type="button" id="boutonAcheter" value={achat} onClick={startAchat} disabled={estPasAchetable} /></div>
