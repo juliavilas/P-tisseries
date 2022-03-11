@@ -10,9 +10,10 @@ type ProductProps = {
     services: Services
     qtmulti : number
     money : number
+    estEngage : boolean
 };
 
-export default function ProductComponent({ prod, onProductionDone, services, qtmulti }: ProductProps) {
+export default function ProductComponent({ prod, onProductionDone, services, qtmulti, estEngage }: ProductProps) {
     const [progress, setProgress] = useState(0);
     const savedCallback = useRef(calcScore);
     

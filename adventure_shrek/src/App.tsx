@@ -8,8 +8,7 @@ import { faBars, faUser, faUnlock, faArrowUp, faEuro, faTimes } from '@fortaweso
 import Product from './Product';
 import { transform } from "./utils"
 import { Button, Modal } from 'react-bootstrap';
-import { Badge } from '@mui/material';
-import { MDBBadge, MDBBtn } from 'mdb-react-ui-kit';
+import 'bootstrap/dist/css/bootstrap.css';
 
 
 export interface IsQtmulti {
@@ -25,6 +24,7 @@ function App() {
   let [qtmulti, setQtmulti] = useState(1);
   let [value, setValue] = useState('Acheter 1');
   let [count, setCount] = useState(0);
+  const [estEngage, setEstEngage] = useState(false);
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -115,10 +115,12 @@ function App() {
   }
 
   function hireManager(p: number) {
-    world.money = world.money - world.managers.pallier[p].seuil;
-    world.managers.pallier[p - 1].unlocked = true;
-    world.products.product[p].managerUnlocked = true;
-    // world.products.product[p].calcScore();
+    // world.money = world.money - world.managers.pallier[p].seuil;
+    // world.managers.pallier[p - 1].unlocked = true;
+    // world.products.product[p].managerUnlocked = true;
+    // world.products.product[p].startFabrication();
+    setEstEngage(true);
+    console.log(estEngage);
   }
 
 
@@ -157,9 +159,11 @@ function App() {
           </div>
           <ul className="list-items">
             <li>
-              <Button onClick={() => handleShow()} variant="primary"><i className="fas fa-user"><FontAwesomeIcon icon={faUser} /></i>Managers
-                {/* <Badge badgeContent={3}></Badge> */}
-              </Button>
+              <button onClick={() => handleShow()}>
+                <i className="fas fa-user"><FontAwesomeIcon icon={faUser} /></i>
+                Managers
+                <span className="badge badge-pill badge-primary">20K</span>
+              </button>
             </li>
             <li><button><i className="fas fa-unlock"><FontAwesomeIcon icon={faUnlock} /></i> Unlocks</button></li>
             <li><button><i className="fas fa-arow-up"><FontAwesomeIcon icon={faArrowUp} /></i>Upgrades</button></li>
@@ -168,10 +172,6 @@ function App() {
         </nav>
       </div>
       <div>
-        {/* <Button variant="primary">
-          Profile <Badge bg="secondary">9</Badge>
-          <span className="visually-hidden">unread messages</span>
-        </Button> */}
         <button id="boutonChgtValeur" onClick={ButtonHandler}>{value}</button>
         <label> Choisis ton pseudo :
           <input type="text" value={username} onChange={onUserNameChanged} id="inputUsername" /></label>
@@ -181,7 +181,7 @@ function App() {
         {
           world.products.product.map((p) =>
             <div key={p.name}>
-              <Product prod={p} onProductionDone={onProductionDone} qtmulti={qtmulti} money={world.money} services={services} />
+              <Product prod={p} onProductionDone={onProductionDone} qtmulti={qtmulti} money={world.money} services={services} estEngage={estEngage}/>
             </div>
           )
         }

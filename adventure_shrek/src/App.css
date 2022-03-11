@@ -351,14 +351,24 @@ body::before{
   
 }
 
-/* .boutonEngager:disabled{
+.boutonEngager:disabled{
   background-color: #44443f;
   cursor:auto;
-} */
+} 
 
-.boutonEngager:active{
+.boutonEngager:hover{
   cursor: pointer;
 }
+
+.boutonEngager:active{
+  content:"Engagé !";
+  background-color:#1b1d03;
+
+}
+
+
+
+
 
 .boutonFermer{
   display: inline-block;
