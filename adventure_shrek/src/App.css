@@ -275,15 +275,30 @@ body::before{
     position: absolute; /* reste en place */
     z-index: 3;
     width: 800px; 
-    margin-top: 80px;
+    margin-top: 30px;
     padding-bottom:30px;
     overflow: auto; /* barre de scroll si besoin */
-    background-color: antiquewhite; /* opaque */
     border: solid;
     top:10; 
     left:20%; 
     text-align: center;
   }
+
+.divTitleModal{
+  background-color: antiquewhite;
+  padding-top:10px;
+}
+
+.title{
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.divModal{
+  padding-bottom: 30px;
+  background-color: antiquewhite;
+}
+
 
 .managers{
   margin-top:15px;
@@ -351,21 +366,22 @@ body::before{
   
 }
 
-.boutonEngager:disabled{
+#avant:disabled{
   background-color: #44443f;
   cursor:auto;
 } 
 
-.boutonEngager:hover{
+#avant:hover{
   cursor: pointer;
 }
 
-.boutonEngager:active{
-  content:"Engagé !";
-  background-color:#1b1d03;
-
+#avant{
+  background-color:#4F5400;
 }
 
+#apres1{
+  background-color: #1b1d03;
+}
 
 
 
@@ -381,4 +397,9 @@ body::before{
   padding-left: 20px;
   padding-right:20px;
   margin-top:15px;
+}
+
+#labelBoutonCommutateur{
+  margin-left:30px;
+  font-weight: bold;
 }

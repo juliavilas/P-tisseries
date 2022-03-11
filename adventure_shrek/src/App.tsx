@@ -8,8 +8,10 @@ import { faBars, faUser, faUnlock, faArrowUp, faEuro, faTimes } from '@fortaweso
 import Product from './Product';
 import { transform } from "./utils"
 import { Button, Modal } from 'react-bootstrap';
+import Toast from 'react-bootstrap/Toast';
 import 'bootstrap/dist/css/bootstrap.css';
-
+import { off } from 'process';
+import { badgeClasses, Snackbar } from '@mui/material';
 
 export interface IsQtmulti {
   qtmulti: number;
@@ -26,12 +28,60 @@ function App() {
   let [count, setCount] = useState(0);
   const [estEngage, setEstEngage] = useState(false);
   const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
+  const [showA, setShowA] = useState(false);
+  const toggleShowA = () => setShowA(!showA);
   const handleShow = () => setShow(true);
+  let [nbManagersAchetables, setNbManagersAchetables] = useState(0);
+  const [style, setStyle] = useState("avant");
+
   const onUserNameChanged = (e: any) => {
     console.log("ok" + e.target.value)
     setUsername(e.target.value);
     localStorage.setItem("username", e.target.value);
+  }
+
+  function handleClose(){
+    setShow(false);
+    setShowA(false);
+  }
+
+  function chgtValeurBadge() {
+    if (world.money > world.managers.pallier[5].seuil) {
+      setNbManagersAchetables(6);
+    }
+    else if (world.money > world.managers.pallier[4].seuil) {
+      setNbManagersAchetables(5);
+    }
+    else if(world.money > world.managers.pallier[3].seuil){
+      setNbManagersAchetables(4);
+    }
+    else if(world.money > world.managers.pallier[2].seuil){
+      setNbManagersAchetables(3);
+    }
+    else if(world.money > world.managers.pallier[1].seuil){
+      setNbManagersAchetables(2);
+    }
+    else{
+      setNbManagersAchetables(1);
+    }
+  }
+
+  function hireManager(p: number) {
+    addToScore(-world.managers.pallier[p - 1].seuil);
+    world.managers.pallier[p - 1].unlocked = true;
+    world.products.product[p].managerUnlocked = true;
+    // ne fonctionne pas
+    // world.products.product[p].calcScore();
+    setEstEngage(true);
+    // besoin de double cliquer pour que ça passe à true
+    console.log(estEngage);
+  }
+
+  function wrapperFunction(p: number) {
+    hireManager(p);
+    // Changer style 
+    // setStyle("apres"+p);
+    toggleShowA();
   }
 
   useEffect(() => {
@@ -89,7 +139,7 @@ function App() {
     })
   }
 
-  function ButtonHandler() {
+  function BoutonCommutateur() {
     switch (count) {
       case 0:
         setValue('Acheter 10');
@@ -114,29 +164,6 @@ function App() {
     }
   }
 
-  function hireManager(p: number) {
-    // world.money = world.money - world.managers.pallier[p].seuil;
-    // world.managers.pallier[p - 1].unlocked = true;
-    // world.products.product[p].managerUnlocked = true;
-    // world.products.product[p].startFabrication();
-    setEstEngage(true);
-    console.log(estEngage);
-  }
-
-
-  // function boucle() {
-  //   for (let produit in world.products.product) {
-  //     console.log(world.products.product[produit].calcMaxCanBuy)
-  //   }
-
-  //   world.products.product.map((p) => {
-  //     if (p != null) {
-
-  //     }
-  //     console.log(p.calcMaxCanBuy())
-  //   })
-  // }
-
   return (
     <div className="App">
       <nav className="header">
@@ -159,10 +186,13 @@ function App() {
           </div>
           <ul className="list-items">
             <li>
+              <button onClick={chgtValeurBadge}>Test</button>
+            </li>
+            <li>
               <button onClick={() => handleShow()}>
                 <i className="fas fa-user"><FontAwesomeIcon icon={faUser} /></i>
                 Managers
-                <span className="badge badge-pill badge-primary">20K</span>
+                <span className="badge badge-pill badge-primary" >{nbManagersAchetables}</span>
               </button>
             </li>
             <li><button><i className="fas fa-unlock"><FontAwesomeIcon icon={faUnlock} /></i> Unlocks</button></li>
@@ -172,8 +202,8 @@ function App() {
         </nav>
       </div>
       <div>
-        <button id="boutonChgtValeur" onClick={ButtonHandler}>{value}</button>
-        <label> Choisis ton pseudo :
+        <button id="boutonChgtValeur" onClick={BoutonCommutateur}>{value}</button>
+        <label id="labelBoutonCommutateur"> Choisis ton pseudo :
           <input type="text" value={username} onChange={onUserNameChanged} id="inputUsername" /></label>
       </div>
 
@@ -181,17 +211,23 @@ function App() {
         {
           world.products.product.map((p) =>
             <div key={p.name}>
-              <Product prod={p} onProductionDone={onProductionDone} qtmulti={qtmulti} money={world.money} services={services} estEngage={estEngage}/>
+              <Product prod={p} onProductionDone={onProductionDone} qtmulti={qtmulti} money={world.money} services={services} estEngage={estEngage} />
             </div>
           )
         }
       </div>
       <div>
         <Modal show={show} className="modal">
-          <div>
+          <div className="divTitleModal">
             <h1 className="title">Emploie des managers !</h1>
+            <Toast show={showA} onClose={toggleShowA}>
+              <Toast.Header >
+                <strong className="me-auto">Félicitations !</strong>
+              </Toast.Header>
+              <Toast.Body>Vous avez acquis un nouveau manager !</Toast.Body>
+            </Toast>
           </div>
-          <div>
+          <div className="divModal">
             <div className="managers">
               {world.managers.pallier.filter(manager => !manager.unlocked).map(
                 manager => (
@@ -205,13 +241,14 @@ function App() {
                       <div> {world.products.product[manager.idcible - 1].name}</div>
                       <div className="composantGrid" id="managerSeuil"> {manager.seuil} </div>
                     </div>
-                    <div className="divBoutonEngager" onClick={() => hireManager(world.products.product[manager.idcible - 1].id)}>
-                      <button className="boutonEngager" disabled={world.money < manager.seuil}>Engager !</button>
+                    <div className="divBoutonEngager" >
+                      <button className="boutonEngager" id={style} disabled={world.money < manager.seuil} onClick={() => wrapperFunction(world.products.product[manager.idcible - 1].id)}>
+                        Engager !</button>
                     </div>
                   </div>
                 ))}
             </div>
-            <button className="boutonFermer" onClick={() => handleClose()}>Close</button>
+            <button className="boutonFermer" onClick={handleClose}>Close</button>
           </div>
         </Modal>
       </div>
