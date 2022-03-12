@@ -12,8 +12,6 @@ import { Button, Modal } from 'react-bootstrap';
 function App() {
   const [services, setServices] = useState(new Services(""));
   const [world, setWorld] = useState(new World());
-  const [money, setMoney] = useState(world.money);
-  const [score, setScore] = useState(world.score);
   const [username, setUsername] = useState("");
   let user = localStorage.getItem("username");
   //const [progress, setProgress] = useState(0);
@@ -58,16 +56,14 @@ function App() {
     //console.log("gain" + gain)
     // ajout de la somme à l’argent possédé
     addToScore(gain)
-    //p.quantite++;
     services.putProduct(p)
   }
 
   // @ts-ignore
   function onAchatDone(p: Product, money: number): void {
     world.money = money;
-    services.putProduct(p)
-    //setMoney(world.money)
-    //setWorld(world);
+    //services.putProduct(p)
+    setWorld(world => ({...world, money: world.money}));
   }
 
   function addToScore(gain: number): void {
@@ -75,9 +71,7 @@ function App() {
     world.money += gain;
     console.log("argent du monde " + world.money)
     console.log("score du monde " + world.score)
-    //setMoney(world.money)
-    //setScore(world.score)
-    setWorld(world);
+    setWorld(world => ({...world, money: world.money, score: world.score}));
   }
 
   /* function boucle() {}
@@ -116,6 +110,9 @@ function App() {
         setQtmulti(3);
         setCount(0);
         console.log("toi" + world.money)
+        break;
+      default:
+        console.log("I ain't the sharpest tool in the shed.")
         break;
     }
   }

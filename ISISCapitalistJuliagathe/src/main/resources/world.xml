@@ -154,7 +154,7 @@
           <unlocked>false</unlocked>
         </pallier>
         <pallier>
-          <name>A prdoduire avec modération, ou pas.</name>
+          <name>A produire avec modération, ou pas.</name>
           <logo>icones/catnip.png</logo>
           <seuil>75</seuil>
           <idcible>4</idcible>

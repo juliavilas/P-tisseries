@@ -13,10 +13,10 @@ type ProductProps = {
     money: number
 };
 
-let estEnProd : boolean = false;
 
 export default function ProductComponent({ prod, onProductionDone, services, qtmulti, money, onAchatDone }: ProductProps) {
     const [progress, setProgress] = useState(0);
+    let estEnProd : boolean = false;
     //const [qtebuy, setQtebuy] = useState(0);
     let qtebuy=1;
     const savedCallback = useRef(calcScore);
@@ -68,15 +68,13 @@ export default function ProductComponent({ prod, onProductionDone, services, qtm
         return (<span></span>)
     }
 
-    let prix = Math.round(prod.cout * ((Math.pow(prod.croissance, qtebuy) - 1) / (prod.croissance - 1)));
+    let prix = Math.trunc(prod.cout * ((Math.pow(prod.croissance, qtebuy) - 1) / (prod.croissance - 1)));
     let achat = "Acheter x " + qtebuy + " pour " + prix + " $"
 
     // résoudre équation : u0 (1-c^n)/(1-c) < world.money --> log... trouver n
     function calcMaxCanBuy() {
-        let n = Math.trunc(Math.log(1 + money * (prod.croissance - 1) / prod.cout) / (Math.log(prod.croissance)))
-        /*let n=2;*/
-
-        //console.log('test' + n);
+        let n = Math.trunc(Math.log(1 + money * (prod.croissance-1) / prod.cout) / (Math.log(prod.croissance)))
+        console.log('test' + n);
         return n;
     }
     let estPasAchetable: boolean =false;
@@ -102,7 +100,7 @@ export default function ProductComponent({ prod, onProductionDone, services, qtm
                 break;
             }
             default:{
-                console.log("Somebody once told me I wasn't the sharpest tool in the shed.");
+                console.log("Somebody once told me the world was gonna roll me.");
             break;
         }
         }
@@ -114,18 +112,21 @@ export default function ProductComponent({ prod, onProductionDone, services, qtm
             estPasAchetable=prix>money
         }
         achat = "Acheter x " + qtebuy + " pour " + prix + " $";
-        //console.log("change "+qtmulti+"prod"+prod.name+" pas achetable "+estPasAchetable)
     }
 
     function startAchat() {
-        console.log("qtebuy "+qtebuy+" qute "+prod.quantite)
+        console.log("qtebuy "+qtebuy+" qute "+prod.quantite+" prix "+prix)
+        // On augmente la quantite que l'on achète
         prod.quantite+=qtebuy;
+        // on retire de l'argent le prix du ou des produits
         money-=prix;
+        startFabrication();
         console.log("monye here"+money)
+        prod.cout=Math.trunc(prod.cout*(Math.pow(prod.croissance, qtebuy+1)))
         onAchatDone(prod, money);
     }
 
-     let prodOuNul:boolean =estEnProd||prod.quantite==0;
+    let prodOuNul:boolean =estEnProd||prod.quantite==0;
     return (
 
         <div className="product">
@@ -142,7 +143,6 @@ export default function ProductComponent({ prod, onProductionDone, services, qtm
                 </div>
                 <div className="composantGrid"><input type="button" id="boutonAcheter" value={achat} onClick={startAchat} disabled={estPasAchetable} /></div>
                 <div className="composantGrid">{estEnProd?prod.timeleft:prod.vitesse} s</div>
-                <div className="composantGrid">revenu :{prod.revenu*prod.quantite}</div>
                 {/* <span>Revenu : {prod.revenu}</span> */}
             </div>
         </div>
