@@ -63,6 +63,12 @@
     border: 4px inset #4F5400;
 }
 
+#boutonAcheter:disabled{
+    background-color: red;
+    color:purple;
+    cursor:auto;
+  }
+
 .titreProduit{
     font-weight:bold;
     font-size:18px;

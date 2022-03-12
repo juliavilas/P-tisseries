@@ -21,7 +21,7 @@ public class Webservice {
     @Path("world")
     @Produces({MediaType.APPLICATION_XML,MediaType.APPLICATION_JSON})
     public Response getWorld(@Context HttpServletRequest request) {
-        System.out.println("getWorld "+request.getHeader("X-User"));
+        //System.out.println("getWorld "+request.getHeader("X-User"));
         return Response.ok(services.getWorld(request.getHeader("X-User"))).build();
     }
  

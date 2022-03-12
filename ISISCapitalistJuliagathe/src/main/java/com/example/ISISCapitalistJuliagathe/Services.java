@@ -4,13 +4,12 @@ import com.example.ISISCapitalistJuliagathe.world.PallierType;
 import com.example.ISISCapitalistJuliagathe.world.ProductType;
 import com.example.ISISCapitalistJuliagathe.world.World;
 
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -21,19 +20,17 @@ public class Services {
 
     World readWorldFromXml(String pseudo) throws JAXBException {
         World w = null;
-        System.out.println("readWorldFromXml"+pseudo);
+        //System.out.println("readWorldFromXml" + pseudo);
         InputStream input = getClass().getClassLoader().getResourceAsStream(pseudo + "-world.xml");
         if (input == null) {
-            System.out.println("HELP C NULL");
             input = getClass().getClassLoader().getResourceAsStream("world.xml");
-            System.out.println("ok "+input);
         }
         try {
             JAXBContext cont = JAXBContext.newInstance(World.class);
             Unmarshaller u = cont.createUnmarshaller();
             w = (World) u.unmarshal(input);
             //System.out.println(w.getName());
-        } catch (Exception e) {
+        } catch (JAXBException e) {
             e.printStackTrace();
         }
         return w;
@@ -41,19 +38,22 @@ public class Services {
 
     void saveWorldToXml(World world, String pseudo) {
         try {
-            System.out.println("saveWorldToXml "+pseudo);
-            OutputStream output = new FileOutputStream(new File("./src/main/resources/"+pseudo + "-world.xml"));
+            //System.out.println("saveWorldToXml " + pseudo);
+            OutputStream output = new FileOutputStream(new File("./src/main/resources/" + pseudo + "-world.xml"));
             JAXBContext cont = JAXBContext.newInstance(World.class);
             Marshaller m = cont.createMarshaller();
             m.marshal(world, output);
-        } catch (Exception e) {
+        } catch (FileNotFoundException | JAXBException e) {
             e.printStackTrace();
         }
     }
 
     World getWorld(String pseudo) {
         try {
-            return readWorldFromXml(pseudo);
+            World w = readWorldFromXml(pseudo);
+            w=majScore(w);
+            saveWorldToXml(w, pseudo);
+            return w;
         } catch (JAXBException ex) {
             Logger.getLogger(Services.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -81,20 +81,22 @@ public class Services {
         if (qtchange > 0) {
             // soustraire de l'argent du joueur le cout de la quantité
             // achetée et mettre à jour la quantité de product
-            // ACHANGER
-            //System.out.println("updateProduct : produit non null");
+            System.out.println("prod"+product.getCout()+" qtechange "+qtchange+ " money "+world.getMoney());
             double moneySpent;
-            moneySpent = Math.round(newproduct.getCout()*((Math.pow(newproduct.getCroissance(),newproduct.getQuantite())/(newproduct.getCroissance()-1))));
+            moneySpent = Math.floor(product.getCout() * ((Math.pow(newproduct.getCroissance(), qtchange)-1) / (newproduct.getCroissance() - 1)));
             world.setMoney(world.getMoney() - moneySpent);
-            //world.setScore(product.getCout());
-            product.setQuantite(product.getQuantite()+qtchange);
+            product.setQuantite(newproduct.getQuantite());
+            product.setCout(Math.floor(newproduct.getCout()*(Math.pow(newproduct.getCroissance(), qtchange+1))));
+            world.setScore(world.getScore() + newproduct.getRevenu() * newproduct.getQuantite());
+            world.setMoney(world.getMoney() + newproduct.getRevenu() * newproduct.getQuantite());
+            System.out.println("argent " + world.getMoney() + " qte " + product.getQuantite()+" money spent "+moneySpent);
         } else {
             //changer score qd fini
             product.setTimeleft(product.getVitesse());
-            world.setLastupdate(System.currentTimeMillis());
-            world.setScore(world.getScore()+product.getRevenu()*product.getQuantite());
-            world.setMoney(world.getMoney()+product.getRevenu()*product.getQuantite());
+            //world.setMoney(world.getMoney()+product.getRevenu()*product.getQuantite());
+            // System.out.println("debut de prod score " + world.getScore() + " money  " + world.getMoney());
         }
+        world.setLastupdate(System.currentTimeMillis());
         // sauvegarder les changements du monde
         saveWorldToXml(world, username);
         return true;
@@ -138,32 +140,52 @@ public class Services {
         // débloquer le manager de ce produit
         product.setManagerUnlocked(true);
         // soustraire de l'argent du joueur le cout du manager
-        world.setMoney(world.getMoney()-manager.getSeuil());
+        world.setMoney(world.getMoney() - manager.getSeuil());
         // sauvegarder les changements au monde
         saveWorldToXml(world, username);
         return true;
     }
-    
+
     /**
-    * Retourne le manager du monde en fonction de son nom
-    * @param world le monde
-    * @param name le nom du manager
-    * @return le manager, null sinon
-    */
+     * Retourne le manager du monde en fonction de son nom
+     *
+     * @param world le monde
+     * @param name le nom du manager
+     * @return le manager, null sinon
+     */
     private PallierType findManagerByName(World world, String name) {
         for (PallierType m : world.getManagers().getPallier()) {
             if (name.equals(m.getName())) {
                 return m;
             }
         }
-        return null; 
+        return null;
     }
-    
-    private World majScore(World world){
-        world.setLastupdate(System.currentTimeMillis());
-        for (ProductType p : world.getProducts().getProduct()) {
 
-        }
+    private World majScore(World world) {
+        long tpsEcoule = System.currentTimeMillis() - world.getLastupdate();
+        world.getProducts().getProduct().forEach((ProductType prod) -> {
+            if (prod.getQuantite() > 0) {
+                //System.out.println("tpsecoule " + tpsEcoule + " timeleft " + prod.getTimeleft());
+                if (!prod.isManagerUnlocked() && prod.getTimeleft() != 0) {
+                    System.out.println("manager pas unlock");
+                    if (prod.getTimeleft() < tpsEcoule) {
+                        world.setScore(world.getScore() + prod.getRevenu() * prod.getQuantite());
+                        world.setMoney(world.getMoney() + prod.getRevenu() * prod.getQuantite());
+                        prod.setTimeleft(0);
+                    } else {
+                        //prod pas encore finie, change timeleft
+                        prod.setTimeleft(prod.getTimeleft() - tpsEcoule);
+                    }
+                } else if (prod.isManagerUnlocked()) {
+                    //System.out.println("manager unlock");
+                    int nbProd = (int) Math.floorDiv(tpsEcoule, prod.getVitesse());
+                    world.setScore(world.getScore() + (prod.getRevenu() * prod.getQuantite()) * nbProd);
+                    world.setMoney(world.getMoney() + (prod.getRevenu() * prod.getQuantite()) * nbProd);
+                }
+            }
+        });
+        world.setLastupdate(System.currentTimeMillis());
         return world;
     }
 

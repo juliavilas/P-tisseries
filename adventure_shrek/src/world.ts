@@ -13,7 +13,6 @@ export class World {
     upgrades: { "pallier": Pallier[]};
     angelupgrades: { "pallier": Pallier[]};
     managers: { "pallier": Pallier[]};
-    static money: any
 
     constructor() {
         this.products = { "product":[ ] } ;
@@ -48,12 +47,6 @@ export class Product {
 
     constructor() {
         this.palliers = { "pallier": [] };
-    }
-
-    calcMaxCanBuy(){
-        let n = 1;
-        // Math.log(1+World.money*(this.croissance-1)/this.cout)/(Math.log(this.croissance));
-        return n;
     }
 
 }

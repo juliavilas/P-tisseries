@@ -4,10 +4,11 @@ import { Services } from "./Services";
 import { World } from './world';
 import ReactDOM from 'react-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBars, faUser, faUnlock, faArrowUp, faEuro, faTimes } from '@fortawesome/free-solid-svg-icons'
+import { faBars, faUser, faUnlock, faArrowUp, faEuro, faTimes, faLessThan } from '@fortawesome/free-solid-svg-icons'
 import Product from './Product';
 import { transform } from "./utils"
 import { Button, Modal } from 'react-bootstrap';
+import { letterSpacing } from '@mui/system';
 import Toast from 'react-bootstrap/Toast';
 import 'bootstrap/dist/css/bootstrap.css';
 import { off } from 'process';
@@ -22,8 +23,8 @@ function App() {
   const [world, setWorld] = useState(new World());
   const [username, setUsername] = useState("");
   let user = localStorage.getItem("username");
-  const [progress, setProgress] = useState(0);
-  let [qtmulti, setQtmulti] = useState(1);
+  //const [progress, setProgress] = useState(0);
+  let [qtmulti, setQtmulti] = useState(3);
   let [value, setValue] = useState('Acheter 1');
   let [count, setCount] = useState(0);
   const [estEngage, setEstEngage] = useState(false);
@@ -109,57 +110,53 @@ function App() {
   // @ts-ignore
   function onProductionDone(p: Product): void {
     // calcul de la somme obtenue par la production du produit
-    let gain = p.revenu;
-    console.log("gain" + gain)
+    let gain = p.revenu * p.quantite;
+    //console.log("gain" + gain)
     // ajout de la somme à l’argent possédé
     addToScore(gain)
-    //p.quantite++;
     services.putProduct(p)
+  }
+
+  // @ts-ignore
+  function onAchatDone(p: Product, money: number): void {
+    world.money = money;
+    //services.putProduct(p)
+    setWorld(world => ({...world, money: world.money}));
   }
 
   function addToScore(gain: number): void {
     world.score += gain;
     world.money += gain;
-    console.log("argent du monde " + world.money)
-    console.log("score du monde " + world.score)
-    setWorld(world)
-  }
-
-  function boucle() {
-    for (let produit in world.products.product) {
-      console.log(world.products.product[produit].calcMaxCanBuy)
-    }
-
-    world.products.product.map((p) => {
-      if (p != null) {
-        //p.calcMaxCanBuy()
-
-      }
-      console.log(p.calcMaxCanBuy())
-    })
+    //console.log("argent du monde " + world.money)
+    //console.log("score du monde " + world.score)
+    setWorld(world => ({...world, money: world.money, score: world.score}));
   }
 
   function BoutonCommutateur() {
     switch (count) {
       case 0:
         setValue('Acheter 10');
-        setQtmulti(10);
+        setQtmulti(0);
         setCount(count + 1);
         break;
       case 1:
         setValue('Acheter 100');
-        setQtmulti(100);
+        setQtmulti(1);
         setCount(count + 1);
         break;
       case 2:
         setValue('Acheter max');
-        setQtmulti(1000000);
+        setQtmulti(2);
         setCount(count + 1);
         break;
       case 3:
         setValue('Acheter 1');
-        setQtmulti(1);
+        setQtmulti(3);
         setCount(0);
+        console.log("toi" + world.money)
+        break;
+      default:
+        console.log("I ain't the sharpest tool in the shed.")
         break;
     }
   }
@@ -203,22 +200,20 @@ function App() {
       </div>
       <div>
         <div className="debut">
-          
-          <label id="labelBoutonCommutateur"> Choisis ton pseudo :
-            <input type="text" value={username} onChange={onUserNameChanged} id="inputUsername" /></label>
-            <button id="boutonCommutateur" onClick={BoutonCommutateur}>{value}</button>
+            <label id="labelBoutonCommutateur"> Choisis ton pseudo :
+              <input type="text" value={username} onChange={onUserNameChanged} id="inputUsername" /></label>
+              <button id="boutonCommutateur" onClick={BoutonCommutateur}>{value}</button>
+          </div>
+          {/* <audio src="shrekmusic.mp3" controls autoPlay>  Your browser does not support the <code>audio</code> element.</audio> */}
+        <div className="products">
+          {
+            world.products.product.map((p) =>
+              <div key={p.name}>
+                <Product prod={p} onProductionDone={onProductionDone} qtmulti={qtmulti} money={world.money} services={services} onAchatDone={onAchatDone} estEngage={estEngage} />
+              </div>
+            )
+          }
         </div>
-      </div>
-
-      <div className="products">
-        {
-          world.products.product.map((p) =>
-            <div key={p.name}>
-              <Product prod={p} onProductionDone={onProductionDone} qtmulti={qtmulti} money={world.money} services={services} estEngage={estEngage} />
-            </div>
-          )
-        }
-      </div>
       <div>
         <Modal show={show} className="modal">
           <div className="divTitleModal">
