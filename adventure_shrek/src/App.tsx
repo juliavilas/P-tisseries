@@ -40,7 +40,7 @@ function App() {
     localStorage.setItem("username", e.target.value);
   }
 
-  function handleClose(){
+  function handleClose() {
     setShow(false);
     setShowA(false);
   }
@@ -52,16 +52,16 @@ function App() {
     else if (world.money > world.managers.pallier[4].seuil) {
       setNbManagersAchetables(5);
     }
-    else if(world.money > world.managers.pallier[3].seuil){
+    else if (world.money > world.managers.pallier[3].seuil) {
       setNbManagersAchetables(4);
     }
-    else if(world.money > world.managers.pallier[2].seuil){
+    else if (world.money > world.managers.pallier[2].seuil) {
       setNbManagersAchetables(3);
     }
-    else if(world.money > world.managers.pallier[1].seuil){
+    else if (world.money > world.managers.pallier[1].seuil) {
       setNbManagersAchetables(2);
     }
-    else{
+    else {
       setNbManagersAchetables(1);
     }
   }
@@ -202,9 +202,12 @@ function App() {
         </nav>
       </div>
       <div>
-        <button id="boutonChgtValeur" onClick={BoutonCommutateur}>{value}</button>
-        <label id="labelBoutonCommutateur"> Choisis ton pseudo :
-          <input type="text" value={username} onChange={onUserNameChanged} id="inputUsername" /></label>
+        <div className="debut">
+          
+          <label id="labelBoutonCommutateur"> Choisis ton pseudo :
+            <input type="text" value={username} onChange={onUserNameChanged} id="inputUsername" /></label>
+            <button id="boutonCommutateur" onClick={BoutonCommutateur}>{value}</button>
+        </div>
       </div>
 
       <div className="products">
@@ -219,13 +222,15 @@ function App() {
       <div>
         <Modal show={show} className="modal">
           <div className="divTitleModal">
-            <h1 className="title">Emploie des managers !</h1>
-            <Toast show={showA} onClose={toggleShowA}>
-              <Toast.Header >
-                <strong className="me-auto">Félicitations !</strong>
-              </Toast.Header>
-              <Toast.Body>Vous avez acquis un nouveau manager !</Toast.Body>
-            </Toast>
+            <h1>Emploie des managers !</h1>
+            <div className="divToast">
+              <Toast show={showA} onClose={toggleShowA}>
+                <Toast.Header >
+                  <strong className="me-auto">Félicitations !</strong>
+                </Toast.Header>
+                <Toast.Body>Vous avez acquis un nouveau manager !</Toast.Body>
+              </Toast>
+            </div>
           </div>
           <div className="divModal">
             <div className="managers">
