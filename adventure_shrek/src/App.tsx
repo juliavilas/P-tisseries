@@ -27,7 +27,8 @@ function App() {
   let [qtmulti, setQtmulti] = useState(3);
   let [value, setValue] = useState('Acheter 1');
   let [count, setCount] = useState(0);
-  const [estEngage, setEstEngage] = useState(false);
+  // let estEngage=false;
+  //const [estEngage, setEstEngage] = useState(false);
   const [show, setShow] = useState(false);
   const [showA, setShowA] = useState(false);
   const toggleShowA = () => setShowA(!showA);
@@ -36,7 +37,6 @@ function App() {
   const [style, setStyle] = useState("avant");
 
   const onUserNameChanged = (e: any) => {
-    console.log("ok" + e.target.value)
     setUsername(e.target.value);
     localStorage.setItem("username", e.target.value);
   }
@@ -68,23 +68,26 @@ function App() {
   }
 
     // @ts-ignore
-    function onManagerBought(p: number, prod : Product): void {
-      if(world.managers.pallier[p - 1].unlocked=true){
-      addToScore(-world.managers.pallier[p - 1].seuil);
-      prod.calcScore();
+   /* function onManagerBought(prod : Product): void {
+      if(world.managers.pallier[prod.id - 1].unlocked==true){
+      addToScore(-world.managers.pallier[prod.id - 1].seuil);
+      //prod.calcScore();
       }
-    }
+    }*/
 
   function hireManager(p: number) {
+    console.log(p)
     if(world.money>=world.managers.pallier[p - 1].seuil){
-      onManagerBought(p, world.products.product[p]);
+      //onManagerBought(world.products.product[p-1]);
       world.managers.pallier[p - 1].unlocked = true;
-      world.products.product[p].managerUnlocked = true;
+      world.products.product[p-1].managerUnlocked = true;
+      services.putManager(world.managers.pallier[p - 1]);
+      console.log("ahhhhhhhhhh")
       // ne fonctionne pas
       // world.products.product[p].calcScore();
       // setEstEngage(true);
       // besoin de double cliquer pour que ça passe à true
-      // console.log(estEngage);
+      //estEngage=true;
     }
 
 
@@ -107,6 +110,7 @@ function App() {
         //setUnlockList(liste)
       }
       )
+      console.log("i saw her face")
     }
   }, [username])
 
@@ -133,7 +137,7 @@ function App() {
   // @ts-ignore
   function onAchatDone(p: Product, money: number): void {
     world.money = money;
-    //services.putProduct(p)
+    services.putProduct(p)
     setWorld(world => ({ ...world, money: world.money }));
   }
 
@@ -223,7 +227,7 @@ function App() {
         {
           world.products.product.map((p) =>
             <div key={p.name}>
-              <Product prod={p} onProductionDone={onProductionDone} qtmulti={qtmulti} money={world.money} services={services} onAchatDone={onAchatDone} estEngage={estEngage} onManagerBought={onManagerBought} />
+              <Product prod={p} onProductionDone={onProductionDone} qtmulti={qtmulti} money={world.money} services={services} onAchatDone={onAchatDone}/>
             </div>
           )
         }

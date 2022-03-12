@@ -47,4 +47,22 @@ export class Services {
             headers: Services.setHeaders(this.user)
         }).catch(Services.handleError)
     }
+
+    putUnlockProduct(unlock : Pallier): AxiosPromise<World> {
+        return axios({
+            method: 'put',
+            url: this.api + '/unlock',
+            data: unlock,
+            headers: Services.setHeaders(this.user)
+        }).catch(Services.handleError)
+    }
+
+    putAngel(angel : Pallier): AxiosPromise<Response> {
+        return axios({
+            method: 'put',
+            url: this.api + '/angels',
+            data: angel,
+            headers: Services.setHeaders(this.user)
+        }).catch(Services.handleError)
+    }
 }
