@@ -4,10 +4,11 @@ import { Services } from "./Services";
 import { World } from './world';
 import ReactDOM from 'react-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBars, faUser, faUnlock, faArrowUp, faEuro, faTimes } from '@fortawesome/free-solid-svg-icons'
+import { faBars, faUser, faUnlock, faArrowUp, faEuro, faTimes, faLessThan } from '@fortawesome/free-solid-svg-icons'
 import Product from './Product';
 import { transform } from "./utils"
 import { Button, Modal } from 'react-bootstrap';
+import { letterSpacing } from '@mui/system';
 
 function App() {
   const [services, setServices] = useState(new Services(""));
@@ -69,8 +70,8 @@ function App() {
   function addToScore(gain: number): void {
     world.score += gain;
     world.money += gain;
-    console.log("argent du monde " + world.money)
-    console.log("score du monde " + world.score)
+    //console.log("argent du monde " + world.money)
+    //console.log("score du monde " + world.score)
     setWorld(world => ({...world, money: world.money, score: world.score}));
   }
 
@@ -116,7 +117,6 @@ function App() {
         break;
     }
   }
-  console.log("out " + world.money)
   //  function hireManager(m : World["managers"]){
 
   //   for ()
@@ -139,7 +139,6 @@ function App() {
       // console.log(p.calcMaxCanBuy())
     })
   }*/
-
   return (
     <div className="App">
       <nav className="header">
@@ -172,6 +171,7 @@ function App() {
         <button id="boutonChgtValeur" onClick={ButtonHandler}>{value}</button>
         <label> Choisis ton pseudo :
           <input type="text" value={username} onChange={onUserNameChanged} id="inputUsername" /></label>
+          {/* <audio src="shrekmusic.mp3" controls autoPlay>  Your browser does not support the <code>audio</code> element.</audio> */}
       </div>
 
       <div className="products">

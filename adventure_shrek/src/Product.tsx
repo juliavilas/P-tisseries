@@ -74,7 +74,7 @@ export default function ProductComponent({ prod, onProductionDone, services, qtm
     // résoudre équation : u0 (1-c^n)/(1-c) < world.money --> log... trouver n
     function calcMaxCanBuy() {
         let n = Math.trunc(Math.log(1 + money * (prod.croissance-1) / prod.cout) / (Math.log(prod.croissance)))
-        console.log('test' + n);
+        //console.log('test' + n);
         return n;
     }
     let estPasAchetable: boolean =false;
@@ -115,13 +115,13 @@ export default function ProductComponent({ prod, onProductionDone, services, qtm
     }
 
     function startAchat() {
-        console.log("qtebuy "+qtebuy+" qute "+prod.quantite+" prix "+prix)
+        //console.log("qtebuy "+qtebuy+" qute "+prod.quantite+" prix "+prix)
         // On augmente la quantite que l'on achète
         prod.quantite+=qtebuy;
         // on retire de l'argent le prix du ou des produits
         money-=prix;
         startFabrication();
-        console.log("monye here"+money)
+        //console.log("monye here"+money)
         prod.cout=Math.trunc(prod.cout*(Math.pow(prod.croissance, qtebuy+1)))
         onAchatDone(prod, money);
     }
