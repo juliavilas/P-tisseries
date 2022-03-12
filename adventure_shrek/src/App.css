@@ -139,19 +139,6 @@ body::before{
   border-bottom: 1px solid #222;
 }
 
-
-/* #sidebar .list-items .icons{
-  width: 100%;
-  height: 40px;
-  text-align: center;
-  position: absolute;
-  bottom: 100px;
-  line-height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-} */
-
 #sidebar .list-items{
   position: relative;
   background: #1b1d03;
@@ -165,7 +152,7 @@ body::before{
   border-top: 1px solid rgba(255,255,255,0.1);
   border-bottom: 1px solid #333;
   transition: all 0.3s ease;
-} 
+}
 
 #sidebar .list-items li:hover> button{
   border-top: 1px solid transparent;
@@ -190,7 +177,7 @@ body::before{
   transition: all 0.3s ease;
 }
 
- 
+
 
 
 
@@ -215,7 +202,7 @@ body::before{
     font-weight: bold;
     font-family:"FuturaLightBT",Verdana,sans-serif;
   }
-  
+
 .header>ul{
     float: right;
     margin-right: 20px;
@@ -247,12 +234,12 @@ body::before{
 #check{
   display: none;
 }
-  
+
 @media (max-width: 858px){
     .checkbtn{
       display: block;
     }
-    
+
 .listeHeader{
       position: fixed;
       width: 100%;
@@ -270,11 +257,11 @@ body::before{
 .imgLogo{
   width:100px;
   height:80px;
-  vertical-align: middle; 
+  vertical-align: middle;
 }
 
 .products {
-  margin-top:30px;
+  margin-top:20px;
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-gap: 20px;
@@ -287,16 +274,30 @@ body::before{
 .modal {
     position: absolute; /* reste en place */
     z-index: 3;
-    width: 800px; 
-    margin-top: 80px;
+    width: 800px;
+    margin-top: 30px;
     padding-bottom:30px;
     overflow: auto; /* barre de scroll si besoin */
-    background-color: antiquewhite; /* opaque */
     border: solid;
-    top:10; 
-    left:20%; 
+    top:10;
+    left:20%;
     text-align: center;
   }
+
+.divTitleModal{
+  background-color: antiquewhite;
+  padding-top:10px;
+}
+
+.title{
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.divModal{
+  padding-bottom: 30px;
+  background-color: antiquewhite;
+}
 
 .managers{
   margin-top:15px;
@@ -337,21 +338,6 @@ body::before{
   background-color: antiquewhite;
 }
 
-#boutonChgtValeur{
-  display: inline-block;
-  background-color: #4F5400;
-  border-radius: 15px;
-  border: 4px double  #272b00;
-  padding: 10px;
-  color: #eeeeee;
-  cursor: pointer;
-}
-
-#boutonChgtValeur:hover{
-  background-color: #272b00;
-  border: 4px inset #4F5400;
-}
-
 .boutonEngager{
   display: inline-block;
   background-color: #4F5400;
@@ -361,16 +347,24 @@ body::before{
   color: #eeeeee;
   cursor: pointer;
   width:70%;
-  
+
 }
 
-.boutonEngager:disabled{
+#avant:disabled{
   background-color: #44443f;
   cursor:auto;
 }
 
-.boutonEngager:active{
+#avant:hover{
   cursor: pointer;
+}
+
+#avant{
+  background-color:#4F5400;
+}
+
+#apres1{
+  background-color: #1b1d03;
 }
 
 .boutonFermer{
@@ -384,4 +378,37 @@ body::before{
   padding-left: 20px;
   padding-right:20px;
   margin-top:15px;
+}
+
+.fade.toast.show{
+  margin-top: 10px;
+  width:70%;
+  margin: 0 auto;
+}
+
+#labelBoutonCommutateur{
+  margin-left:30px;
+  font-weight: bold;
+}
+
+#boutonCommutateur{
+  margin-left:30px;
+  display: inline-block;
+  background-color: #4F5400;
+  border-radius: 15px;
+  border: 4px double  #272b00;
+  padding: 10px;
+  color: #eeeeee;
+}
+
+#boutonCommutateur:hover{
+  background-color: #272b00;
+  border: 4px inset #4F5400;
+  cursor:pointer;
+}
+
+.debut{
+  margin : 0 auto;
+  margin-top:10px;
+  margin-left:600px;
 }

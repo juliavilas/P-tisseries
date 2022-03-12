@@ -10,11 +10,11 @@ type ProductProps = {
     onAchatDone: (p: Product, money: number) => void,
     services: Services,
     qtmulti: number,
-    money: number
+    money: number,
+    estEngage : boolean
 };
 
-
-export default function ProductComponent({ prod, onProductionDone, services, qtmulti, money, onAchatDone }: ProductProps) {
+export default function ProductComponent({ prod, onProductionDone, services, qtmulti,onAchatDone, estEngage }: ProductProps) {
     const [progress, setProgress] = useState(0);
     let estEnProd : boolean = false;
     //const [qtebuy, setQtebuy] = useState(0);
