@@ -67,15 +67,27 @@ function App() {
     }
   }
 
+    // @ts-ignore
+    function onManagerBought(p: number, prod : Product): void {
+      if(world.managers.pallier[p - 1].unlocked=true){
+      addToScore(-world.managers.pallier[p - 1].seuil);
+      prod.calcScore();
+      }
+    }
+
   function hireManager(p: number) {
-    addToScore(-world.managers.pallier[p - 1].seuil);
-    world.managers.pallier[p - 1].unlocked = true;
-    world.products.product[p].managerUnlocked = true;
-    // ne fonctionne pas
-    // world.products.product[p].calcScore();
-    setEstEngage(true);
-    // besoin de double cliquer pour que ça passe à true
-    console.log(estEngage);
+    if(world.money>=world.managers.pallier[p - 1].seuil){
+      onManagerBought(p, world.products.product[p]);
+      world.managers.pallier[p - 1].unlocked = true;
+      world.products.product[p].managerUnlocked = true;
+      // ne fonctionne pas
+      // world.products.product[p].calcScore();
+      // setEstEngage(true);
+      // besoin de double cliquer pour que ça passe à true
+      // console.log(estEngage);
+    }
+
+
   }
 
   function wrapperFunction(p: number) {
@@ -211,7 +223,7 @@ function App() {
         {
           world.products.product.map((p) =>
             <div key={p.name}>
-              <Product prod={p} onProductionDone={onProductionDone} qtmulti={qtmulti} money={world.money} services={services} onAchatDone={onAchatDone} estEngage={estEngage} />
+              <Product prod={p} onProductionDone={onProductionDone} qtmulti={qtmulti} money={world.money} services={services} onAchatDone={onAchatDone} estEngage={estEngage} onManagerBought={onManagerBought} />
             </div>
           )
         }

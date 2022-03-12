@@ -64,9 +64,8 @@
 }
 
 #boutonAcheter:disabled{
-    background-color: red;
-    color:purple;
-    cursor:auto;
+    background-color: #44443f;
+  cursor:auto;
   }
 
 .titreProduit{

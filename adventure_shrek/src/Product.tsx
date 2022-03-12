@@ -12,6 +12,7 @@ type ProductProps = {
     qtmulti: number,
     money: number,
     estEngage : boolean
+    onManagerBought: (p : number, prod:Product) => void;
 };
 
 export default function ProductComponent({ prod, onProductionDone, services, qtmulti,onAchatDone, estEngage, money }: ProductProps) {
@@ -51,13 +52,19 @@ export default function ProductComponent({ prod, onProductionDone, services, qtm
                     prod.progressbarvalue = 0;
                 }
                 onProductionDone(prod);
-                estEnProd=false;
-               // prod.timeleft=prod.vitesse
+                //estEnProd=false;
+                
+               
 
-            } else {
+            } 
+            else {
                 prod.progressbarvalue = Math.round(((prod.vitesse - prod.timeleft) / prod.vitesse) * 100)
             }
+            
             setProgress(prod.progressbarvalue);
+        }
+        else if(prod.managerUnlocked=true){
+            prod.timeleft=prod.vitesse
         } else {
             setProgress(0)
         }
