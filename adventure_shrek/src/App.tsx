@@ -14,9 +14,9 @@ import 'bootstrap/dist/css/bootstrap.css';
 import { off } from 'process';
 import { badgeClasses, Snackbar } from '@mui/material';
 
-export interface IsQtmulti {
+/*export interface IsQtmulti {
   qtmulti: number;
-}
+}*/
 
 function App() {
   const [services, setServices] = useState(new Services(""));
@@ -97,6 +97,7 @@ function App() {
       )
     }
   }, [username])
+
   useEffect(() => {
     let username = localStorage.getItem("username");
     // si pas de username, on génère un username aléatoire
@@ -121,7 +122,7 @@ function App() {
   function onAchatDone(p: Product, money: number): void {
     world.money = money;
     //services.putProduct(p)
-    setWorld(world => ({...world, money: world.money}));
+    setWorld(world => ({ ...world, money: world.money }));
   }
 
   function addToScore(gain: number): void {
@@ -129,7 +130,7 @@ function App() {
     world.money += gain;
     //console.log("argent du monde " + world.money)
     //console.log("score du monde " + world.score)
-    setWorld(world => ({...world, money: world.money, score: world.score}));
+    setWorld(world => ({ ...world, money: world.money, score: world.score }));
   }
 
   function BoutonCommutateur() {
@@ -200,20 +201,21 @@ function App() {
       </div>
       <div>
         <div className="debut">
-            <label id="labelBoutonCommutateur"> Choisis ton pseudo :
-              <input type="text" value={username} onChange={onUserNameChanged} id="inputUsername" /></label>
-              <button id="boutonCommutateur" onClick={BoutonCommutateur}>{value}</button>
-          </div>
-          {/* <audio src="shrekmusic.mp3" controls autoPlay>  Your browser does not support the <code>audio</code> element.</audio> */}
-        <div className="products">
-          {
-            world.products.product.map((p) =>
-              <div key={p.name}>
-                <Product prod={p} onProductionDone={onProductionDone} qtmulti={qtmulti} money={world.money} services={services} onAchatDone={onAchatDone} estEngage={estEngage} />
-              </div>
-            )
-          }
+          <label id="labelBoutonCommutateur"> Choisis ton pseudo :
+            <input type="text" value={username} onChange={onUserNameChanged} id="inputUsername" /></label>
+          <button id="boutonCommutateur" onClick={BoutonCommutateur}>{value}</button>
         </div>
+      </div>
+      {/* <audio src="shrekmusic.mp3" controls autoPlay>  Your browser does not support the <code>audio</code> element.</audio> */}
+      <div className="products">
+        {
+          world.products.product.map((p) =>
+            <div key={p.name}>
+              <Product prod={p} onProductionDone={onProductionDone} qtmulti={qtmulti} money={world.money} services={services} onAchatDone={onAchatDone} estEngage={estEngage} />
+            </div>
+          )
+        }
+      </div>
       <div>
         <Modal show={show} className="modal">
           <div className="divTitleModal">
