@@ -36,4 +36,16 @@ public class Webservice {
     public void putManager(@Context HttpServletRequest request, PallierType manager) {
        services.updateManager(request.getHeader("X-User"), manager);
     }
+    
+    @PUT
+    @Path("unlock")
+    public void putUnlock(@Context HttpServletRequest request, PallierType unlock) {
+        services.updateUnlock(request.getHeader("X-User"), unlock);
+    }
+  
+    @PUT
+    @Path("angel")
+    public void putAngel(@Context HttpServletRequest request, PallierType angel) {
+       services.updateAngel(request.getHeader("X-User"), angel);
+    }
 }
