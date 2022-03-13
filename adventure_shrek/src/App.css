@@ -310,6 +310,7 @@ body::before{
     grid-template-columns: 100px 1fr 1fr;
     grid-gap: 10px;
     grid-auto-rows: 1fr;
+    margin-top:10px;
 }
 
 #managerLogo{
@@ -319,7 +320,12 @@ body::before{
 
 .imgManagerLogo{
   width:100%;
-  height:70px;
+  height:100px;
+  border-radius: 50%;
+  border : solid;
+  /* border-width: 10px;
+  border-color: #1b1d03; */
+  border-image-width: 10px;
 }
 
 #infosManagers{
@@ -336,6 +342,7 @@ body::before{
 
 #inputUsername{
   background-color: antiquewhite;
+  margin-left:10px;
 }
 
 .boutonEngager{
@@ -347,24 +354,16 @@ body::before{
   color: #eeeeee;
   cursor: pointer;
   width:70%;
-
 }
 
-#avant:disabled{
+.boutonEngager:hover{
+  background-color: #272b00;
+  border: 4px inset #4F5400;
+}
+
+.boutonEngager:disabled{
   background-color: #44443f;
   cursor:auto;
-}
-
-#avant:hover{
-  cursor: pointer;
-}
-
-#avant{
-  background-color:#4F5400;
-}
-
-#apres1{
-  background-color: #1b1d03;
 }
 
 .boutonFermer{
@@ -378,6 +377,11 @@ body::before{
   padding-left: 20px;
   padding-right:20px;
   margin-top:15px;
+}
+
+.boutonFermer:hover{
+  background-color: #272b00;
+  border: 4px inset #4F5400;
 }
 
 .fade.toast.show{
@@ -411,5 +415,25 @@ body::before{
   margin : 0 auto;
   margin-top:10px;
   margin-left:600px;
+}
+
+.fas.fa-user{
+  margin-right:10px;
+}
+
+.fas.fa-unlock{
+  margin-right:10px;
+}
+
+.fas.fa-arow-up{
+  margin-right: 10px;
+}
+
+.fas.fa-euro{
+  margin-right:10px;
+}
+
+.nomManager{
+  font-weight: bold;;
 }
 

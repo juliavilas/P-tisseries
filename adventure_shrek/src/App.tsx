@@ -46,34 +46,29 @@ function App() {
     setShowA(false);
   }
 
-  function chgtValeurBadge() {
-    if (world.money > world.managers.pallier[5].seuil) {
-      setNbManagersAchetables(6);
-    }
-    else if (world.money > world.managers.pallier[4].seuil) {
-      setNbManagersAchetables(5);
-    }
-    else if (world.money > world.managers.pallier[3].seuil) {
-      setNbManagersAchetables(4);
-    }
-    else if (world.money > world.managers.pallier[2].seuil) {
-      setNbManagersAchetables(3);
-    }
-    else if (world.money > world.managers.pallier[1].seuil) {
-      setNbManagersAchetables(2);
-    }
-    else {
-      setNbManagersAchetables(1);
-    }
+  function changerValeurManagers(){
+     if (world.money >= world.managers.pallier[5].seuil) {
+       setNbManagersAchetables(6);
+     }
+     else if (world.money >= world.managers.pallier[4].seuil) {
+       setNbManagersAchetables(5);
+     }
+     else if (world.money >= world.managers.pallier[3].seuil) {
+       setNbManagersAchetables(4);
+     }
+     else if (world.money >= world.managers.pallier[2].seuil) {
+       setNbManagersAchetables(3);
+     }
+     else if (world.money >= world.managers.pallier[1].seuil) {
+       setNbManagersAchetables(2);
+     }
+     else if(world.money >= world.managers.pallier[0].seuil){
+       setNbManagersAchetables(1);
+     }
+     else{
+      setNbManagersAchetables(0);
+     }
   }
-
-    // @ts-ignore
-   /* function onManagerBought(prod : Product): void {
-      if(world.managers.pallier[prod.id - 1].unlocked==true){
-      addToScore(-world.managers.pallier[prod.id - 1].seuil);
-      //prod.calcScore();
-      }
-    }*/
 
   function hireManager(p: number) {
     console.log(p)
@@ -82,12 +77,9 @@ function App() {
       world.managers.pallier[p - 1].unlocked = true;
       world.products.product[p-1].managerUnlocked = true;
       services.putManager(world.managers.pallier[p - 1]);
-      console.log("ahhhhhhhhhh")
-      // ne fonctionne pas
-      // world.products.product[p].calcScore();
-      // setEstEngage(true);
-      // besoin de double cliquer pour que ça passe à true
-      //estEngage=true;
+      setWorld(world => ({ ...world, money: world.money, score: world.score}));
+      setNbManagersAchetables(nbManagersAchetables-1);
+      changerValeurManagers();
     }
 
 
@@ -95,8 +87,6 @@ function App() {
 
   function wrapperFunction(p: number) {
     hireManager(p);
-    // Changer style 
-    // setStyle("apres"+p);
     toggleShowA();
   }
 
@@ -110,7 +100,6 @@ function App() {
         //setUnlockList(liste)
       }
       )
-      console.log("i saw her face")
     }
   }, [username])
 
@@ -146,7 +135,8 @@ function App() {
     world.money += gain;
     //console.log("argent du monde " + world.money)
     //console.log("score du monde " + world.score)
-    setWorld(world => ({ ...world, money: world.money, score: world.score }));
+    changerValeurManagers();
+    setWorld(world => ({ ...world, money: world.money, score: world.score}));
   }
 
   function BoutonCommutateur() {
@@ -170,7 +160,6 @@ function App() {
         setValue('Acheter 1');
         setQtmulti(3);
         setCount(0);
-        console.log("toi" + world.money)
         break;
       default:
         console.log("I ain't the sharpest tool in the shed.")
@@ -200,9 +189,6 @@ function App() {
           </div>
           <ul className="list-items">
             <li>
-              <button onClick={chgtValeurBadge}>Test</button>
-            </li>
-            <li>
               <button onClick={() => handleShow()}>
                 <i className="fas fa-user"><FontAwesomeIcon icon={faUser} /></i>
                 Managers
@@ -217,7 +203,7 @@ function App() {
       </div>
       <div>
         <div className="debut">
-          <label id="labelBoutonCommutateur"> Choisis ton pseudo :
+          <label id="labelBoutonCommutateur"> Choisis ton pseudo : 
             <input type="text" value={username} onChange={onUserNameChanged} id="inputUsername" /></label>
           <button id="boutonCommutateur" onClick={BoutonCommutateur}>{value}</button>
         </div>
@@ -255,12 +241,12 @@ function App() {
                         services.server + manager.logo} />
                     </div>
                     <div className="composantGrid" id="infosManagers">
-                      <div> {manager.name} </div>
+                      <div className="nomManager"> {manager.name} </div>
                       <div> {world.products.product[manager.idcible - 1].name}</div>
                       <div className="composantGrid" id="managerSeuil"> {manager.seuil} </div>
                     </div>
                     <div className="divBoutonEngager" >
-                      <button className="boutonEngager" id={style} disabled={world.money < manager.seuil} onClick={() => wrapperFunction(world.products.product[manager.idcible - 1].id)}>
+                      <button className="boutonEngager" disabled={world.money < manager.seuil} onClick={() => wrapperFunction(world.products.product[manager.idcible - 1].id)}>
                         Engager !</button>
                     </div>
                   </div>
