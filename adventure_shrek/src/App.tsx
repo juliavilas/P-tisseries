@@ -77,7 +77,6 @@ function App() {
       world.managers.pallier[p - 1].unlocked = true;
       world.products.product[p-1].managerUnlocked = true;
       services.putManager(world.managers.pallier[p - 1]);
-      setWorld(world => ({ ...world, money: world.money, score: world.score}));
       setNbManagersAchetables(nbManagersAchetables-1);
       changerValeurManagers();
     }
